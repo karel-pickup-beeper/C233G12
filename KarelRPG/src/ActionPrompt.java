@@ -86,7 +86,8 @@ public class ActionPrompt
     		break;
     	}
     }
-
+//resolved
+  
     public int getRoomNumber()
     {
     	return this.roomNumber;
