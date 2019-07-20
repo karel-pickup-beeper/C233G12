@@ -146,6 +146,6 @@ public class Maps {
 	
 	public void setTile(int xThere, int yThere) 
 	{
-		
+		//future implementation
 	}
 }
