@@ -38,6 +38,9 @@ public class Player {
 	public void setHealth(int health1) { //set player health
 		life=health1;
 	}
+	public int getHealth() {
+		return life;
+	}
 	public void setItem(Collectible item) { //to preset any inventory collectibles
 		inventory.add(item);
 	}
