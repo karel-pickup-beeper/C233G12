@@ -114,7 +114,7 @@ public class ActionPrompt
 		play.getInventory().add(S);
 		
 		
-		Maps map0 = new Maps(0,play,);
+		Maps map0 = new Maps(0,play,null);
 		
 		
 		//Prints World.

@@ -62,7 +62,7 @@ public class Maps {
 	
 	public String detectItem(int xHere, int yHere)
 	{
-		return "Key"
+		return "Key";
 	}
 	
 	public boolean noMoreCollectable() 
