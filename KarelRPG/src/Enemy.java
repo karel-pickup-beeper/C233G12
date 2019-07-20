@@ -64,11 +64,11 @@ public class Enemy {
   
   public void changeXLoc (int jump)
   {
-    this.xLoc += jump
+    this.xLoc += jump;
   }
   public void changeYLoc (int jump)
   {
-    this.yLoc += jump
+    this.yLoc += jump;
   }
   
 	// Need to fix privacy leak here.	
@@ -93,7 +93,8 @@ public class Enemy {
 		//Every time the enemyMove() method is run.
 		
 		//Then the second part of this code would be to actually move towards that direction.
-
+	
+	
 	}
 	
 }
