@@ -75,20 +75,14 @@ public class Maps {
 	
 	public String detectTile(int xThere, int yThere) 
 	{
-		String n = null;
-		/* 
-		 * 
-		 * 
-		 * 		
-		*/
-
-		for (PhysicalCollectible i : listOfCollectibles) {
+		String n = "_";
+	
+		for (int i = 0; i < layoutOfCurrentRoom.length; i++) {
 			
-			if (i.getX() == xThere && i.getY() == yThere) {
-				n = i.getTag();
-			}
-			else  {
-				n = null;
+			for(int j = 0; j < layoutOfCurrentRoom[i].length; j++) {
+				if (i == xThere && j == yThere) {
+					n = layoutOfCurrentRoom[i][j];
+				}
 			}
 		}
 		return n;
@@ -101,14 +95,29 @@ public class Maps {
 	
 	public String detectItem(int xHere, int yHere)
 	{
+		String n = null;
 		
-		return "Key";
+		for (PhysicalCollectible i : listOfCollectibles) {
+			
+			if (i.getX() == xHere && i.getY() == yHere) {
+				n = i.getTag();
+			}
+			else  {
+				n = null;
+			}
+		}
+		return n;
+		
 	}
 	
 	
 	public boolean noMoreCollectible() 
 	{
-		boolean isThere = true;
+		boolean isThere = false;
+		
+		if (listOfCollectibles.isEmpty()) {
+			isThere = true;
+		}
 		
 		return isThere;
 	}
@@ -135,7 +144,7 @@ public class Maps {
 		}
 	}
 	
-	public void changeTile(int xThere, int yThere) 
+	public void setTile(int xThere, int yThere) 
 	{
 		
 	}
