@@ -68,7 +68,7 @@ public class Player {
 		return yCoord;
 	}
 	
-	// change coordinal direction methods
+	// change coordinate direction methods
 
 	public void changeX(int x1) { 
 		xCoord+=x1;		
@@ -91,6 +91,8 @@ public class Player {
 		case WEST:
 			changeX(-1);
 			break;
+		default:
+			System.out.println("What have you done!");
 		}
 	}
 }
