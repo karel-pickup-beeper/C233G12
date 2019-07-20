@@ -92,7 +92,8 @@ public class Player {
 			changeX(-1);
 			break;
 		default:
-			System.out.println("What have you done!");
+			System.out.println("What have you done D:");
+			break;
 		}
 	}
 }
