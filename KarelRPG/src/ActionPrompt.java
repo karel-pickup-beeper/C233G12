@@ -1,4 +1,5 @@
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.util.ArrayList;
   
 enum CardinalDirection
 {
@@ -30,10 +31,16 @@ public class ActionPrompt
     	this(a.timeStep, a.currentCommand, a.roomNumber);
     }
   
-    // Prints a line about Day using switch 
-    public void printWorld() 
+    //Prints a line about Day using switch 
+    public void printWorld(String[][] thisWorld, Player player1, ArrayList<PhysicalCollectible> treasures) 
     { 
-        //Some Really Complicated Stuff Goes here.
+        for(int i=0;i<thisWorld.length; i++)
+        {
+        	for(int j=0;j<thisWorld[i].length; j++)
+        	{
+        		if ()
+        	}
+        }
     }
     
     public void takeCommand()
@@ -87,26 +94,31 @@ public class ActionPrompt
     	}
     }
 
-    public int getRoomNumber()
-    {
-    	return this.roomNumber;
-    }
+
   
     // Driver method 
     public static void main(String[] args) 
     {
     	//This is object-oriented code
         ActionPrompt game = new ActionPrompt(0,CommandType.help,0);
+                
         
-        Collectible q = new Collectible("Key", "object", 0);
-		Collectible n = new Collectible("Star", "object", 0);
-		Collectible k = new Collectible("Sun", "object", 0);
+        Collectible Q = new Collectible("Key", "object", 0);
+		Collectible T = new Collectible("Star", "object", 0);
+		Collectible S = new Collectible("Sun", "object", 0);
 
 		//Initializing Collectible in Player Inventory.
 		Player play = new Player(100, 5,6);
-		play.getInventory().add(q);
-		play.getInventory().add(n);
-		play.getInventory().add(k);
+		play.getInventory().add(Q);
+		play.getInventory().add(T);
+		play.getInventory().add(S);
+		
+		
+		Maps map0 = new Maps(0,play,);
+		
+		
+		//Prints World.
+		game.printWorld(map0.getLayoutofCurrentRoom());
 		
      // Declare the object and initialize with 
         // predefined standard input object 

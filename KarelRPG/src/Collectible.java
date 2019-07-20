@@ -34,7 +34,7 @@ public class Collectible {
 		return" (" + name + "," + count+ ")";
 	}
 	public boolean isComplete(String name) {
-		if (Player.getSingleItemCount(name)>8) {
+		if (Player.getSingleItemCount(name)>4) {
 			return true;
 		}
 		return false;

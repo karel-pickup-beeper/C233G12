@@ -5,7 +5,7 @@ public class Maps {
 	private int sizeOfCurrentRoom;
 	private String[][] layoutOfCurrentRoom; 
 	private ArrayList<PhysicalCollectible> listOfCollectables = new ArrayList<PhysicalCollectible>();
-//	private ActionPrompt game;
+
 	
 	public Maps(int room) {
 		int w,
@@ -52,7 +52,17 @@ public class Maps {
 	{
 		
 		
-		return "hi";
+		return "_";
+	}
+	
+	public String[][] getlayoutOfCurrentRoom()
+	{
+		return this.layoutOfCurrentRoom;
+	}
+	
+	public String detectItem(int xHere, int yHere)
+	{
+		return "Key"
 	}
 	
 	public boolean noMoreCollectable() 
@@ -65,9 +75,9 @@ public class Maps {
 	public void popCollectable(int xHere, int yHere) 
 	{
 		/*
-			
-			
-			
+			In Here we just delete the Physical Collectible on the map that happens to be at the location given
+			in the parameters. In the program we have to iterate through the arraylist of physical collectible objects
+			until we find the physical collectible with the matching xHere = X and yHere = y. And deleted that from the arrayList.
 		*/
 	
 	}
