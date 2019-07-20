@@ -75,9 +75,23 @@ public class Maps {
 	
 	public String detectTile(int xThere, int yThere) 
 	{
-		
-		
-		return "_";
+		String n = null;
+		/* 
+		 * 
+		 * 
+		 * 		
+		*/
+
+		for (PhysicalCollectible i : listOfCollectibles) {
+			
+			if (i.getX() == xThere && i.getY() == yThere) {
+				n = i.getTag();
+			}
+			else  {
+				n = null;
+			}
+		}
+		return n;
 	}
 	
 	public String[][] getlayoutOfCurrentRoom()
