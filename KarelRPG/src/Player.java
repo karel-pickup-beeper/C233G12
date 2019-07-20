@@ -91,6 +91,9 @@ public class Player {
 		case WEST:
 			changeX(-1);
 			break;
+		default:
+			System.out.println("What have you done D:");
+			break;
 		}
 	}
 }
