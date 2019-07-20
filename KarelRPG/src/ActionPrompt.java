@@ -96,7 +96,18 @@ public class ActionPrompt
     public static void main(String[] args) 
     {
     	//This is object-oriented code
-        ActionPrompt game = new ActionPrompt(0,CommandType.help,0); 
+        ActionPrompt game = new ActionPrompt(0,CommandType.help,0);
+        
+        Collectible q = new Collectible("Key", "object", 0);
+		Collectible n = new Collectible("Star", "object", 0);
+		Collectible k = new Collectible("Sun", "object", 0);
+
+
+		Player play = new Player(100, 5,6);
+		play.getInventory().add(q);
+		play.getInventory().add(n);
+		play.getInventory().add(k); //add any collectibles to the inventory before the game to have counter
+		
      // Declare the object and initialize with 
         // predefined standard input object 
     	Scanner key = new Scanner(System.in);
@@ -107,5 +118,6 @@ public class ActionPrompt
     	game.writeCommand(name);
         game.takeCommand();
         key.close();
-    } 
+    }
+    
 } 
