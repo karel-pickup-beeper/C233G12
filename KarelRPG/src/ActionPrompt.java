@@ -86,7 +86,7 @@ public class ActionPrompt
     		break;
     	}
     }
-    
+
     public int getRoomNumber()
     {
     	return this.roomNumber;
@@ -102,11 +102,11 @@ public class ActionPrompt
 		Collectible n = new Collectible("Star", "object", 0);
 		Collectible k = new Collectible("Sun", "object", 0);
 
-
+		//Initializing Collectible in Player Inventory.
 		Player play = new Player(100, 5,6);
 		play.getInventory().add(q);
 		play.getInventory().add(n);
-		play.getInventory().add(k); //add any collectibles to the inventory before the game to have counter
+		play.getInventory().add(k);
 		
      // Declare the object and initialize with 
         // predefined standard input object 

@@ -5,6 +5,7 @@ public class Enemy {
 	private int xLoc;
 	private int yLoc;
 	
+
 	//Initialized to 0. Only for Demo 1.
 	private int attack = 0;
 	
@@ -12,15 +13,22 @@ public class Enemy {
 	// sightRange = The Euclidean Distance between player and enemy.
 	private int sightRange;
 	
-	//private CardinalDirection directiontoPlayer;
+
+	//Future implementation
 	private boolean runFromPlayer;
 	
+	//The 8 Cardinal Direction the player can be compared to each enemy.
+	private CardinalDirection directiontoPlayer;
+	
+	
+
 	//Constants
 	public static final int MAX_X = 10;
 	public static final int MIN_X = 0;
 	public static final int MAX_Y = 10;
 	public static final int MIN_Y = 0;
 	
+
 	// Constructor
 	public Enemy (int initialHealth, int initialXLoc, int initialYLoc) {
 		if (initialHealth > 0) {
@@ -44,6 +52,7 @@ public class Enemy {
 			yLoc = 5;
 		}
 	}
+
 	
 	
 	// Copy Constructor
@@ -51,9 +60,17 @@ public class Enemy {
 		health = copyEnemy.health;
 		xLoc = copyEnemy.xLoc;
 		yLoc = copyEnemy.yLoc;
-		
 	}
-	
+  
+  public void changeXLoc (int jump)
+  {
+    this.xLoc += jump
+  }
+  public void changeYLoc (int jump)
+  {
+    this.yLoc += jump
+  }
+  
 	// Need to fix privacy leak here.	
 	public int getXLocation() {
 		return xLoc;
@@ -68,10 +85,15 @@ public class Enemy {
 	// one step.
 	public void enemyMove () {
 		System.out.println("This method only verifies player location for Demo 1.");
+
+
+		//Here we need to get the xCoord & yCoord of player to compare it with
+		//enemy xLoc & yLoc to obtain one of the 8 cardinal direction.
+		//Then simultaneously set the direction to Player variable,
+		//Every time the enemyMove() method is run.
 		
+		//Then the second part of this code would be to actually move towards that direction.
+
 	}
 	
 }
-
-// changeXLoc (jump): void
-// changeYLoc (jump): void

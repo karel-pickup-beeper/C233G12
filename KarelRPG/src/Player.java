@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 
+enum HealthCondition
+{
+	GOOD,POISON,STUN;
+}
+
 public class Player {
 	
 	
@@ -9,7 +14,7 @@ public class Player {
 	private int xCoord;
 	private ArrayList<Collectible> inventory = new ArrayList <Collectible>();
 	private ArrayList<Integer> stats = new ArrayList <Integer>();
-		
+	private HealthCondition status;
 	
 	//constructors
 	public Player(int health1, int x, int y) {//set player with stats
@@ -32,14 +37,19 @@ public class Player {
 	public ArrayList <Integer> getStat(){
 		return stats;
 	}
-	public void changeStatus() { 
-		
+	
+	public void changeStatus(HealthCondition change) { 
+		this.status = change;
 	}
+	public HealthCondition getStatus() {
+		return this.status;
+	}
+	
 	public void setHealth(int health1) { //set player health
 		life=health1;
 	}
 	public int getHealth() {
-		return life; 
+		return life;
 	}
 	public void setItem(Collectible item) { //to preset any inventory collectibles
 		inventory.add(item);
@@ -71,7 +81,7 @@ public class Player {
 		return yCoord;
 	}
 	
-	// change coordinal direction methods
+	// change coordinate direction methods
 
 	public void changeX(int x1) { 
 		xCoord+=x1;		
