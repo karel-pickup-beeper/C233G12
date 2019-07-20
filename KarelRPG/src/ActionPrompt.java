@@ -102,7 +102,7 @@ public class ActionPrompt
 		Collectible n = new Collectible("Star", "object", 0);
 		Collectible k = new Collectible("Sun", "object", 0);
 
-		//Initializing Collectibles in Player Inventory.
+		//Initializing Collectible in Player Inventory.
 		Player play = new Player(100, 5,6);
 		play.getInventory().add(q);
 		play.getInventory().add(n);

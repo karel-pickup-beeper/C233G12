@@ -12,8 +12,12 @@ public class Enemy {
 	// sightRange = The Euclidean Distance between player and enemy.
 	private int sightRange;
 	
-	//private CardinalDirection directiontoPlayer;
+	//Future implementation
 	private boolean runFromPlayer;
+	
+	//The 8 Cardinal Direction the player can be compared to each enemy.
+	private CardinalDirection directiontoPlayer;
+	
 	
 	//Constants
 	public static final int MAX_X = 10;
@@ -59,7 +63,12 @@ public class Enemy {
 	// one step.
 	public void enemyMove () {
 		System.out.println("This method only verifies player location for Demo 1.");
+		//Here we need to get the xCoord & yCoord of player to compare it with
+		//enemy xLoc & yLoc to obtain one of the 8 cardinal direction.
+		//Then simultaneously set the direction to Player variable,
+		//Every time the enemyMove() method is run.
 		
+		//Then the second part of this code would be to actually move towards that direction.
 	}
 	
 }
