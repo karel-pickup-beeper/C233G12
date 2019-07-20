@@ -5,13 +5,12 @@ public class Maps {
 	private int sizeOfCurrentRoom;
 	private String[][] layoutOfCurrentRoom; 
 	private ArrayList<PhysicalCollectible> listOfCollectables = new ArrayList<PhysicalCollectible>();
-
-	public Maps() {
+//	private ActionPrompt game;
+	
+	public Maps(int room) {
 		int w,
 			l,
 			i = 0;
-
-		//	ActionPrompt game;
 		
 		layoutOfCurrentRoom = new String [sizeOfCurrentRoom][sizeOfCurrentRoom];
 		
@@ -29,7 +28,22 @@ public class Maps {
 			System.out.println();
 		}
 	
-	
+		switch (room)
+		{
+		case 0:
+			for (w = 0; w < layoutOfCurrentRoom.length; w++) 
+			{
+				System.out.print("X");
+				for (l = 0; l < layoutOfCurrentRoom[0].length; l++) 
+				{
+					if (l < layoutOfCurrentRoom[l].length) {
+						System.out.print("\n|" + i++);
+					}
+				}
+				System.out.println();
+			}
+			break;
+		}
 	
 	}
 
