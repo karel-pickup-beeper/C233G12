@@ -99,7 +99,14 @@ public class Maps {
 		return isThere;
 	}
 	
-	
+	/**
+	 * This method searches for a collectible at a specified location. If the collectible 
+	 * is present in that location it is removed from the arrayList and no longer shown 
+	 * on the map.
+	 * 
+	 * @param xHere
+	 * @param yHere
+	 */
 	public void popCollectible(int xHere, int yHere) 
 	{
 		/*
@@ -107,7 +114,6 @@ public class Maps {
 			in the parameters. In the program we have to iterate through the arraylist of physical collectible objects
 			until we find the physical collectible with the matching xHere = X and yHere = y. And deleted that from the arrayList.
 		*/
-		
 		for (PhysicalCollectible i : listOfCollectibles) {
 			if (i.getX() == xHere && i.getY() == yHere) {
 				listOfCollectibles.remove(i);
