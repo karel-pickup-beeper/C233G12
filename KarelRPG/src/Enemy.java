@@ -5,7 +5,7 @@ public class Enemy {
 	private int xLoc;
 	private int yLoc;
 	
-
+	
 	//Initialized to 0. Only for Demo 1.
 	private int attack = 0;
 	
@@ -61,32 +61,75 @@ public class Enemy {
 		xLoc = copyEnemy.xLoc;
 		yLoc = copyEnemy.yLoc;
 	}
-  
-  public void changeXLoc (int jump)
-  {
-    this.xLoc += jump;
-  }
-  public void changeYLoc (int jump)
-  {
+	/**
+	 * This mutator method will change the x-coordinate of the enemy to a random location, when called.
+	 * 
+	 * @return xLoc
+	 */
+	
+	public void changeXLoc (int jump) {
+		this.xLoc += jump;
+	}
+	
+	/**
+	 * This mutator method will change the y-coordinate of the enemy to a random location, when called.
+	 * 
+	 * @return yLoc
+	 */
+	
+	public void changeYLoc (int jump) {
     this.yLoc += jump;
-  }
+	}
   
-	// Need to fix privacy leak here.	
+  	/**
+	 * This accessor method will return the x-coordinate of the enemy when called.
+	 * 
+	 * @return xLoc
+	 */
+	// Need to fix privacy leak here.
+  
 	public int getXLocation() {
 		return xLoc;
 	} 
+
 	
+	/**
+	 * This accessor method will return the y-coordinate of the enemy when called.
+	 * 
+	 * @return yLoc
+	 */
 	// Need to fix privacy leak here.
+	
 	public int getYLocation() {
 		return yLoc;
 	}
 	
-	// This method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
-	// one step.
-	public void enemyMove () {
+	/**
+	 * This mutator method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
+	 * one step closer to the player.
+	 * 
+	 * @param playerX
+	 * @param playerY
+	 */
+	
+	public void enemyMove (int playerX, int playerY) {
 		System.out.println("This method only verifies player location for Demo 1.");
-
-
+		
+		if (playerX < xLoc) {
+			xLoc -= 1;
+		} else if (playerX > xLoc) {
+			xLoc += 1;
+		} else if (playerX == xLoc) {
+			xLoc += 0;
+		} 
+		
+		if (playerY < yLoc) {
+			yLoc += 1;
+		} else if (playerY > yLoc) {
+			yLoc -=1;
+		} else if (playerY == yLoc) {
+			yLoc += 0;
+		}
 		//Here we need to get the xCoord & yCoord of player to compare it with
 		//enemy xLoc & yLoc to obtain one of the 8 cardinal direction.
 		//Then simultaneously set the direction to Player variable,
