@@ -20,9 +20,9 @@ public class Enemy {
 	
 	
 	//Constants
-	public static final int MAX_X = 10;
+	public static final int MAX_X = 9;
 	public static final int MIN_X = 0;
-	public static final int MAX_Y = 10;
+	public static final int MAX_Y = 9;
 	public static final int MIN_Y = 0;
 	
 
@@ -30,21 +30,21 @@ public class Enemy {
 		if (initialHealth > 0) {
 			health = initialHealth;
 		} else {
-			System.out.println("Error in public Enemy constructor. Initial health cannot be 0 or below.");
+			System.out.println("Error in Enemy constructor. Initial health cannot be 0 or below.");
 			health = 5;
 		}
 		
 		if ((initialXLoc <= MAX_X) && (initialXLoc >= MIN_X)) {
 			xLoc = initialXLoc;
 		} else {
-			System.out.println("Error in public Enemy constructor. X Location cannot be beyond 0 and 10.");
+			System.out.println("Error in Enemy constructor. X Location cannot be beyond 0 and 9.");
 			xLoc = 5;
 		}
 		
 		if ((initialYLoc <= MAX_Y) && (initialYLoc >= MIN_X)) {
 			yLoc = initialYLoc;
 		} else {
-			System.out.println("Error in public Enemy constructor. Y Location cannot be beyond 0 and 10.");
+			System.out.println("Error in Enemy constructor. Y Location cannot be beyond 0 and 9.");
 			yLoc = 5;
 		}
 	}

@@ -5,44 +5,34 @@ public class Maps {
 	private int sizeOfCurrentRoom;
 	private String[][] layoutOfCurrentRoom; 
 	private ArrayList<PhysicalCollectible> listOfCollectibles = new ArrayList<PhysicalCollectible>();
-
+	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	
 	public Maps(int room) {
-		int w,
-			l,
-			i = 0;
 		
-		layoutOfCurrentRoom = new String [sizeOfCurrentRoom][sizeOfCurrentRoom];
+//		sizeOfCurrentRoom = 10;
+//		layoutOfCurrentRoom = new String [sizeOfCurrentRoom][sizeOfCurrentRoom];
 		
-		sizeOfCurrentRoom = 10;
 		
-		for (w = 0; w < layoutOfCurrentRoom.length; w++) 
-		{
-			System.out.print("X");
-			for (l = 0; l < layoutOfCurrentRoom[0].length; l++) 
-			{
-				if (l < layoutOfCurrentRoom[l].length) {
-					System.out.print("\n|" + i++);
-				}
-			}
-			System.out.println();
-		}
-	
+		
+		/*
+		 * 
+		 * int w, l, i = 0;
+		 *
+		 * for (w = 0; w < layoutOfCurrentRoom.length; w++) { System.out.print("X"); for
+		 * (l = 0; l < layoutOfCurrentRoom[0].length; l++) { if (l <
+		 * layoutOfCurrentRoom[l].length) { System.out.print("\n|" + i++); } }
+		 * System.out.println(); }
+		 */
+		
 		switch (room)
 		{
 		case 0:
-		/*	for (w = 0; w < layoutOfCurrentRoom.length; w++) 
-			{
-				System.out.print("X");
-				for (l = 0; l < layoutOfCurrentRoom[0].length; l++) 
-				{
-					if (l < layoutOfCurrentRoom[l].length) {
-						System.out.print("X" + i++);
-					}
-				}
-				System.out.println();
-			}
-			*/
+			/*
+			 * for (w = 0; w < layoutOfCurrentRoom.length; w++) { System.out.print("X"); for
+			 * (l = 0; l < layoutOfCurrentRoom[0].length; l++) { if (l <
+			 * layoutOfCurrentRoom[l].length) { System.out.print("X" + i++); } }
+			 * System.out.println(); }
+			 */
 			layoutOfCurrentRoom = new String[][] {
 				{"X","X","X","X","X","X","X","X","X","X"},
 				{"X","_","_","_","_","_","_","_","_","X"},
@@ -88,7 +78,7 @@ public class Maps {
 		return n;
 	}
 	
-	public String[][] getlayoutOfCurrentRoom()
+	public String[][] getLayoutOfCurrentRoom()
 	{
 		return this.layoutOfCurrentRoom;
 	}
@@ -110,6 +100,10 @@ public class Maps {
 		
 	}
 	
+	public ArrayList<PhysicalCollectible> getListOfCollectibles() {
+		//get list of collectibles that exists in physical space.
+		return listOfCollectibles;
+	}
 	
 	public boolean noMoreCollectible() 
 	{

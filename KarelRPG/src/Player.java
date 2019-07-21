@@ -90,7 +90,7 @@ public class Player {
 		yCoord+=y1;
 	}
 
-	public void playerMove1(CardinalDirection command) {
+	public void playerMove(CardinalDirection command) {
 		switch (command) {
 		case NORTH:
 			changeY(-1);
