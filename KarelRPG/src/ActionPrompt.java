@@ -36,7 +36,15 @@ public class ActionPrompt
     {
     	this(a.timeStep, a.currentCommand, a.roomNumber);
     }
-  
+    
+    /**
+	 * This method will print a line containing information about the Day, when called.
+	 * It uses switch statements.
+	 * 
+	 * @Param thisWorld
+	 * @Param player 1
+	 * @Param mapview
+	 */
 	/* Prints a line about Day using switch */
     public void printWorld(String[][] thisWorld, Player player1, Maps mapview)
     { 
@@ -94,6 +102,13 @@ public class ActionPrompt
         }
     }
     
+    /**
+	 * This method will ask for a user input that will correspond to player movement, when called.
+	 * 
+	 * @Param user
+	 * @Param mapwalk
+	 * 
+	 */
     public void takeCommand(Player user, Maps mapwalk)
     {
     	int x = user.getX();
@@ -195,7 +210,13 @@ public class ActionPrompt
     		break;
     	}
     }
-    
+    /**
+   	 * This method will print the executed movement that corresponds with userInput, when called.
+   	 * 
+   	 * @Param name
+   	 * 
+   	 * 
+   	 */
     public void writeCommand(String name)
     {
     	switch (name)
