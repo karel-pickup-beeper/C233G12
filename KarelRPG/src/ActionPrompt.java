@@ -95,7 +95,7 @@ public class ActionPrompt
         				}
         				else
         				{
-        					System.out.print(mapview.detectTile(j, i));
+        					System.out.print(mapview.detectTile(i, j));
         				}
         			}
         		}
