@@ -285,7 +285,7 @@ public class ActionPrompt
     public static void main(String[] args) 
     {
 		/* This is object-oriented code */
-        ActionPrompt game = new ActionPrompt(0,CommandType.help,1);
+        ActionPrompt game = new ActionPrompt(1,CommandType.help,1);
         
 		/* Create EndGame Object to flash title card. */
         EndGame tony = new EndGame();
@@ -312,7 +312,7 @@ public class ActionPrompt
 		PhysicalCollectible Q5 = new PhysicalCollectible("Key",8,6);
 		
 		/* Creating map with borders, walls, and empty spaces. */
-		Maps map0 = new Maps(0);
+		Maps map0 = new Maps(game.roomNumber);
 		
 		/*
 		 * Initializing Map(Object)'s List of Collectibles(ArrayList) with the
