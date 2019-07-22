@@ -8,6 +8,7 @@ public class Maps {
 	private ArrayList<PhysicalCollectible> listOfCollectibles = new ArrayList<PhysicalCollectible>();
 	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	
+	
 	public Maps(int room) {
 
 		switch (room)
@@ -45,7 +46,15 @@ public class Maps {
 		}	
 	}
 
-	
+	/**
+	 * This method traverses through an array in order to detect and print out
+	 * a string of underscores representing an empty tile. It then returns the 
+	 * represented symbol of a tile.
+	 * 
+	 * @param xThere  the x coordinate of said tile
+	 * @param yThere  the y coordinate of said tile
+	 * @return n      the string outlining a tile
+	 */
 	public String detectTile(int xThere, int yThere) 
 	{
 		String n = "_";
@@ -60,11 +69,26 @@ public class Maps {
 		return n;
 	}
 	
+	/**
+	 * Returns a layout of the current room initialized in the constructor.
+	 * This method returns immediately whether or not the layout of the room exists.
+	 * 
+	 * @return layoutOfCurrentRoom  a layout of the room specified in the constructor returned 
+	 * 								in the form of a 2D String Array
+	 */
 	public String[][] getLayoutOfCurrentRoom()
 	{
 		return this.layoutOfCurrentRoom;
 	}
 	
+	/**
+	 * Returns a collectible's name in the listOfCollectibles ArrayList at the specified
+	 * coordinates.
+	 * The method traverses through the ArrayList and once a collectible's x and y
+	 * coordinates match, the name of that collectible is returned.
+	 * 
+	 * 	@return n  	 the name of a collectible in the form of a String
+	 */
 	public String detectItem(int xHere, int yHere)
 	{
 		String n = null;
@@ -79,13 +103,30 @@ public class Maps {
 		return n;
 		
 	}
-
-	/* Retrieve the list of collectibles that exists in physical space. */
+	
+	/**
+	 * Returns an inventory of collectible initialized in the constructor.
+	 * Retrieve the list of collectibles that exists in physical space.
+	 * This method returns immediately whether or not the list is empty.
+	 * 
+	 * @return listOfCollectibles  an inventory of collectible in the constructor returned 
+	 * 								in the form of an ArrayList
+	 */
 	public ArrayList<PhysicalCollectible> getListOfCollectibles()
 	{
 		return listOfCollectibles;
 	}
 	
+	/**
+	 * This method is responsible for detecting and returning the location of an
+	 * enemy on the map. It would traverse through the enemy list and identify whether
+	 * or not an enemy is located at a specified location. If so, then the enemy's 
+	 * location is returned; if not, the Enemy object remains null.
+	 * 
+	 * @param xHere   the y coordinate specified
+	 * @param yHere   the x coordinate specified
+	 * @return e      an enemy's location on the map
+	 */
 	public Enemy detectEnemy(int xHere, int yHere)
 	{
 		Enemy e = null;
@@ -100,8 +141,12 @@ public class Maps {
 		return e;
 		
 	}
-
-	/* Retrieve the list of enemies that occupy physical space. */
+	
+	/**
+	 * This method retrieves the list of enemies that occupy space on the map.
+	 * 
+	 * @return enemyList  an ArrayList of enemies
+	 */
 	public ArrayList<Enemy> getEnemyList()
 	{
 		return enemyList;
@@ -120,11 +165,13 @@ public class Maps {
 	
 	/**
 	 * This method searches for a collectible at a specified location. If the collectible 
-	 * is present in that location it is removed from the arrayList and no longer printed 
+	 * is present in that location it is removed from the arrayList and no longer shown 
 	 * on the map.
+	 * This is done by traversing through the listOfCollectibles ArrayList until the xHere
+	 * and yHere coordinates given match the x and y coordinates of the PhysicalCollectible.
 	 * 
-	 * @param xHere
-	 * @param yHere
+	 * @param xHere  the y coordinate of a collectible's location
+	 * @param yHere  the x coordinate of a collectible's location
 	 */
 	public void popCollectible(int xHere, int yHere) 
 	{
@@ -143,6 +190,16 @@ public class Maps {
 		}
 	}
 	
+	/**
+	 * This method searches for an enemy at a specified location. If the enemy 
+	 * is present in that location it is removed from the arrayList and no longer shown 
+	 * on the map.
+	 * This is done by traversing through the enemyList ArrayList until the xHere
+	 * and yHere coordinates given match the x and y coordinates of the Enemy.
+	 * 
+	 * @param xHere the specified y coordinate of an enemy's location
+	 * @param yHere the specified x coordinate of an enemy's location
+	 */
 	public void popEnemy (int xHere, int yHere)
 	{
 		/*
@@ -150,13 +207,15 @@ public class Maps {
 		 * representing the enemies' existence on the map, until we find a location
 		 * match with our passed parameters. And ultimately, to delete them from the ArrayList.
 		 */
-	for (Iterator<Enemy> iterator = enemyList.iterator(); iterator.hasNext();) {
-		Enemy stuff = iterator.next();
-		if (stuff.getXloc() == xHere && stuff.getYloc() == yHere) {
+		for (Iterator<Enemy> iterator = enemyList.iterator(); iterator.hasNext();) {
+			Enemy stuff = iterator.next();
+			if (stuff.getXloc() == xHere && stuff.getYloc() == yHere) {
 			iterator.remove();
+			}
 		}
 	}
-	}
+	
+	
 	public void setTile(int xThere, int yThere) 
 	{
 		/* future implementation */
