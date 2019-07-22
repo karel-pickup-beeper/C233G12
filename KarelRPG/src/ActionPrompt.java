@@ -18,26 +18,36 @@ enum CommandType
 public class ActionPrompt 
 {
 	/* instances */
-    private int timeStep;
+	private int timeStep;
 	private CommandType currentCommand;
 	private int roomNumber;
 	private boolean noMoreGame;
   
 	/* Constructor */
-    public ActionPrompt(int timeStep, CommandType currentCommand, int roomNumber) 
-    { 
-        this.timeStep = timeStep;
-        this.currentCommand = currentCommand;
-        this.roomNumber = roomNumber;
-    }
+	public ActionPrompt(int timeStep, CommandType currentCommand, int roomNumber) 
+    	{ 
+        	this.timeStep = timeStep;
+        	this.currentCommand = currentCommand;
+        	this.roomNumber = roomNumber;
+    	}
 
 	/* Copy Constructor */
-    public ActionPrompt(ActionPrompt a)
-    {
-    	this(a.timeStep, a.currentCommand, a.roomNumber);
-    }
-  
-	/* Prints a line about Day using switch */
+	public ActionPrompt(ActionPrompt a)
+	{
+    		this(a.timeStep, a.currentCommand, a.roomNumber);
+	}
+    
+    	/**
+	 * This method will prints the world screen and all associated objects
+	 * when it is called.
+	 * 
+	 * @Param thisWorld
+	 * @Param player 1
+	 * @Param mapview
+	 */
+	/* Printing the entirety of the world map with objects on top, printing pirority goes to
+	 * Player > Collectible > Enemy > Map Tile
+	 */
     public void printWorld(String[][] thisWorld, Player player1, Maps mapview)
     { 
         for(int j=0;j<thisWorld.length; j++)
@@ -94,6 +104,14 @@ public class ActionPrompt
         }
     }
     
+    	/**
+	 * This method executes a specific command based on ActionPrompt(this class), Player, and Maps classes,
+	 * when called.
+	 *
+	 * @Param user
+	 * @Param mapwalk
+	 * 
+	 */
     public void takeCommand(Player user, Maps mapwalk)
     {
     	int x = user.getX();
@@ -195,7 +213,14 @@ public class ActionPrompt
     		break;
     	}
     }
-    
+    /**
+   	 * This method specifies the command in this ActionPrompt class
+	 * that corresponds with the user's input passed as a string, when called.
+   	 * 
+   	 * @Param name
+   	 * 
+   	 * 
+   	 */
     public void writeCommand(String name)
     {
     	switch (name)
