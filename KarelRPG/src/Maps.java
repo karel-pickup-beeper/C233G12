@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Maps {
 	private int sizeOfCurrentRoom;
@@ -92,9 +93,6 @@ public class Maps {
 			if (k.getX() == xHere && k.getY() == yHere) {
 				n = k.getTag();
 			}
-			else  {
-				n = null;
-			}
 		}
 		return n;
 		
@@ -105,17 +103,14 @@ public class Maps {
 		return listOfCollectibles;
 	}
 	
-	public EnemyType detectEnemy(int xHere, int yHere)
+	public Enemy detectEnemy(int xHere, int yHere)
 	{
-		EnemyType e = null;
+		Enemy e = null;
 		
 		for (Enemy l : enemyList) {
 			
 			if (l.getXloc() == xHere && l.getYloc() == yHere) {
-				 e = l.getType();
-			}
-			else  {
-				e = null;
+				 e = l;
 			}
 		}
 		return e;
@@ -153,9 +148,11 @@ public class Maps {
 			in the parameters. In the program we have to iterate through the arraylist of physical collectible objects
 			until we find the physical collectible with the matching xHere = X and yHere = y. And deleted that from the arrayList.
 		*/
-		for (PhysicalCollectible i : listOfCollectibles) {
-			if (i.getX() == xHere && i.getY() == yHere) {
-				listOfCollectibles.remove(i);
+		for (Iterator<PhysicalCollectible> iterator = listOfCollectibles.iterator(); iterator.hasNext();) {
+//				PhysicalCollectible i : listOfCollectibles) {
+			PhysicalCollectible thing = iterator.next();
+			if (thing.getX() == xHere && thing.getY() == yHere) {
+				iterator.remove();
 			}
 		}
 	}
