@@ -13,3 +13,13 @@ Enemy.java<br/>
 Yasmin Samantar:<br/>
 Maps.java<br/>
 PhysicalColletible.java<br/>
+
+Group 12 Demo 1 URL: https://github.com/karel-pickup-beeper/C233G12.git
+
+Compile Instruction:
+1. Open Terminal.
+2. Change directory to folder ‘src’.
+3. Enter command: java *.java.
+
+Run Instruction:
+1. Enter command: java ActionPrompt.
