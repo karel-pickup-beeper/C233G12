@@ -1,6 +1,6 @@
 
 public class Enemy {
-	//Passed in from main.
+	//Passed in from main..
 		private int health;
 		private int xLoc;
 		private int yLoc;
