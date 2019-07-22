@@ -1,11 +1,11 @@
 public class Collectible {
-	//instances
+	/* instances */
 	private String name;
 	private String type;
 	private int count;
 	
 	
-	//constructors
+	/* constructors */
 	public Collectible(String name1, String type1, int count1) {//this one handles object: eg. keys
 		name=name1;
 		type=type1;
@@ -19,7 +19,7 @@ public class Collectible {
 	}
 	
 	
-	//methods	 
+	/* methods */
 	public int getCount() {
 		return count;
 	}
@@ -31,7 +31,7 @@ public class Collectible {
 		return name;
 	}
 	public String toString() {
-		return" (" + name + "," + count+ ")";
+		return" (" + name+ ": " +count+ ")";
 	}
 	public boolean isComplete(String name) {
 		if (Player.getSingleItemCount(name)>4) {

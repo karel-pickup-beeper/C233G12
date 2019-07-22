@@ -8,28 +8,31 @@ enum HealthCondition
 public class Player {
 	
 	
-	//variables
-	private int life; //will be added later.
+	/* instances */
+	private int life;
 	private int yCoord;
 	private int xCoord;
 	private ArrayList<Collectible> inventory = new ArrayList <Collectible>();
 	private ArrayList<Integer> stats = new ArrayList <Integer>();
 	private HealthCondition status;
 	
-	//constructors
-	public Player(int health1, int x, int y) {//set player with stats
+	/* Constructors */
+	public Player(int health1, int x, int y) {
 		life=health1;
 		xCoord=x;
 		yCoord=y;
 	}
 	
-	public Player(Player play) {//copy constructor
+	/* Copy Constructors */
+	public Player(Player play) {
 		life=play.life;
 		inventory=play.inventory;
 		stats=play.stats;
 	}
 	 
-	//methods
+	/*
+	 * Methods
+	 */
 	public void changeStats(int index, int num) {
 
 				
@@ -45,20 +48,23 @@ public class Player {
 		return this.status;
 	}
 	
-	public void setHealth(int health1) { //set player health
+	/* Sets Player Health */
+	public void setHealth(int health1) {
 		life=health1;
 	}
 	public int getHealth() {
 		return life;
 	}
-	public void setItem(Collectible item) { //to preset any inventory collectibles
+
+	/* Preset inventory Collectibles */
+	public void setItem(Collectible item) {
 		inventory.add(item);
 	}
-	public void pickUpItem(Collectible item) {  //pick up items 
-		if (inventory.contains(item)) {
-			item.increaseCount(1);
-		}else {
-			inventory.add(item);
+	
+	/* To add the abstract items in Player's inventory space. */
+	public void pickUpItem(String name) {
+		for (Collectible item : inventory) {
+			if (item.getName() == name)
 			item.increaseCount(1);
 		}
 	}
@@ -67,12 +73,14 @@ public class Player {
 		return 0;
 	}
 	
-	
-	public ArrayList <Collectible> getInventory() { //get inventory
+	/* Inventory */
+	public ArrayList <Collectible> getInventory() {
 		return inventory;
 	}
+
+	/* Get Inventory as a String */
 	public String stringInven() {
-		return inventory.toString(); //get the inventory as a string
+		return inventory.toString();
 	}
 	public int getX() {
 		return xCoord;
@@ -81,8 +89,7 @@ public class Player {
 		return yCoord;
 	}
 	
-	// change coordinate direction methods
-
+	/* Mutator Methods for Player Coordinates */
 	public void changeX(int x1) { 
 		xCoord+=x1;		
 	}
@@ -90,7 +97,7 @@ public class Player {
 		yCoord+=y1;
 	}
 
-	public void playerMove1(CardinalDirection command) {
+	public void playerMove(CardinalDirection command) {
 		switch (command) {
 		case NORTH:
 			changeY(-1);
