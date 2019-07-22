@@ -12,7 +12,12 @@ public class EndGame {
 		this.gameOver = true;
 		this.title = WinCondition.out;
 	}
-
+	
+	/**
+	 * This accessor method will return true if the gameplay is over or has not begun.
+	 * 
+	 * @Param gameOver
+	 */
 	public boolean isGameOver()
 	{
 		return this.gameOver;
@@ -78,6 +83,10 @@ public class EndGame {
 		this.printTitle();
 	}
 	
+	/**
+	 * This mutator method will change the game over status of the game to be true midgame,
+	 * and the title screen would also be printed.
+	 */
 	public void restartGame()
 	{
 		/* Forces player to quit game back to title screen. */
@@ -86,6 +95,10 @@ public class EndGame {
 		this.printTitle();
 	}
 	
+	/**
+	 * This mutator method only switches back into the title screen if the game over status
+	 * of the game is true.
+	 */
 	public void newGame()
 	{
 		if (this.gameOver == true)
