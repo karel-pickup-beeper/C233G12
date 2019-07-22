@@ -12,7 +12,12 @@ public class EndGame {
 		this.gameOver = true;
 		this.title = WinCondition.out;
 	}
-
+	
+	/**
+	 * This accessor method will return true if the game win conditions are met.
+	 * 
+	 * @Param gameOver
+	 */
 	public boolean isGameOver()
 	{
 		return this.gameOver;
@@ -78,6 +83,11 @@ public class EndGame {
 		this.printTitle();
 	}
 	
+	/**
+	 * This method will force the player to quit game back to the title screen.
+	 * 
+	 * 
+	 */
 	public void restartGame()
 	{
 		/* Forces player to quit game back to title screen. */
@@ -86,6 +96,11 @@ public class EndGame {
 		this.printTitle();
 	}
 	
+	/**
+	 * This method will start a new game when player won the game or if the game is over.
+	 * 
+	 * 
+	 */
 	public void newGame()
 	{
 		if (this.gameOver == true)
