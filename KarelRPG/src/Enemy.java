@@ -30,9 +30,9 @@ public class Enemy {
 	public static final int MAX_Y = 9;
 	public static final int MIN_Y = 0;
 	
-  /* Constructors */
+  	/* Constructors */
 	public Enemy (int initialHealth, int initialXLoc, int initialYLoc, EnemyType type)
-  {
+	{
 		if (initialHealth > 0) {
 			health = initialHealth;
 		} else {
@@ -54,29 +54,29 @@ public class Enemy {
 		this.type = type;
 	}
   
-  /* Copy Constructor */
-		public Enemy (Enemy copyEnemy)
-		{
-			health = copyEnemy.health;
-			xLoc = copyEnemy.xLoc;
-			yLoc = copyEnemy.yLoc;
-		}
+  	/* Copy Constructor */
+	public Enemy (Enemy copyEnemy)
+	{
+		health = copyEnemy.health;
+		xLoc = copyEnemy.xLoc;
+		yLoc = copyEnemy.yLoc;
+	}
 	public void loseHealth(int ouch) {
 		this.health -= ouch;
 	}
-    /**
-		 * This mutator method will change the x-coordinate of the enemy to a random location, when called.
-		 * 
-		 * @return xLoc
-		 */
+    	/**
+	 * This mutator method will change the x-coordinate of the enemy to a random location, when called.
+	 * 
+	 * @return xLoc
+	 */
 	public void changeXloc(int jump) {
 		this.xLoc += jump;
 	}
-    /**
-		 * This mutator method will change the y-coordinate of the enemy to a random location, when called.
-		 * 
-		 * @return yLoc
-		 */
+    	/**
+	 * This mutator method will change the y-coordinate of the enemy to a random location, when called.
+	 * 
+	 * @return yLoc
+	 */
 	public void changeYloc(int jump) {
 		this.yLoc += jump;
 	}
@@ -87,21 +87,21 @@ public class Enemy {
 	}
 	
 	/* Need to fix privacy leak here. */
-      /**
-		 * This accessor method will return the x-coordinate of the enemy when called.
-		 * 
-		 * @return xLoc
-		 */
+	/**
+	 * This accessor method will return the x-coordinate of the enemy when called.
+	 * 
+	 * @return xLoc
+	 */
 	public int getXloc() {
 		return xLoc;
 	} 
 	
 	/* Need to fix privacy leak here. */
-      /**
-		 * This accessor method will return the y-coordinate of the enemy when called.
-		 * 
-		 * @return yLoc
-		 */
+	/**
+	 * This accessor method will return the y-coordinate of the enemy when called.
+	 * 
+	 * @return yLoc
+	 */
 	public int getYloc() {
 		return yLoc;
 	}
@@ -120,13 +120,13 @@ public class Enemy {
 	 * This method will call change YLoc and change XLoc. It will change the actual
 	 * location of enemy to move one step.
 	 */
-		/**
-		 * This mutator method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
-		 * one step closer to the player.
-		 * 
-		 * @param playerX
-		 * @param playerY
-		 */
+	/**
+	 * This mutator method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
+	 * one step closer to the player.
+	 * 
+	 * @param playerX
+	 * @param playerY
+	 */
 	public void enemyMove() {
 		System.out.println("This method only verifies player location for Demo 1.");
 		/*
