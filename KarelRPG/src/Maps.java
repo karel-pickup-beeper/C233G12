@@ -61,7 +61,7 @@ public class Maps {
 		
 		for (int i = 0; i < layoutOfCurrentRoom.length; i++) {
 			for(int j = 0; j < layoutOfCurrentRoom[i].length; j++) {
-				if (i == xThere && j == yThere) {
+				if (j == xThere && i == yThere) {
 					n = layoutOfCurrentRoom[i][j];
 				}
 			}
