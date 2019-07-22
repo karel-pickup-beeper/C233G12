@@ -54,12 +54,21 @@ public class Enemy {
 		this.type = type;
 	}
 
+	public void loseHealth(int ouch) {
+		this.health -= ouch;
+	}
+	
 	public void changeXloc(int jump) {
 		
 	}
 	
 	public void changeYloc(int jump) {
 		
+	}
+	
+	// Returns health.
+	public int getHealth() {
+		return this.health;
 	}
 	
 	// Need to fix privacy leak here.	
@@ -72,10 +81,15 @@ public class Enemy {
 		return yLoc;
 	}
 	
+	//Returns Enemy's type
 	public EnemyType getType() {
 		return this.type;
 	}
 	
+	//Returns string of values.
+	public String toString() {
+		return" {" + type+ "(" +health+ ")}";
+	}
 	// This method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
 	// one step.
 	public void enemyMove() {

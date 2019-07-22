@@ -35,7 +35,7 @@ public class EndGame {
 						"   \\   // _ \\ | | | |   \\ \\/  \\/ /    | |  | . ` || || || |\n" + 
 						"    | || (_) || |_| |    \\  /\\  /    _| |_ | |\\  ||_||_||_|\n" + 
 						"    |_| \\___/  \\__,_|     \\/  \\/    |_____||_| \\_|(_)(_)(_)\n" + 
-						"             PRESS the enter KEY to go back to THE title screen!!!         ");
+						"             NOW close THE window!!!         ");
 			break;
 		case dead:
 			//changes GameOver Title Card.
@@ -66,6 +66,13 @@ public class EndGame {
 			break;
 			
 		}
+	}
+	
+	public void finishTheGame()
+	{
+		this.gameOver = true;
+		this.title = WinCondition.win;
+		this.printTitle();
 	}
 	
 	public void restartGame()

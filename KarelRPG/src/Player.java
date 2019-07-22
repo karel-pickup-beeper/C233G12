@@ -54,11 +54,10 @@ public class Player {
 	public void setItem(Collectible item) { //to preset any inventory collectibles
 		inventory.add(item);
 	}
-	public void pickUpItem(Collectible item) {  //pick up items 
-		if (inventory.contains(item)) {
-			item.increaseCount(1);
-		}else {
-			inventory.add(item);
+	//To add the abstract items in Player's inventory space.
+	public void pickUpItem(String name) {
+		for (Collectible item : inventory) {
+			if (item.getName() == name)
 			item.increaseCount(1);
 		}
 	}

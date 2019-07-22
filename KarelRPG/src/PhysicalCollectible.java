@@ -3,15 +3,15 @@ public class PhysicalCollectible {
 	
 	//instances
 	private String name;
-	private int x;
-	private int y;
+	private int realx;
+	private int realy;
 	
 	//constructor
 	public PhysicalCollectible(String name1, int x1, int y1)
 	{
 		this.name=name1;
-		this.x=x1;
-		this.y=y1;
+		this.realx=x1;
+		this.realy=y1;
 	}
 	//copy constructor
 	public PhysicalCollectible(PhysicalCollectible p)
@@ -23,12 +23,15 @@ public class PhysicalCollectible {
 		return this.name;
 	}	
 	public int getX() {
-		return this.x;
+		return this.realx;
 	}
 	
 	public int getY() {
-		return this.y;
+		return this.realy;
 	}
-
+	
+	public String toString() {
+		return" (" + this.name + ":" + this.realx + "," + this.realy + ")";
+	}
 	
 }

@@ -122,15 +122,15 @@ public class Maps {
 		return enemyList;
 	}
 	
-	public boolean noMoreCollectible() 
+	public boolean areWeDoneYet() 
 	{
-		boolean isThere = false;
+		boolean yep = false;
 		
-		if (listOfCollectibles.isEmpty()) {
-			isThere = true;
+		if (listOfCollectibles.isEmpty() && enemyList.isEmpty()) {
+			yep = true;
 		}
 		
-		return isThere;
+		return yep;
 	}
 	
 	/**
@@ -157,6 +157,20 @@ public class Maps {
 		}
 	}
 	
+	public void popEnemy (int xHere, int yHere)
+	{
+		/*
+		In Here we just delete the Enemy on the map that happens to be at the location given
+		in the parameters. In the program we have to iterate through the arraylist of enemy objects
+		until we find the physical collectible with the matching xHere = X and yHere = y. And deleted that from the arrayList.
+	*/
+	for (Iterator<Enemy> iterator = enemyList.iterator(); iterator.hasNext();) {
+		Enemy stuff = iterator.next();
+		if (stuff.getXloc() == xHere && stuff.getYloc() == yHere) {
+			iterator.remove();
+		}
+	}
+	}
 	public void setTile(int xThere, int yThere) 
 	{
 		//future implementation

@@ -31,7 +31,7 @@ public class Collectible {
 		return name;
 	}
 	public String toString() {
-		return" (" + name + "," + count+ ")";
+		return" (" + name+ ": " +count+ ")";
 	}
 	public boolean isComplete(String name) {
 		if (Player.getSingleItemCount(name)>4) {
