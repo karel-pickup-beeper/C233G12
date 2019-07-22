@@ -84,9 +84,8 @@ public class EndGame {
 	}
 	
 	/**
-	 * This method will force the player to quit game back to the title screen.
-	 * 
-	 * 
+	 * This mutator method will change the game over status of the game to be true midgame,
+	 * and the title screen would also be printed.
 	 */
 	public void restartGame()
 	{
@@ -97,9 +96,8 @@ public class EndGame {
 	}
 	
 	/**
-	 * This method will start a new game when player won the game or if the game is over.
-	 * 
-	 * 
+	 * This mutator method only switches back into the title screen if the game over status
+	 * of the game is true.
 	 */
 	public void newGame()
 	{
