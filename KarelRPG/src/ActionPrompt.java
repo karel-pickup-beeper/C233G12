@@ -32,17 +32,51 @@ public class ActionPrompt
     }
   
     //Prints a line about Day using switch 
-    public void printWorld(String[][] thisWorld, Player player1, ArrayList<PhysicalCollectible> treasures) 
+    public void printWorld(String[][] thisWorld, Player player1, Maps mapview)
     { 
-        for(int i=0;i<thisWorld.length; i++)
+        for(int j=0;j<thisWorld.length; j++)
         {
-        	for(int j=0;j<thisWorld[i].length; j++)
+        	for(int i=0;i<thisWorld[j].length; i++)
         	{
-        		if (true)
+        		if (i==player1.getX() && j==player1.getY())
         		{
-        			
+        			System.out.print("P");
+        		}
+        		else
+        		{
+        			if (mapview.detectItem(i, j) != null)
+        			{
+        				String s = "";
+        				switch (mapview.detectItem(i, j))
+        				{
+        				case "Key":
+        					s = "*";
+        					break;
+        				case "Star":
+        					s = "#";
+        					break;
+        				case "Sun":
+        					s = "@";
+        					break;
+        				default:
+        					break;
+        				}
+        				System.out.print(s);
+        			}
+        			else
+        			{
+        				if(mapview.detectEnemy(i, j) != null)
+        				{
+        					//enemy case
+        				}
+        				else
+        				{
+        					System.out.print(mapview.detectTile(i, j));
+        				}
+        			}
         		}
         	}
+        	System.out.println();
         }
     }
     
@@ -69,10 +103,10 @@ public class ActionPrompt
     		break;
     	case help:
     		//prints out entire lists of commands
-    		System.out.println(	"To input a command: enter a letter key and press the return key. /n" +
-    							"WASD tells the player to move up, left, down, right respectively./n" +
-    							"p tells the player to pick up a collectible. /n" +
-    							"t tells the player to spin attack enemies in each adjacent tiles./n" +
+    		System.out.println(	"To input a command: enter a letter key and press the return key. \n" +
+    							"WASD tells the player to move up, left, down, right respectively.\n" +
+    							"p tells the player to pick up a collectible. \n" +
+    							"t tells the player to spin attack enemies in each adjacent tiles.\n" +
     							"h calls up this help command list again.");
     		break;
     	}
@@ -165,42 +199,52 @@ public class ActionPrompt
 		map0.getListOfCollectibles().add(Q4);
 		map0.getListOfCollectibles().add(Q5);
 		
-		/*Create enemies
-		 * Enemy bob = new Enemy(2, 3, 5);
-		 * Enemy blob = new Enemy(5, 1,3);
+		/*
+		 * Create enemies
 		 */
+		//Enemy bob = new Enemy(2, 3, 5);
+		//Enemy blob = new Enemy(5, 1,3);
+
 		
 		/*
 		 * We are still in the title screen, so let the user enter game play.
 		 * Declare the object and initialize with predefined standard input object
 		 */
-		Scanner scanner = new Scanner(System.in);
-	    String readString = scanner.nextLine();
-	    while(readString!=null) {
-//	        System.out.println(readString);
+		Scanner com = new Scanner(System.in);
+		String readString = com.nextLine();
+		do {
+			System.out.println(readString);
 	        if (readString.isEmpty())
 	        {
 	            System.out.println("Starting Game...");
-	            scanner.close();
+//	            com.close();
 	            game.takeCommand(play);
 	            tony.goInTheGame();
 	            break;
 	        }
-	    }
+	        readString = com.nextLine();
+		} while(readString!=null);
 		
 		//Entering actual game play, run a loop for every timestep.
 		while(!tony.isGameOver())
 		{		
 			//Prints World.
-			game.printWorld(map0.getLayoutOfCurrentRoom(),play,map0.getListOfCollectibles());
+			game.printWorld(map0.getLayoutOfCurrentRoom(),play,map0);
 			
 			//Read command from input stream.
-			Scanner key = new Scanner(System.in);
-			String name = key.nextLine();
-			game.writeCommand(name);
-			game.takeCommand(play);
-			key.close();
+//			com	= new Scanner(System.in);
+			while(true){
+				if(com.hasNextLine()) {
+				String name = com.nextLine();
+				game.writeCommand(name);
+				game.takeCommand(play);
+				break;
+				}
+			}
+			
+//			com.close();
 			game.timeStep++;
 		}
+		com.close();
     }
 } 

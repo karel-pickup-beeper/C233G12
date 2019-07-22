@@ -87,10 +87,10 @@ public class Maps {
 	{
 		String n = null;
 		
-		for (PhysicalCollectible i : listOfCollectibles) {
+		for (PhysicalCollectible k : listOfCollectibles) {
 			
-			if (i.getX() == xHere && i.getY() == yHere) {
-				n = i.getTag();
+			if (k.getX() == xHere && k.getY() == yHere) {
+				n = k.getTag();
 			}
 			else  {
 				n = null;
@@ -103,6 +103,28 @@ public class Maps {
 	public ArrayList<PhysicalCollectible> getListOfCollectibles() {
 		//get list of collectibles that exists in physical space.
 		return listOfCollectibles;
+	}
+	
+	public EnemyType detectEnemy(int xHere, int yHere)
+	{
+		EnemyType e = null;
+		
+		for (Enemy l : enemyList) {
+			
+			if (l.getXloc() == xHere && l.getYloc() == yHere) {
+				 e = l.getType();
+			}
+			else  {
+				e = null;
+			}
+		}
+		return e;
+		
+	}
+	
+	public ArrayList<Enemy> getEnemyList() {
+		//get list of enemies that occupy physical space.
+		return enemyList;
 	}
 	
 	public boolean noMoreCollectible() 

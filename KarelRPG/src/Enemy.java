@@ -1,9 +1,13 @@
-
+enum EnemyType
+{
+	robot, zombie, ghost;
+}
 public class Enemy {
 	//Passed in from main
 	private int health;
 	private int xLoc;
 	private int yLoc;
+	private EnemyType type;
 	
 	//Initalized to 0. Only for Demo 1.
 	private int attack = 0;
@@ -26,7 +30,7 @@ public class Enemy {
 	public static final int MIN_Y = 0;
 	
 
-	public Enemy (int initialHealth, int initialXLoc, int initialYLoc) {
+	public Enemy (int initialHealth, int initialXLoc, int initialYLoc, EnemyType type) {
 		if (initialHealth > 0) {
 			health = initialHealth;
 		} else {
@@ -47,21 +51,34 @@ public class Enemy {
 			System.out.println("Error in Enemy constructor. Y Location cannot be beyond 0 and 9.");
 			yLoc = 5;
 		}
+		this.type = type;
 	}
+
+	public void changeXloc(int jump) {
 		
+	}
+	
+	public void changeYloc(int jump) {
+		
+	}
+	
 	// Need to fix privacy leak here.	
-	public int getXLocation() {
+	public int getXloc() {
 		return xLoc;
 	} 
 	
 	// Need to fix privacy leak here.
-	public int getYLocation() {
+	public int getYloc() {
 		return yLoc;
+	}
+	
+	public EnemyType getType() {
+		return this.type;
 	}
 	
 	// This method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
 	// one step.
-	public void enemyMove () {
+	public void enemyMove() {
 		System.out.println("This method only verifies player location for Demo 1.");
 		//Here we need to get the xCoord & yCoord of player to compare it with
 		//enemy xLoc & yLoc to obtain one of the 8 cardinal direction.
@@ -72,6 +89,3 @@ public class Enemy {
 	}
 	
 }
-
-// changeXLoc (jump): void
-// changeYLoc (jump): void
