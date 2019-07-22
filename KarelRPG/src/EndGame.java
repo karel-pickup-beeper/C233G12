@@ -28,7 +28,7 @@ public class EndGame {
 		switch (this.title)
 		{
 		case win:
-			//changes WinGame Title Card.
+			/* Prints WinGame Title Card. */
 			System.out.println(	" __     __            __          __ _____  _   _  _  _  _ \n" + 
 						" \\ \\   / /            \\ \\        / /|_   _|| \\ | || || || |\n" + 
 						"  \\ \\_/ /___   _   _   \\ \\  /\\  / /   | |  |  \\| || || || |\n" + 
@@ -37,8 +37,9 @@ public class EndGame {
 						"    |_| \\___/  \\__,_|     \\/  \\/    |_____||_| \\_|(_)(_)(_)\n" + 
 						"             NOW close THE window!!!         ");
 			break;
+			
 		case dead:
-			//changes GameOver Title Card.
+			/* Prints GameOver Title Card. */
 			System.out.println(	"   _____            __  __         ____          ______       \n" + 
 								"  / ____|    /\\    |  \\/  |       / __ \\        |  ____|      \n" + 
 								" | |  __    /  \\   | \\  / |  ___ | |  | |__   __| |__    _ __ \n" + 
@@ -47,8 +48,9 @@ public class EndGame {
 								"  \\_____|/_/    \\_\\|_|  |_| \\___| \\____/   \\_/  |______||_|   \n" + 
 								"       press the ENTER key to go back to the TITLE scrEEN");
 			break;
+			
 		case out:
-			//changes Start Game Title Screen.
+			/* Prints Start Game Title Screen. */
 			System.out.println(	"  _  __              _   _____  _____   _____ \n" + 
 								" | |/ /             | | |  __ \\|  __ \\ / ____|\n" + 
 								" | ' / __ _ _ __ ___| | | |__) | |__) | |  __ \n" + 
@@ -57,12 +59,13 @@ public class EndGame {
 								" |_|\\_\\__,_|_|  \\___|_| |_|  \\_\\_|     \\_____|\n" +
 								"              PRESS enter key TO start !!!            ");
 			break;
+			
 		case in:
 		default:
-			//Sets title card to null.
-			//In reality, case IN would never be passed as a
-			//WinCondition to the updateTitle() method because
-			//It's never called while IN gameplay.
+			/*
+			 * Sets title card to null. In reality, case IN would never be passed as a WinCondition
+			 * to the updateTitle() method because It's never called while IN gameplay.
+			 */
 			break;
 			
 		}
@@ -77,7 +80,7 @@ public class EndGame {
 	
 	public void restartGame()
 	{
-		//Forces player to quit game back to title screen.
+		/* Forces player to quit game back to title screen. */
 		this.gameOver = true;
 		this.title = WinCondition.out;
 		this.printTitle();
@@ -87,9 +90,9 @@ public class EndGame {
 	{
 		if (this.gameOver == true)
 		{
-		//Starts new game when player is at a WinGame or GameOver Title Card.
-		this.title = WinCondition.out;
-		this.printTitle();
+			/* Starts new game when player is at a WinGame or GameOver Title Card. */
+			this.title = WinCondition.out;
+			this.printTitle();
 		}
 	}
 }

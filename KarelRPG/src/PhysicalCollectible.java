@@ -1,19 +1,20 @@
 
 public class PhysicalCollectible {
 	
-	//instances
+	/* Instances Variables */
 	private String name;
 	private int realx;
 	private int realy;
 	
-	//constructor
+	/* Constructor */
 	public PhysicalCollectible(String name1, int x1, int y1)
 	{
 		this.name=name1;
 		this.realx=x1;
 		this.realy=y1;
 	}
-	//copy constructor
+
+	/* Copy constructor */
 	public PhysicalCollectible(PhysicalCollectible p)
 	{
 		this(p.getTag(),p.getX(),p.getY());
