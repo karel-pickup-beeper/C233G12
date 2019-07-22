@@ -1,7 +1,7 @@
 # C233G12
 ***********************************************KarelRPG*********************************************** <br/>
 This game is a collaborative project between Feifei Zhang, Vincent Tsin, Mark Pineda, Yasmin Samantar.<br/>
-The game is adventure based and the objective of the game is to defeat all the enemies within the room and collect all the items to each the end-game screen <br/> 
+The game is adventure based and the objective of the game is to defeat all the enemies within the room and collect all the items to reach the end-game screen <br/> 
 Project Start Date: July 10, 2019.<br/>
 Feifei Zhang:<br/>
 Player.java<br/>
