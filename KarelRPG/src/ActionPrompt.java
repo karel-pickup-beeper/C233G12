@@ -36,8 +36,119 @@ public class ActionPrompt
 	{
     		this(a.timeStep, a.currentCommand, a.roomNumber);
 	}
+
+	/*
+	 * Driver method
+	 */
+    public static void main(String[] args) 
+    {
+		/* This is object-oriented code */
+        ActionPrompt game = new ActionPrompt(1,CommandType.help,1);
+        
+		/* Create EndGame Object to flash title card. */
+        EndGame tony = new EndGame();
+        tony.newGame();
+		/* At this point we are at the Title Screen. */
+        
+		/* Creating Collectible Objects */
+        Collectible q = new Collectible("Key", "object", 0);
+		Collectible t = new Collectible("Star", "object", 0);
+		Collectible s = new Collectible("Sun", "object", 0);
+
+		/* Initializing Player's Inventory(ArrayList) with the Collectible types. */
+		Player play = new Player(100, 5, 5);
+		play.getInventory().add(q);
+		play.getInventory().add(t);
+		play.getInventory().add(s);
+		
+		
+		/* Creating the collectible Objects in the physical space of the maps. */
+		PhysicalCollectible Q1 = new PhysicalCollectible("Key",1,1);
+		PhysicalCollectible Q2 = new PhysicalCollectible("Key",8,1);
+		PhysicalCollectible Q3 = new PhysicalCollectible("Key",1,8);
+		PhysicalCollectible Q4 = new PhysicalCollectible("Key",8,8);
+		PhysicalCollectible Q5 = new PhysicalCollectible("Key",8,6);
+		
+		/* Creating map with borders, walls, and empty spaces. */
+		Maps map0 = new Maps(game.roomNumber);
+		
+		/*
+		 * Initializing Map(Object)'s List of Collectibles(ArrayList) with the
+		 * PhysicalCollectible objects created above.
+		 */
+		map0.getListOfCollectibles().add(Q1);
+		map0.getListOfCollectibles().add(Q2);
+		map0.getListOfCollectibles().add(Q3);
+		map0.getListOfCollectibles().add(Q4);
+		map0.getListOfCollectibles().add(Q5);
+		
+		
+		/* Create enemies */
+		Enemy bob = new Enemy(2, 3, 5, EnemyType.robot);
+		Enemy blob = new Enemy(5, 1,3, EnemyType.robot);
+		Enemy mega = new Enemy(10, 4,1,EnemyType.robot);
+
+		/*
+		 * Initializing Map(Object)'s enemy list(ArrayList) with the enemyList objects
+		 * created above.
+		 */
+		map0.getEnemyList().add(bob);
+		map0.getEnemyList().add(blob);
+		map0.getEnemyList().add(mega);
+		
+		/*
+		 * We are still in the title screen, so let the user enter game play.
+		 * Declare the object and initialize with predefined standard input object
+		 */
+		Scanner com = new Scanner(System.in);
+		String readString = com.nextLine();
+		do {
+			System.out.println(readString);
+	        if (readString.isEmpty())
+	        {
+				/* Printing the list of commands in the beginning. */
+	            System.out.println("Starting Game...");
+	            game.takeCommand(play,map0);
+	            
+				/* Prints 0th timestep and all initial variables.*/
+	            System.out.println(0);			
+	            System.out.println("Inventory :  " + play.getInventory().toString());
+	            System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
+	            tony.goInTheGame();
+	            break;
+	        }
+	        readString = com.nextLine();
+		} while(readString!=null);
+		
+		/* Entering actual game play, run a loop for every time-step. */
+		while(!tony.isGameOver())
+		{		
+			/* Prints World and spaces with empty lines after it. */
+			game.printWorld(map0.getLayoutOfCurrentRoom(),play,map0);
+			System.out.println("\n\n\n\n\n");
+			
+			/* Read command from input stream. */
+			while(true){
+				if(com.hasNextLine()) {
+				String name = com.nextLine();
+				game.writeCommand(name);
+				game.takeCommand(play,map0);
+				if (game.noMoreGame == true) {
+					tony.finishTheGame();
+				}
+				break;
+				}
+			}
+			
+			game.timeStep++;
+			System.out.println(game.timeStep);	//Prints nth timestep.
+			System.out.println("Inventory:\t" + play.getInventory().toString());
+			System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
+		}
+		com.close();
+    }
     
-    	/**
+    /**
 	 * This method will prints the world screen and all associated objects
 	 * when it is called.
 	 * 
@@ -104,7 +215,7 @@ public class ActionPrompt
         }
     }
     
-    	/**
+    /**
 	 * This method executes a specific command based on ActionPrompt(this class), Player, and Maps classes,
 	 * when called.
 	 *
@@ -276,117 +387,5 @@ public class ActionPrompt
     		System.out.println("That was not a valid command, type h for the list of commands.");
     		break;
     	}
-    }
-
-
-	/*
-	 * Driver method
-	 */
-    public static void main(String[] args) 
-    {
-		/* This is object-oriented code */
-        ActionPrompt game = new ActionPrompt(1,CommandType.help,1);
-        
-		/* Create EndGame Object to flash title card. */
-        EndGame tony = new EndGame();
-        tony.newGame();
-		/* At this point we are at the Title Screen. */
-        
-		/* Creating Collectible Objects */
-        Collectible q = new Collectible("Key", "object", 0);
-		Collectible t = new Collectible("Star", "object", 0);
-		Collectible s = new Collectible("Sun", "object", 0);
-
-		/* Initializing Player's Inventory(ArrayList) with the Collectible types. */
-		Player play = new Player(100, 5, 5);
-		play.getInventory().add(q);
-		play.getInventory().add(t);
-		play.getInventory().add(s);
-		
-		
-		/* Creating the collectible Objects in the physical space of the maps. */
-		PhysicalCollectible Q1 = new PhysicalCollectible("Key",1,1);
-		PhysicalCollectible Q2 = new PhysicalCollectible("Key",8,1);
-		PhysicalCollectible Q3 = new PhysicalCollectible("Key",1,8);
-		PhysicalCollectible Q4 = new PhysicalCollectible("Key",8,8);
-		PhysicalCollectible Q5 = new PhysicalCollectible("Key",8,6);
-		
-		/* Creating map with borders, walls, and empty spaces. */
-		Maps map0 = new Maps(game.roomNumber);
-		
-		/*
-		 * Initializing Map(Object)'s List of Collectibles(ArrayList) with the
-		 * PhysicalCollectible objects created above.
-		 */
-		map0.getListOfCollectibles().add(Q1);
-		map0.getListOfCollectibles().add(Q2);
-		map0.getListOfCollectibles().add(Q3);
-		map0.getListOfCollectibles().add(Q4);
-		map0.getListOfCollectibles().add(Q5);
-		
-		
-		/* Create enemies */
-		Enemy bob = new Enemy(2, 3, 5, EnemyType.robot);
-		Enemy blob = new Enemy(5, 1,3, EnemyType.robot);
-		Enemy mega = new Enemy(10, 4,1,EnemyType.robot);
-
-		/*
-		 * Initializing Map(Object)'s enemy list(ArrayList) with the enemyList objects
-		 * created above.
-		 */
-		map0.getEnemyList().add(bob);
-		map0.getEnemyList().add(blob);
-		map0.getEnemyList().add(mega);
-		
-		/*
-		 * We are still in the title screen, so let the user enter game play.
-		 * Declare the object and initialize with predefined standard input object
-		 */
-		Scanner com = new Scanner(System.in);
-		String readString = com.nextLine();
-		do {
-			System.out.println(readString);
-	        if (readString.isEmpty())
-	        {
-				/* Printing the list of commands in the beginning. */
-	            System.out.println("Starting Game...");
-	            game.takeCommand(play,map0);
-	            
-				/* Prints 0th timestep and all initial variables.*/
-	            System.out.println(0);			
-	            System.out.println("Inventory :  " + play.getInventory().toString());
-	            System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
-	            tony.goInTheGame();
-	            break;
-	        }
-	        readString = com.nextLine();
-		} while(readString!=null);
-		
-		/* Entering actual game play, run a loop for every time-step. */
-		while(!tony.isGameOver())
-		{		
-			/* Prints World and spaces with empty lines after it. */
-			game.printWorld(map0.getLayoutOfCurrentRoom(),play,map0);
-			System.out.println("\n\n\n\n\n");
-			
-			/* Read command from input stream. */
-			while(true){
-				if(com.hasNextLine()) {
-				String name = com.nextLine();
-				game.writeCommand(name);
-				game.takeCommand(play,map0);
-				if (game.noMoreGame == true) {
-					tony.finishTheGame();
-				}
-				break;
-				}
-			}
-			
-			game.timeStep++;
-			System.out.println(game.timeStep);	//Prints nth timestep.
-			System.out.println("Inventory:\t" + play.getInventory().toString());
-			System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
-		}
-		com.close();
     }
 } 
