@@ -118,14 +118,14 @@ public class Maps {
 	}
 	
 	/**
-	 * This method is responsible for detecting and returning the location of an
-	 * enemy on the map. It would traverse through the enemy list and identify whether
-	 * or not an enemy is located at a specified location. If so, then the enemy's 
+	 * This method is responsible for detecting and returning any enemy object at the location
+	 * specified by map coordinates. It would iterate through the ArrayList enemyList and identify whether
+	 * an enemy object has coordinates that matches with the specified location. If so, then the enemy's 
 	 * location is returned; if not, the Enemy object remains null.
 	 * 
 	 * @param xHere   the y coordinate specified
 	 * @param yHere   the x coordinate specified
-	 * @return e      an enemy's location on the map
+	 * @return e      the enemy object specified by the map coordinates
 	 */
 	public Enemy detectEnemy(int xHere, int yHere)
 	{
@@ -143,9 +143,9 @@ public class Maps {
 	}
 	
 	/**
-	 * This method retrieves the list of enemies that occupy space on the map.
+	 * This method returns the ArrayList of enemy objects that occupies a location on the map.
 	 * 
-	 * @return enemyList  an ArrayList of enemies
+	 * @return enemyList  an ArrayList of enemy objects
 	 */
 	public ArrayList<Enemy> getEnemyList()
 	{
@@ -167,8 +167,9 @@ public class Maps {
 	 * This method searches for a collectible at a specified location. If the collectible 
 	 * is present in that location it is removed from the arrayList and no longer shown 
 	 * on the map.
-	 * This is done by traversing through the listOfCollectibles ArrayList until the xHere
-	 * and yHere coordinates given match the x and y coordinates of the PhysicalCollectible.
+	 * This is done by iterating through the listOfCollectibles ArrayList with an iterator
+	 * until we find a match between the xHere and yHere coordinates
+	 * with the x and y coordinates of the iterated PhysicalCollectible object.
 	 * 
 	 * @param xHere  the y coordinate of a collectible's location
 	 * @param yHere  the x coordinate of a collectible's location
@@ -194,8 +195,9 @@ public class Maps {
 	 * This method searches for an enemy at a specified location. If the enemy 
 	 * is present in that location it is removed from the arrayList and no longer shown 
 	 * on the map.
-	 * This is done by traversing through the enemyList ArrayList until the xHere
-	 * and yHere coordinates given match the x and y coordinates of the Enemy.
+	 * This is done by iterating through the enemyList ArrayList with an iterator
+	 * until we find a match between the xHere and yHere coordinates
+	 * with the x and y coordinates of the iterated Enemy object.
 	 * 
 	 * @param xHere the specified y coordinate of an enemy's location
 	 * @param yHere the specified x coordinate of an enemy's location
