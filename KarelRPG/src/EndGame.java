@@ -14,7 +14,7 @@ public class EndGame {
 	}
 	
 	/**
-	 * This accessor method will return true if the game win conditions are met.
+	 * This accessor method will return true if the gameplay is over or has not begun.
 	 * 
 	 * @Param gameOver
 	 */
