@@ -10,7 +10,7 @@ public class Enemy {
 	private int yLoc;
 	private EnemyType type;
 	
-	/* Initalized to 0. Only for Demo 1. */
+	/* Initialized to 0. Only for Demo 1. */
 	private int attack = 0;
 	
 	
@@ -55,10 +55,12 @@ public class Enemy {
 	}
   
   /* Copy Constructor */
-		public Enemy (Enemy copyEnemy) {
+		public Enemy (Enemy copyEnemy)
+		{
 			health = copyEnemy.health;
 			xLoc = copyEnemy.xLoc;
 			yLoc = copyEnemy.yLoc;
+		}
 	public void loseHealth(int ouch) {
 		this.health -= ouch;
 	}
