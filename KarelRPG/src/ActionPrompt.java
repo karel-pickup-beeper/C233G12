@@ -43,7 +43,7 @@ public class ActionPrompt
     public static void main(String[] args) 
     {
 		/* This is object-oriented code */
-        ActionPrompt game = new ActionPrompt(0,CommandType.help,1);
+        ActionPrompt game = new ActionPrompt(0,CommandType.help,1); 
         
 		/* Create EndGame Object to flash title card. */
         EndGame tony = new EndGame();
