@@ -224,5 +224,9 @@ public class Player {
 			break;
 		}
 	}
+	public int changeHealth(int damage) {
+		life-=damage;
+		return life;
+	}
 }
 	
