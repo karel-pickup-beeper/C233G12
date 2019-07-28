@@ -14,13 +14,11 @@ public class RPGGUI extends Application {
 	Stage primaryStage;
 	Scene Openscene, GameStart;
 	private VariableClass variable = new VariableClass();
-	private int lengthOfStage=500;
-	private int widthOfStage=500;
-	private boolean GameOver=true;
+	private int lengthOfStage=640;
+	private int widthOfStage=480;
 	
 	//starting screen	
 	public void start(Stage primaryStage) throws Exception {
-		variable.start();
 		Group root=new Group();
 		BorderPane layout = new BorderPane();//the layout is basically a root
 		Openscene = new Scene (layout, widthOfStage, lengthOfStage);

@@ -128,9 +128,9 @@ public class VariableClass {
  	
  	
  	public static void main (String[] args){
- 		VariableClass game = new VariableClass();
- 		game.start();
- 		game.play();
+ 		VariableClass variable = new VariableClass();
+ 		variable.start();
+ 		variable.play();
  	}
  }
 
