@@ -3,6 +3,8 @@ public class Collectible {
 	private String name;
 	private String type;
 	private int count;
+	private int strength;
+	private int speed;
 	
 	
 	/* constructors */
@@ -11,6 +13,14 @@ public class Collectible {
 		type=type1;
 		count=count1;
 	}
+	public Collectible(String name1, String type1, int count1, int strength1, int speed1) {
+		name=name1;
+		type=type1;
+		count=count1;
+		strength=strength1;
+		
+	}
+	 //this one handles object: eg. keys name=name1; type=type1; count=count1; }
 
 	public Collectible(Collectible c ) {
 		name=c.name;

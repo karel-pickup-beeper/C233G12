@@ -227,5 +227,7 @@ public class Player {
 	public void changeHealth(int amount) {
 		life+=amount;
 	}
+	//when the enemy moves, if enemy is attacked, does nothing 
+	//
 }
 	
