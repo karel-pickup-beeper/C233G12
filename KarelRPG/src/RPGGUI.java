@@ -47,6 +47,8 @@ public class RPGGUI extends Application {
 		root.getChildren().add(button1);
 		layout.setCenter(root);
 		layout.setLeft(button2);
+		
+		//new scene
 		BorderPane layout1= new BorderPane();
 		GameStart = new Scene(layout1,widthOfStage,lengthOfStage);
 		primaryStage.show(); //the new scene starts now, also where the game will begin
