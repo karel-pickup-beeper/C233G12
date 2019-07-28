@@ -30,8 +30,16 @@ public class RPGGUI extends Application {
 		button1.setStyle("-fx-background-color:white");
 		button1.setStyle("-fx-border-color:black");
 		
-		button1.setOnAction(e->primaryStage.setScene(GameStart));
-		button1.setOnAction(e->variable.tony.goInTheGame());
+		button1.setOnAction(
+				new EventHandler<ActionEvent>()
+				{
+					@Override
+					public void handle(ActionEvent e)
+					{
+						primaryStage.setScene(GameStart);
+						variable.tony.goInTheGame();
+					}
+				});
 		
 
 		button1.setText("Start Game");

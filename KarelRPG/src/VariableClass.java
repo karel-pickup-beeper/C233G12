@@ -80,7 +80,6 @@ public class VariableClass {
  		Scanner com = new Scanner(System.in);
 		String readString = com.nextLine();
 		do {
-			
 			System.out.println(readString);
 	        if (readString.isEmpty())
 	        {
