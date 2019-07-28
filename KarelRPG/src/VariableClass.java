@@ -2,15 +2,39 @@ import java.util.Scanner;
 
 public class VariableClass {
 	public int roomNumber;
-	Player play = new Player(100,5,5);
+    ActionPrompt game = new ActionPrompt(0, CommandType.help, 1);
+	
+	/* Create EndGame Object to flash title card. */
     EndGame tony = new EndGame();
+    /* At this point we are at the Title Screen. */
+    
+    /* Creating Collectible Objects */
     Collectible q = new Collectible("Key", "object", 0);
  	Collectible t = new Collectible("Star", "object", 0);
  	Collectible s = new Collectible("Sun", "object", 0);
  	Collectible sword = new Collectible("sword", "weapon", 0);
-    ActionPrompt game = new ActionPrompt(0, CommandType.help, 1); 
+ 	
+ 	/* Initializing Player's Inventory(ArrayList) with the Collectible types. */
+ 	Player play = new Player(100,5,5);
+ 	
+ 	/* Creating the collectible Objects in the physical space of the maps. */
+ 	PhysicalCollectible Q1 = new PhysicalCollectible("Key",1,1);
+	PhysicalCollectible Q2 = new PhysicalCollectible("Key",8,1);
+	PhysicalCollectible Q3 = new PhysicalCollectible("Key",1,8);
+	PhysicalCollectible Q4 = new PhysicalCollectible("Key",8,8);
+	PhysicalCollectible Q5 = new PhysicalCollectible("Sun",8,6);
 	
-    Maps map0 = new Maps(game.getroomNumber());
+	/* Creating map with borders, walls, and empty spaces. */
+	Maps map1 = new Maps(1);
+	Maps map2 = new Maps(2);
+	Maps map3 = new Maps(3);
+	Maps map4 = new Maps(4);
+	Maps map5 = new Maps(5);
+	
+	/* Create enemies */
+	Enemy bob = new Enemy(2, 3, 5, EnemyType.robot);
+	Enemy blob = new Enemy(5, 1,3, EnemyType.robot);
+	Enemy mega = new Enemy(10, 4,1,EnemyType.robot);
    
     public VariableClass() {
     }
@@ -18,31 +42,41 @@ public class VariableClass {
 
 
  	public void start() {
+ 		/* Create EndGame Object to flash title card. */
+        tony.newGame();
+        
+        /* Initializing Player's Inventory(ArrayList) with the Collectible types. */
  		play.getInventory().add(q);
  		play.getInventory().add(t);
  		play.getInventory().add(s);
  		play.getInventory().add(sword);
- 		PhysicalCollectible Q1 = new PhysicalCollectible("Key",1,1);
-		PhysicalCollectible Q2 = new PhysicalCollectible("Key",8,1);
-		PhysicalCollectible Q3 = new PhysicalCollectible("Key",1,8);
-		PhysicalCollectible Q4 = new PhysicalCollectible("Key",8,8);
-		PhysicalCollectible Q5 = new PhysicalCollectible("Sun",8,6);
-		map0.getListOfCollectibles().add(Q1);
-		map0.getListOfCollectibles().add(Q2);
-		map0.getListOfCollectibles().add(Q3);
-		map0.getListOfCollectibles().add(Q4);
-		map0.getListOfCollectibles().add(Q5);
-		Enemy bob = new Enemy(2, 3, 5, EnemyType.robot);
-		Enemy blob = new Enemy(5, 1,3, EnemyType.robot);
-		Enemy mega = new Enemy(10, 4,1,EnemyType.robot);
-		map0.getEnemyList().add(bob);
-		map0.getEnemyList().add(blob);
-		map0.getEnemyList().add(mega);
-        tony.newGame(); 
+ 		
+ 		/*
+		 * Initializing Map(Object)'s List of Collectibles(ArrayList) with the
+		 * PhysicalCollectible objects created above.
+		 */
+		map1.getListOfCollectibles().add(Q1);
+		map1.getListOfCollectibles().add(Q2);
+		map1.getListOfCollectibles().add(Q3);
+		map1.getListOfCollectibles().add(Q4);
+		map1.getListOfCollectibles().add(Q5);
+		
+		/*
+		 * Initializing Map(Object)'s enemy list(ArrayList) with the enemyList objects
+		 * created above.
+		 */
+		map1.getEnemyList().add(bob);
+		map1.getEnemyList().add(blob);
+		map1.getEnemyList().add(mega);
+
     	
 		
  	}
  	public void play() {
+ 		/*
+		 * We are still in the title screen, so let the user enter game play.
+		 * Declare the object and initialize with predefined standard input object
+		 */
  		Scanner com = new Scanner(System.in);
 		String readString = com.nextLine();
 		do {
@@ -52,30 +86,31 @@ public class VariableClass {
 	        {
 				/* Printing the list of commands in the beginning. */
 	            System.out.println("Starting Game...");
-	            game.takeCommand(play,map0);
+	            game.takeCommand(play,map1);
 	            
 				/* Prints 0th timestep and all initial variables.*/
 	            System.out.println(0);			
 	            System.out.println("Inventory :  " + play.getInventory().toString());
-	            System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
+	            System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
 	            tony.goInTheGame();
 	            break;
 	        }
-	        readString = com.nextLine();
-	        
+	        readString = com.nextLine(); 
 		} while(readString!=null);
         
-    	
+		/* Entering actual game play, run a loop for every time-step. */
         while(!tony.isGameOver())
-    		{		
-    			game.printWorld(map0.getLayoutOfCurrentRoom(),play,map0);
+    		{	
+        		/* Prints World and spaces with empty lines after it. */
+    			game.printWorld(map1.getLayoutOfCurrentRoom(),play,map1);
     			System.out.println("\n\n\n\n\n");
+    			
     			/* Read command from input stream. */
     			while(true){
     				if(com.hasNextLine()) {
     				String name = com.nextLine();
     				game.writeCommand(name);
-    				game.takeCommand(play,map0);
+    				game.takeCommand(play,map1);
     				if (game.getNoMoreGame()) {
     					tony.finishTheGame();
     				}
@@ -85,7 +120,7 @@ public class VariableClass {
     			game.changeTimeStep();
     			System.out.println(game.getTimeStep());	//Prints nth timestep.
     			System.out.println("Inventory:\t" + play.getInventory().toString());
-    			System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
+    			System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
     		}
     		com.close();
         }
