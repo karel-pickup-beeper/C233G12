@@ -26,25 +26,81 @@ import javafx.stage.Stage;
 			 *  This mutator method sets the text to the character that the user
 			 *  pressed on the keyboard.
 			 */ 
-			keyPressed.setText(event.getCode().toString());
+			switch (event.getCode().toString())
+		
+			{
+			case "LEFT":
+	    		this.currentCommand = CommandType.left;
+	    		System.out.println("Moved Left");
+	    		break;
+	    		
+	    	case "RIGHT":
+	    	
+	    		this.currentCommand = CommandType.right;
+	    		System.out.println("Moved Right");
+	    		break;
+	    		
+	    	case "UP":
+	    	
+	    		this.currentCommand = CommandType.up;
+	    		System.out.println("Moved Up");
+	    		break;
+	    		
+	    	case "DOWN":
+	    		this.currentCommand = CommandType.down;
+	    		System.out.println("Moved Down");
+	    		break;
+	    		
+	    	case "P":
+	    		this.currentCommand = CommandType.pickup;
+	    		System.out.println("Picking Up the Item");
+	    		break;
+	    		
+	    	case "T":
+	    		this.currentCommand = CommandType.attack;
+	    		System.out.println("ATTACK!");
+	    		break;
+	    		
+	    	case "H":
+	    		this.currentCommand = CommandType.help;
+	    		System.out.println("What were the commands again?");
+	    		break;
+	    		
+	    	case "":
+	    		this.currentCommand = CommandType.wincheck;
+	    		break;
+	    		
+	    	default:
+	    		this.currentCommand = CommandType.no;
+	    		System.out.println("That was not a valid command, type h for the list of commands.");
+	    		break;
+			}
+			
+			//keyPressed.setText(event.getCode().toString());
 			
 		}
 
+		public static void main (String[] args) {
+			launch(args);
+		}
+		
 		@Override
 		public void start(Stage primaryStage) {
 			primaryStage.setTitle("Keyboard Events Test");
-			StackPane root = new StackPane();
 			
+			StackPane root = new StackPane();
+			Scene scene = new Scene (root, 500, 500);
+			primaryStage.setScene(scene);
 		
+		
+			
+			// This method looks for a handle method whenever a key is pressed.	
+			scene.setOnKeyPressed(this);
 			root.getChildren().add(keyPressed);
 			
-			Scene scene = new Scene (root, 500, 500);
-			// This method looks for a handle method whenever a key is pressed.
-			scene.setOnKeyPressed(this);
 			
-			
-			
-			primaryStage.setScene(scene);
 			primaryStage.show();
 		}
 }
+
+	
