@@ -15,6 +15,8 @@ public class Player {
 	private ArrayList<Collectible> inventory = new ArrayList <Collectible>();
 	private ArrayList<Integer> stats = new ArrayList <Integer>();
 	private HealthCondition status;
+	private int strengthindex=1;
+	private int speedindex=2;
 	
 	/* Constructors */
 	public Player(int health1, int x, int y) {
@@ -51,7 +53,7 @@ public class Player {
 	 * @return stats
 	 * 
 	 */
-	public ArrayList <Integer> getStat(){
+	public ArrayList <Integer> getStatList(){
 		return stats;
 	}
 	
@@ -227,5 +229,16 @@ public class Player {
 	public void changeHealth(int amount) {
 		life+=amount;
 	}
+public void useCollectible(Collectible c) {
+		
+		if (c.getName() == "Sun") {
+			changeStats(strengthindex, 5);
+			
+		}
+	}
+	
+	public int getStrength() {
+		return getStatList().get(strengthindex);
+		}
 }
 	
