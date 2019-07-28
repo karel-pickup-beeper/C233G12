@@ -70,17 +70,21 @@ public class ActionPrompt
 		PhysicalCollectible Q5 = new PhysicalCollectible("Key",8,6);
 		
 		/* Creating map with borders, walls, and empty spaces. */
-		Maps map0 = new Maps(game.roomNumber);
+		Maps map1 = new Maps(1);
+		Maps map2 = new Maps(2);
+		Maps map3 = new Maps(3);
+		Maps map4 = new Maps(4);
+		Maps map5 = new Maps(5);
 		
 		/*
 		 * Initializing Map(Object)'s List of Collectibles(ArrayList) with the
 		 * PhysicalCollectible objects created above.
 		 */
-		map0.getListOfCollectibles().add(Q1);
-		map0.getListOfCollectibles().add(Q2);
-		map0.getListOfCollectibles().add(Q3);
-		map0.getListOfCollectibles().add(Q4);
-		map0.getListOfCollectibles().add(Q5);
+		map1.getListOfCollectibles().add(Q1);
+		map1.getListOfCollectibles().add(Q2);
+		map1.getListOfCollectibles().add(Q3);
+		map1.getListOfCollectibles().add(Q4);
+		map1.getListOfCollectibles().add(Q5);
 		
 		
 		/* Create enemies */
@@ -92,9 +96,9 @@ public class ActionPrompt
 		 * Initializing Map(Object)'s enemy list(ArrayList) with the enemyList objects
 		 * created above.
 		 */
-		map0.getEnemyList().add(bob);
-		map0.getEnemyList().add(blob);
-		map0.getEnemyList().add(mega);
+		map1.getEnemyList().add(bob);
+		map1.getEnemyList().add(blob);
+		map1.getEnemyList().add(mega);
 		
 		/*
 		 * We are still in the title screen, so let the user enter game play.
@@ -108,12 +112,12 @@ public class ActionPrompt
 	        {
 				/* Printing the list of commands in the beginning. */
 	            System.out.println("Starting Game...");
-	            game.takeCommand(play,map0);
+	            game.takeCommand(play,map1);
 	            
 				/* Prints 0th timestep and all initial variables.*/
 	            System.out.println(0);			
 	            System.out.println("Inventory :  " + play.getInventory().toString());
-	            System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
+	            System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
 	            tony.goInTheGame();
 	            break;
 	        }
@@ -124,7 +128,7 @@ public class ActionPrompt
 		while(!tony.isGameOver())
 		{		
 			/* Prints World and spaces with empty lines after it. */
-			game.printWorld(map0.getLayoutOfCurrentRoom(),play,map0);
+			game.printWorld(map1.getLayoutOfCurrentRoom(),play,map1);
 			System.out.println("\n\n\n\n\n");
 			
 			/* Read command from input stream. */
@@ -132,7 +136,7 @@ public class ActionPrompt
 				if(com.hasNextLine()) {
 				String name = com.nextLine();
 				game.writeCommand(name);
-				game.takeCommand(play,map0);
+				game.takeCommand(play,map1);
 				if (game.noMoreGame == true) {
 					tony.finishTheGame();
 				}
@@ -143,7 +147,7 @@ public class ActionPrompt
 			game.timeStep++;
 			System.out.println(game.timeStep);	//Prints nth timestep.
 			System.out.println("Inventory:\t" + play.getInventory().toString());
-			System.out.println("WANTED-->\t" + map0.getEnemyList().toString());
+			System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
 		}
 		com.close();
     }
