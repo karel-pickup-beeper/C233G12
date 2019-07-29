@@ -27,7 +27,7 @@ public class Maps {
 			    {"X","X","X","X","X","X","X","X","X","X"}};
 			    break;
 			
-			case 1:
+			case 1: //fourth row from bottom, on right side, X is supposed to be "_"
 				layoutOfCurrentRoom = new String[][] {
 				{"X","X","X","X","X","X","X","X","X","X"},
 				{"X","_","_","_","_","x","_","_","_","X"},
@@ -35,7 +35,7 @@ public class Maps {
 				{"X","_","_","_","_","x","_","_","_","X"},
 				{"X","x","x","_","_","x","_","_","_","X"},
 				{"X","_","_","_","_","_","_","x","x","X"},
-				{"X","_","_","_","_","_","x","x","_","_"},
+				{"X","_","_","_","_","_","x","x","_","X"},
 				{"X","_","x","_","_","_","_","_","_","X"},
 				{"X","_","x","_","_","_","_","_","_","X"},
 				{"X","X","X","X","X","X","X","X","X","X"}};
@@ -101,6 +101,7 @@ public class Maps {
 				break;
 		}	
 	}
+
 
 	/**
 	 * This method traverses through an array in order to detect and print out

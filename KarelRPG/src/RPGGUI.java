@@ -8,12 +8,12 @@ import javafx.scene.control.ToolBar;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class RPGGUI extends Application {
 	Button button1, button2;
@@ -25,12 +25,16 @@ public class RPGGUI extends Application {
 	private int drawXCoord=0;
 	private int drawYCoord=0;
 	private PlayerPiece piece = new PlayerPiece(1,1);
-	private EnemyPiece blob = new EnemyPiece();
-
+	private EnemyPiece1 blob = new EnemyPiece1();
+	private boolean gameOver;
+	private EnemyPiece2 bob = new EnemyPiece2();
+	private EnemyPiece3 mega = new EnemyPiece3();
+	private CollectiblePiece Q1 = new CollectiblePiece();
 
 	
 	//starting screen	
 	public void start(Stage primaryStage) throws Exception {
+		variable.start();
 		Group root=new Group();
 		BorderPane layout = new BorderPane();//the layout is basically a root
 		Openscene = new Scene (layout, widthOfStage, lengthOfStage);
@@ -85,7 +89,9 @@ public class RPGGUI extends Application {
 		
 		BorderPane paneroot = new BorderPane();
 		Group main = new Group();
-		main.getChildren().addAll(canvas, piece, blob);
+		main.getChildren().addAll(canvas, Q1,piece, blob, bob,mega);
+		
+		
 		paneroot.setCenter(main);
 		//Creating the bottom inventory
 		//tool bar
@@ -153,6 +159,7 @@ public class RPGGUI extends Application {
 							piece.setBoardLocation();		
 							System.out.println(variable.play.getX());
 							System.out.println(variable.play.getY());
+							System.out.println(variable.map1.getEnemyList().toString());
 						}else {
 							variable.play.changeX(0);
 							variable.play.changeY(+1);
@@ -173,10 +180,54 @@ public class RPGGUI extends Application {
 							variable.play.changeY(-1);
 							System.out.println(variable.play.getX());
 							System.out.println(variable.play.getY());
-						}
+						 			
+			    		}
 			    		break;
-			    		
-					}
+			    	case T:
+			    		int v = 0;
+			    		for (int w=-1; w<2; w++) {
+			    			for (int z=-1; z<2; z++) {
+			    				Enemy a = variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z);
+			    				
+			    				if (a != null) {
+			    					variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z).loseHealth(1);
+			    					if (variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z).getHealth() == 0) {
+			    						if (variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z)==variable.blob){
+			    							blob.setVisible(false);
+			    						}
+			    						if (variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z)==variable.bob){
+			    							bob.setVisible(false);
+			    						}
+			    						if (variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z)==variable.mega){
+			    							mega.setVisible(false);
+			    						}
+			    						
+			    						variable.map1.popEnemy(variable.play.getX()+w, variable.play.getY()+z);
+			    					} else {
+			    	     			System.out.println("The enemy now has " + variable.map1.detectEnemy(variable.play.getX()+w, variable.play.getY()+z).getHealth() + " health left!");
+			    					}
+			    					v++;
+			    				}
+			    			}
+			    		}
+			    	case ENTER:
+			    		if (variable.map1.areWeDoneYet()) {
+			    			if(variable.play.getX() == 5 && variable.play.getY()== 5) {
+			    				//End the game.
+			    				gameOver = true;
+			    			}
+			    			else {
+			    				System.out.println("Remember to return to the starting position to exit dungeon.");
+			    			}
+			    		}
+			    		break;
+			    
+			    	default:
+			    		System.out.println("You wasted a turn");
+			    		break;
+			    	}
+
+					
 				
 			}
 		);
@@ -185,7 +236,7 @@ public class RPGGUI extends Application {
 	}
 	
 
-	//moveable player
+	//Movable player
 
 
 
@@ -193,6 +244,7 @@ public class RPGGUI extends Application {
 		int x = play.getX();
 		int y = play.getY();
 		if (variable.map1.detectEnemy(x, y) != null) {
+			System.out.println("Enemy there!");
 			return false;
 		}			
 		else if (variable.map1.detectTile(x, y) == "_") {
@@ -226,25 +278,26 @@ public class RPGGUI extends Application {
 		Rectangle piece = new Rectangle(50, 50);
 		piece.setFill(Color.AQUAMARINE);
 		getChildren().addAll(piece);
+		// This sets location in the text based logic code.
 		variable.play.setLocation(x, y);
 		piece.setLayoutX(x*50+50);
 		piece.setLayoutY(y*50+50);	
 	}
-	
+	//
 	private void setBoardLocation() {
 		int p = variable.play.getX();
 		int t = variable.play.getY();
-		piece.setLayoutX(p*50);
-		piece.setLayoutY(t*50);
+		piece.setLayoutX(p*50-100);
+		piece.setLayoutY(t*50-100);
 	}
 	
 
 	}
 	//Enemy in game
 	
-	public class EnemyPiece extends Pane {
+	public class EnemyPiece1 extends Pane {
 
-		private EnemyPiece() {
+		private EnemyPiece1() {
 			Rectangle enemy = new Rectangle(50, 50);
 			enemy.setFill(Color.RED);
 			getChildren().addAll(enemy);
@@ -253,9 +306,50 @@ public class RPGGUI extends Application {
 			enemy.setLayoutX(x*50);
 			enemy.setLayoutY(y*50);	
 		}
-		
+					
 	}
 	
+	//Enemy bob in game.
+	public class EnemyPiece2 extends Pane {
+
+		private EnemyPiece2() {
+			Rectangle enemy = new Rectangle(50, 50);
+			enemy.setFill(Color.RED);
+			getChildren().addAll(enemy);
+			int x = variable.bob.getXloc();
+			int y = variable.bob.getYloc();
+			enemy.setLayoutX(x*50);
+			enemy.setLayoutY(y*50);	
+		}
+					
+	}
+	
+	public class EnemyPiece3 extends Pane {
+
+		private EnemyPiece3() {
+			Rectangle enemy = new Rectangle(50, 50);
+			enemy.setFill(Color.RED);
+			getChildren().addAll(enemy);
+			int x = variable.mega.getXloc();
+			int y = variable.mega.getYloc();
+			enemy.setLayoutX(x*50);
+			enemy.setLayoutY(y*50);	
+		}
+					
+	}
+	
+	public class CollectiblePiece extends Pane {
+
+		private CollectiblePiece() {
+			Rectangle collectible = new Rectangle(50, 50);
+			collectible.setFill(Color.YELLOW);
+			getChildren().addAll(collectible);
+			int x = variable.Q1.getX();
+			int y = variable.Q1.getY();
+			collectible.setLayoutX(x*50);
+			collectible.setLayoutY(y*50);
+	}
+	}
 	
 	
 
