@@ -57,10 +57,6 @@ public class VariableClass {
 		 * PhysicalCollectible objects created above.
 		 */
 		map1.getListOfCollectibles().add(Q1);
-		map1.getListOfCollectibles().add(Q2);
-		map1.getListOfCollectibles().add(Q3);
-		map1.getListOfCollectibles().add(Q4);
-		map1.getListOfCollectibles().add(Q5);
 		
 		/*
 		 * Initializing Map(Object)'s enemy list(ArrayList) with the enemyList objects
