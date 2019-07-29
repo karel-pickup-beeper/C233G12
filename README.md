@@ -31,3 +31,8 @@ Compile Instruction:
 
 Run Instruction:
 1. Enter command: java ActionPrompt.
+
+
+RESOURCES:
+1. MUSHROOM: https://bayatgames.com/asset/platform-game-assets-ultimate/
+2. TEXTURES:
