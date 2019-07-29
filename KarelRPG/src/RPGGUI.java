@@ -19,9 +19,9 @@ import javafx.stage.Stage;
 
 
 public class RPGGUI extends Application {
-	Button button1, button2;
-	Stage primaryStage;
-	Scene Openscene, GameStart, GameEnd;
+	private Button button1;
+	private Stage primaryStage;
+	private Scene Openscene, GameStart, GameEnd;
 	private VariableClass variable = new VariableClass();
 	private int lengthOfStage=900;
 	private int widthOfStage=900;
@@ -56,7 +56,7 @@ public class RPGGUI extends Application {
 		primaryStage.setTitle("Karel RPG"); //the title of the window
 		//setting start title
 		Text Title = new Text("Karel RPG");
-		Title.setFont(Font.font(40));
+		Title.setFont(Font.font(70));
 		Text paragraph = new Text("\"To input a command: enter a letter key and press the return key. \\n\" +\r\n" + 
 				"    			   \"WASD tells the player to move up, left, down, right respectively.\\n\" +\r\n" + 
 				"    			   \"p tells the player to pick up a collectible. \\n\" +\r\n" + 
@@ -110,15 +110,24 @@ public class RPGGUI extends Application {
 		//Creating the bottom inventory
 		//tool bar
 		ToolBar toolbar = new ToolBar();
-		Button slot1 = new Button();
+		
+		Image po = new Image("res/Potion.png");
+		ImageView i = new ImageView(po);
+		Button slot1 = new Button("",i);
 		slot1.setMinSize(80, 80); 
+		
 		toolbar.getItems().add(slot1);
 
-		Button slot2 = new Button("Weapon");
+		Image sw = new Image("res/Sword.png");
+		ImageView i2 = new ImageView(sw);
+		Button slot2 = new Button("", i2);
 		slot2.setMinSize(80, 80); 
 		toolbar.getItems().add(slot2);
 
-		Button slot3 = new Button("Items");
+		Image ke = new Image("res/Key.png");
+		ImageView i3 = new ImageView(ke);
+		Button slot3 = new Button("", i3);
+		slot3.setVisible(false);
 		slot3.setMinSize(80, 80); 
 		toolbar.getItems().add(slot3);
 							
@@ -239,6 +248,8 @@ public class RPGGUI extends Application {
 			    			variable.play.pickUpItem(p);
 			    				if (p.equals("Key")){
 			    					Q1.setVisible(false);
+			    					slot3.setVisible(true);
+
 			    			}
 	
 			    		}

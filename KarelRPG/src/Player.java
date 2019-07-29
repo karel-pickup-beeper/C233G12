@@ -233,6 +233,7 @@ public class Player {
 	public void changeHealth(int amount) {
 		life+=amount;
 	}
+	
 public void useCollectible(Collectible c) {
 		
 		if (c.getName() == "Sun") {
