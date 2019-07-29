@@ -1,13 +1,19 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Border;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,6 +27,8 @@ public class RPGGUI extends Application {
 	private int widthOfStage=900;
 	private int drawXCoord=0;
 	private int drawYCoord=0;
+	private PlayerPiece piece = new PlayerPiece(1,1);
+	
 
 
 	
@@ -49,9 +57,7 @@ public class RPGGUI extends Application {
 		//set up layout
 		layout.setTop(Title); 
 		root.getChildren().add(button1);
-		layout.setCenter(root);
-		layout.setLeft(button2);
-		
+		layout.setCenter(root);		
 		
 		//the new scene starts now, also where the game will begin
 		
@@ -69,8 +75,8 @@ public class RPGGUI extends Application {
 				if (x.equals("X")) { 
 					context.drawImage(rock, drawXCoord,drawYCoord); 
 				}else if (x.equals("x")) {
-					context.drawImage(rock, drawXCoord,drawYCoord); 				}
-				else {
+					context.drawImage(rock, drawXCoord,drawYCoord); 				
+					}else {
 					context.drawImage(grass, drawXCoord,drawYCoord); 
 				}
 				drawXCoord+=50; 
@@ -78,39 +84,80 @@ public class RPGGUI extends Application {
 			drawYCoord+=50;
 
 		}
-		button1.setOnAction(e->primaryStage.setScene(new Scene(new Pane(canvas)))); //this action switches scene when pressed		
-		
-		//Movable Player
+		Pane paneroot = new Pane();
+		paneroot.getChildren().addAll(canvas, piece);		
+		Scene scene = new Scene(paneroot);
+		button1.setOnAction(e->primaryStage.setScene(scene)); //this action switches scene when pressed		
 
+		scene.setOnKeyPressed(e-> {
+					switch (e.getCode())
+					{
+					case A:
+						variable.play.changeX(-1);
+						variable.play.changeY(0);	
+						piece.setBoardLocation();
+						break;	
+			    
+					case D:
+						variable.play.changeX(+1);
+						variable.play.changeY(0);
+						piece.setBoardLocation();
+						
+			    		break;
+			    		
+			    	case W:
+			    		variable.play.changeX(0);
+						variable.play.changeY(-1);
+						piece.setBoardLocation();
+
+			    		break;
+			    		
+			    	case S:
+			    		variable.play.changeX(0);
+						variable.play.changeY(+1);
+						piece.setBoardLocation();
+					
+			    		break;
+			    		
+					}
+			}
+		);
 		
-		
-		
-		
-		
-		
-		primaryStage.show(); 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-			
-		}
+		primaryStage.show(); 		
+	}
+
+	//moveable player
+
+
+
+	public class PlayerPiece extends Pane {
+
+	private PlayerPiece(int x, int y) {
+		Rectangle piece = new Rectangle(50*0.7, 50*0.7);
+		piece.setFill(Color.AQUAMARINE);
+		getChildren().addAll(piece);
+		variable.play.setLocation(x, y);
+		piece.setLayoutX(x*50);
+		piece.setLayoutY(y*50);	
+	}
+	
+	private void setBoardLocation() {
+		int p = variable.play.getX();
+		int t = variable.play.getY();
+		piece.setLayoutX(p*50);
+		piece.setLayoutY(t*50);
+	}
+
+	}
+	
 	
 	public static void main (String [] args) {
-		launch(args);
-		}
-	}
+	launch(args);
+}
+
+
+}
+
 	 
 
 	
