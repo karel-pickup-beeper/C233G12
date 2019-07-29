@@ -15,7 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class RPGGUI extends Application {
+public class RPGGUI2 extends Application {
 	Button button1, button2;
 	Stage primaryStage;
 	Scene Openscene, GameStart;
@@ -24,7 +24,7 @@ public class RPGGUI extends Application {
 	private int widthOfStage=900;
 	private int drawXCoord=0;
 	private int drawYCoord=0;
-	private PlayerPiece piece = new PlayerPiece(1,1);
+	private PlayerPiece piece = new PlayerPiece(0,0);
 	private EnemyPiece blob = new EnemyPiece();
 
 
@@ -64,6 +64,7 @@ public class RPGGUI extends Application {
 		
 		GraphicsContext context = canvas.getGraphicsContext2D();
 		String[][] n = variable.map1.getLayoutOfCurrentRoom();
+		
 		Image grass = new Image ("res/Grass.png");
 		Image rock = new Image ("res/Rock.png");
 		context.drawImage(rock, 0,50);
@@ -114,63 +115,40 @@ public class RPGGUI extends Application {
 					switch (e.getCode())
 					{
 					case A:
-						variable.play.changeX(-1);
-						variable.play.changeY(0);
-						if (isValidMoveSide(variable.play)==true) {
+						if (isValidMoveSide(variable.play, -1)==true) {
+							variable.play.changeX(-1);
+							variable.play.changeY(0);
 							piece.setBoardLocation();
 							System.out.println(variable.play.getX());
-							System.out.println(variable.play.getY());
+							System.out.println(variable.play.getY());}
 
-						}else {
-							variable.play.changeX(+1);
-							variable.play.changeY(0);
-							System.out.println(variable.play.getX());
-							System.out.println(variable.play.getY());
-							
-						}
 						break;	
 			    
 					case D:
-						variable.play.changeX(+1);
-						variable.play.changeY(0);
-						if (isValidMoveSide(variable.play)==true) {
+							if (isValidMoveSide(variable.play, +1)==true) {
+							variable.play.changeX(+1);
+							variable.play.changeY(0);
 							piece.setBoardLocation();
 							System.out.println(variable.play.getX());
-							System.out.println(variable.play.getY());
+							System.out.println(variable.play.getY());}
 							
-						}else {
-							variable.play.changeX(-1);
-							variable.play.changeY(0);
-							System.out.println(variable.play.getX());
-							System.out.println(variable.play.getY());
-						}
 			    		break;
 			    		
 			    	case W:
-			    		variable.play.changeX(0);
-						variable.play.changeY(-1);
-						if (isValidMoveUp(variable.play)==true) {
+			    		if (isValidMoveUp(variable.play, -1)==true) {
+			    			variable.play.changeX(0);
+							variable.play.changeY(-1);
 							piece.setBoardLocation();		
-							System.out.println(variable.play.getX());
-							System.out.println(variable.play.getY());
-						}else {
-							variable.play.changeX(0);
-							variable.play.changeY(+1);
 							System.out.println(variable.play.getX());
 							System.out.println(variable.play.getY());
 						}
 			    		break;
 			    		
 			    	case S:
-			    		variable.play.changeX(0);
-						variable.play.changeY(+1);
-						if (isValidMoveSide(variable.play)==true) {
+			 			if (isValidMoveSide(variable.play, 1)==true) {
+			 				variable.play.changeX(0);
+							variable.play.changeY(+1);
 							piece.setBoardLocation();
-							System.out.println(variable.play.getX());
-							System.out.println(variable.play.getY());
-						}else {
-							variable.play.changeX(0);
-							variable.play.changeY(-1);
 							System.out.println(variable.play.getX());
 							System.out.println(variable.play.getY());
 						}
@@ -189,13 +167,13 @@ public class RPGGUI extends Application {
 
 
 
-	private boolean isValidMoveSide(Player play) {
-		int x = play.getX();
-		int y = play.getY();
-		if (variable.map1.detectEnemy(x, y) != null) {
+	private boolean isValidMoveSide(Player play, int i) {
+		int x = variable.play.getX();
+		int y = variable.play.getY();
+		if (variable.map1.detectEnemy(x+i, y) != null) {
 			return false;
 		}			
-		else if (variable.map1.detectTile(x, y) == "_") {
+		else if (variable.map1.detectTile(x+i, y) == "_") {
 			return true;
 		}
 		else {
@@ -204,14 +182,14 @@ public class RPGGUI extends Application {
 	}
 
 	}
-	private boolean isValidMoveUp(Player play) {
-		int x = play.getX();
-		int y = play.getY();
+	private boolean isValidMoveUp(Player play, int i) {
+		int x = variable.play.getX();
+		int y = variable.play.getY();
 		
-		if (variable.map1.detectEnemy(x, y) != null) {
+		if (variable.map1.detectEnemy(x, y+i) != null) {
 			return false;
 		}			
-		else if (variable.map1.detectTile(x, y) == "_") {
+		else if (variable.map1.detectTile(x, y+i) == "_") {
 			return true;
 		}
 		else {
@@ -226,16 +204,15 @@ public class RPGGUI extends Application {
 		Rectangle piece = new Rectangle(50, 50);
 		piece.setFill(Color.AQUAMARINE);
 		getChildren().addAll(piece);
-		variable.play.setLocation(x, y);
-		piece.setLayoutX(x*50+50);
-		piece.setLayoutY(y*50+50);	
+		piece.setLayoutX(x*50);
+		piece.setLayoutY(y*50);	
 	}
 	
 	private void setBoardLocation() {
 		int p = variable.play.getX();
 		int t = variable.play.getY();
-		piece.setLayoutX(p*50);
-		piece.setLayoutY(t*50);
+		piece.setTranslateX(p*50);
+		piece.setTranslateY(t*50);
 	}
 	
 
