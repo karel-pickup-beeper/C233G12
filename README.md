@@ -1,14 +1,11 @@
 # C233G12
 ***********************************************KarelRPG*********************************************** <br/>
-<pre>
-  _  __              _   _____  _____   _____ 
+<pre>  _  __              _   _____  _____   _____ 
  | |/ /             | | |  __ \|  __ \ / ____|
  | ' / __ _ _ __ ___| | | |__) | |__) | |  __ 
  |  < / _` | '__/ _ \ | |  _  /|  ___/| | |_ |
  | . \ (_| | | |  __/ | | | \ \| |    | |__| |
- |_|\_\__,_|_|  \___|_| |_|  \_\_|     \_____|
-                                              
-   </pre>
+ |_|\_\__,_|_|  \___|_| |_|  \_\_|     \_____|</pre>
 
 This game is a collaborative project between Feifei Zhang, Vincent Tsin, Mark Pineda, Yasmin Samantar.<br/>
 
@@ -32,9 +29,9 @@ Maps.java<br/>
 PhysicalColletible.java<br/>
 
 Group 12 GitHub Repository URL: https://github.com/karel-pickup-beeper/C233G12.git
-Notes for Versions:
-v1.0 = #80 commit
-v2.0 = #115 commit
+Notes for Versions:<br/>
+v1.0 = #80 commit<br/>
+v2.0 = #115 commit<br/>
 
 Compile Instruction:
 1. Open Terminal.
