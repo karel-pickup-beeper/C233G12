@@ -40,6 +40,8 @@ Run Instruction:
 1. Enter command: java ActionPrompt.
 
 
-RESOURCES:
+RESOURCES (CREATIVE COMMONS) (REUSED FOR NON-COMMERCIAL / EDUCATIONAL USE):
 1. MUSHROOM: https://bayatgames.com/asset/platform-game-assets-ultimate/
-2. TEXTURES:
+2. SWORDS: http://minecraftpixelartbuildingideas.blogspot.com/2013/02/minecraft-2d-pixel-art-ideas.html
+3. TERRAIN TEXTURE: https://www.pinterest.ca/pin/472244710908242915/
+4. ADDITIONAL TEXTURE: https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/1251525-two-stone-textures-which-is-better-16x
