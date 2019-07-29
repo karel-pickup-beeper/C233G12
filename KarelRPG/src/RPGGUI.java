@@ -1,21 +1,28 @@
-import javafx.application.*;
-import java.util.Timer;
-import javafx.event.*;
-import javafx.scene.*;
-import javafx.stage.Stage;
-import javafx.scene.control.Label;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class RPGGUI extends Application {
 	Button button1, button2;
 	Stage primaryStage;
 	Scene Openscene, GameStart;
 	private VariableClass variable = new VariableClass();
-	private int lengthOfStage=640;
-	private int widthOfStage=480;
+	private int lengthOfStage=900;
+	private int widthOfStage=900;
+	private int drawXCoord=0;
+	private int drawYCoord=0;
+
+
 	
 	//starting screen	
 	public void start(Stage primaryStage) throws Exception {
@@ -29,17 +36,6 @@ public class RPGGUI extends Application {
 		button1.setMinSize(300, 100); 
 		button1.setStyle("-fx-background-color:white");
 		button1.setStyle("-fx-border-color:black");
-		
-		button1.setOnAction(
-				new EventHandler<ActionEvent>()
-				{
-					@Override
-					public void handle(ActionEvent e)
-					{
-						primaryStage.setScene(GameStart);
-						variable.tony.goInTheGame();
-					}
-				});
 		
 
 		button1.setText("Start Game");
@@ -56,20 +52,65 @@ public class RPGGUI extends Application {
 		layout.setCenter(root);
 		layout.setLeft(button2);
 		
-		//new scene
-		BorderPane layout1= new BorderPane();
-		GameStart = new Scene(layout1,widthOfStage,lengthOfStage);
-		primaryStage.show(); //the new scene starts now, also where the game will begin
+		
+		//the new scene starts now, also where the game will begin
+		
+		//drawing the map depending on map file
+		Canvas canvas = new Canvas(500,500);
+		canvas.setVisible(true);
+		GraphicsContext context = canvas.getGraphicsContext2D();
+		String[][] n = variable.map1.getLayoutOfCurrentRoom();
+		Image grass = new Image ("res/Grass.png");
+		Image rock = new Image ("res/Rock.png");
+		context.drawImage(rock, 0,50);
+		for (String[] y:variable.map1.getLayoutOfCurrentRoom()) { 
+			drawXCoord=0; 
+			for (String x:y) {
+				if (x.equals("X")) { 
+					context.drawImage(rock, drawXCoord,drawYCoord); 
+				}else if (x.equals("x")) {
+					context.drawImage(rock, drawXCoord,drawYCoord); 				}
+				else {
+					context.drawImage(grass, drawXCoord,drawYCoord); 
+				}
+				drawXCoord+=50; 
+				}
+			drawYCoord+=50;
+
+		}
+		button1.setOnAction(e->primaryStage.setScene(new Scene(new Pane(canvas)))); //this action switches scene when pressed		
+		
+		//Movable Player
+
 		
 		
 		
-		variable.start();		
 		
+		
+		
+		primaryStage.show(); 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
 		}
 	
 	public static void main (String [] args) {
 		launch(args);
 		}
-	 
 	}
+	 
+
 	
