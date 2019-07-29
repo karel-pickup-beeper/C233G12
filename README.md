@@ -28,10 +28,12 @@ Yasmin Samantar:<br/>
 Maps.java<br/>
 PhysicalColletible.java<br/>
 
-Group 12 GitHub Repository URL: https://github.com/karel-pickup-beeper/C233G12.git<br/>
-Notes for Versions:<br/>
+Group 12 GitHub Repository URL (From DEMO 2): https://github.com/karel-pickup-beeper/C233G12/tree/cbd02f0bc834c2838c1a6ed0518de72a26e5ac0e
+<br/>
+Notes for Reviewing Past Versions {<br/>
 v1.0 = #80 commit<br/>
-v2.0 = #117 commit<br/>
+v2.0 = #120 commit<br/>
+}
 
 Compile Instruction:
 1. Open Terminal.
