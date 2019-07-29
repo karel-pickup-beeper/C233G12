@@ -1,13 +1,13 @@
 # C233G12
 ***********************************************KarelRPG*********************************************** <br/>
 <pre>
-  _  __              _   _____  _____   _____ <br/>
- | |/ /             | | |  __ \|  __ \ / ____|<br/>
- | ' / __ _ _ __ ___| | | |__) | |__) | |  __ <br/>
- |  < / _` | '__/ _ \ | |  _  /|  ___/| | |_ |<br/>
- | . \ (_| | | |  __/ | | | \ \| |    | |__| |<br/>
- |_|\_\__,_|_|  \___|_| |_|  \_\_|     \_____|<br/>
-                                              <br/>
+  _  __              _   _____  _____   _____ 
+ | |/ /             | | |  __ \|  __ \ / ____|
+ | ' / __ _ _ __ ___| | | |__) | |__) | |  __ 
+ |  < / _` | '__/ _ \ | |  _  /|  ___/| | |_ |
+ | . \ (_| | | |  __/ | | | \ \| |    | |__| |
+ |_|\_\__,_|_|  \___|_| |_|  \_\_|     \_____|
+                                              
    </pre>
 
 This game is a collaborative project between Feifei Zhang, Vincent Tsin, Mark Pineda, Yasmin Samantar.<br/>
@@ -34,7 +34,7 @@ PhysicalColletible.java<br/>
 Group 12 GitHub Repository URL: https://github.com/karel-pickup-beeper/C233G12.git
 Notes for Versions:
 v1.0 = #80 commit
-v2.0 = #113 commit
+v2.0 = #115 commit
 
 Compile Instruction:
 1. Open Terminal.
