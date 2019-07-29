@@ -25,6 +25,7 @@ public class VariableClass {
 	PhysicalCollectible Q5 = new PhysicalCollectible("Sun",8,6);
 	
 	/* Creating map with borders, walls, and empty spaces. */
+	Maps map0 = new Maps(0);
 	Maps map1 = new Maps(1);
 	Maps map2 = new Maps(2);
 	Maps map3 = new Maps(3);
@@ -56,10 +57,6 @@ public class VariableClass {
 		 * PhysicalCollectible objects created above.
 		 */
 		map1.getListOfCollectibles().add(Q1);
-		map1.getListOfCollectibles().add(Q2);
-		map1.getListOfCollectibles().add(Q3);
-		map1.getListOfCollectibles().add(Q4);
-		map1.getListOfCollectibles().add(Q5);
 		
 		/*
 		 * Initializing Map(Object)'s enemy list(ArrayList) with the enemyList objects
@@ -68,68 +65,8 @@ public class VariableClass {
 		map1.getEnemyList().add(bob);
 		map1.getEnemyList().add(blob);
 		map1.getEnemyList().add(mega);
-
-    	
 		
  	}
- 	public void play() {
- 		/*
-		 * We are still in the title screen, so let the user enter game play.
-		 * Declare the object and initialize with predefined standard input object
-		 */
- 		Scanner com = new Scanner(System.in);
-		String readString = com.nextLine();
-		do {
-			System.out.println(readString);
-	        if (readString.isEmpty())
-	        {
-				/* Printing the list of commands in the beginning. */
-	            System.out.println("Starting Game...");
-	            game.takeCommand(play,map1);
-	            
-				/* Prints 0th timestep and all initial variables.*/
-	            System.out.println(0);			
-	            System.out.println("Inventory :  " + play.getInventory().toString());
-	            System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
-	            tony.goInTheGame();
-	            break;
-	        }
-	        readString = com.nextLine(); 
-		} while(readString!=null);
-        
-		/* Entering actual game play, run a loop for every time-step. */
-        while(!tony.isGameOver())
-    		{	
-        		/* Prints World and spaces with empty lines after it. */
-    			game.printWorld(map1.getLayoutOfCurrentRoom(),play,map1);
-    			System.out.println("\n\n\n\n\n");
-    			
-    			/* Read command from input stream. */
-    			while(true){
-    				if(com.hasNextLine()) {
-    				String name = com.nextLine();
-    				game.writeCommand(name);
-    				game.takeCommand(play,map1);
-    				if (game.getNoMoreGame()) {
-    					tony.finishTheGame();
-    				}
-    				break;
-    				}
-    			}
-    			game.changeTimeStep();
-    			System.out.println(game.getTimeStep());	//Prints nth timestep.
-    			System.out.println("Inventory:\t" + play.getInventory().toString());
-    			System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
-    		}
-    		com.close();
-        }
  	
- 	
- 	
- 	public static void main (String[] args){
- 		VariableClass variable = new VariableClass();
- 		variable.start();
- 		variable.play();
- 	}
  }
 

@@ -94,6 +94,10 @@ public class Player {
 	 * @return life
 	 * 
 	 */
+	public void setLocation(int x, int y) {
+		xCoord=x;
+		yCoord=y;
+	}
 	public int getHealth() {
 		return life;
 	}
@@ -187,8 +191,8 @@ public class Player {
 	 * 
 	 */
 	/* Mutator Methods for Player Coordinates */
-	public void changeX(int x1) { 
-		xCoord+=x1;		
+	public int changeX(int x1) { 
+		return xCoord+=x1;		
 	}
 	
 	/**
@@ -197,8 +201,8 @@ public class Player {
 	 * @param y1
 	 * 
 	 */
-	public void changeY(int y1) {
-		yCoord+=y1;
+	public int changeY(int y1) {
+		return yCoord+=y1;
 	}
 	
 	/**
@@ -229,6 +233,7 @@ public class Player {
 	public void changeHealth(int amount) {
 		life+=amount;
 	}
+	
 public void useCollectible(Collectible c) {
 		
 		if (c.getName() == "Sun") {
