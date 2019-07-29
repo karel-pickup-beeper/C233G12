@@ -45,3 +45,4 @@ RESOURCES (CREATIVE COMMONS) (REUSED FOR NON-COMMERCIAL / EDUCATIONAL USE):
 2. SWORDS: http://minecraftpixelartbuildingideas.blogspot.com/2013/02/minecraft-2d-pixel-art-ideas.html
 3. TERRAIN TEXTURE: https://www.pinterest.ca/pin/472244710908242915/
 4. ADDITIONAL TEXTURE: https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/1251525-two-stone-textures-which-is-better-16x
+5. POTION: https://www.planetminecraft.com/project/alchemist-apprentce/
