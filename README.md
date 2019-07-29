@@ -41,6 +41,14 @@ Compile Instruction:
 Run Instruction:
 1. Enter command: java ActionPrompt.
 
+Install JavaFx Jar Instructions(Eclipse)
+1.Open the project from File System
+2. In Eclipse, right click on the desired folder
+3. Click on Properties
+4. Java Build Path > Libraries
+5. Add External JARS > Add the jfxrt.jar
+6. Apply and close
+
 
 RESOURCES (CREATIVE COMMONS) (REUSED FOR NON-COMMERCIAL / EDUCATIONAL USE):
 1. MUSHROOM: https://bayatgames.com/asset/platform-game-assets-ultimate/
