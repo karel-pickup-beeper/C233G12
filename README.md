@@ -42,6 +42,7 @@ Run Instruction:
 1. Enter command: java ActionPrompt.
 
 Install JavaFx Jar Instructions(Eclipse)<br/>
+
 1.Open the project from File System<br/>
 2. In Eclipse, right click on the desired folder<br/>
 3. Click on Properties<br/>
