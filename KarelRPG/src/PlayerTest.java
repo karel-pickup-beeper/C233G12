@@ -16,9 +16,7 @@ public class PlayerTest {
 		assertEquals("Testing Copy Constructor, copying initial health 4, x 13, y 16 - testing y", 16, c.getY());
 	}
 	
-	
-	
-	
+	//Testing setters and getters
 	@Test
 	public void test_getHealth() {
 		Player p = new Player(7, 8, 6);
@@ -43,6 +41,34 @@ public class PlayerTest {
 		assertEquals("Testing getY", 19, p.getY());
 	}
 	
+	// Testing change methods.
+	@Test
+	public void test_changeStatus_Good() {
+		Player p = new Player(10, 21, 19);
+		p.changeStatus(HealthCondition.GOOD);
+		p.getStatus();
+		
+		assertEquals("Testing changeStatus", HealthCondition.GOOD, p.getStatus());
+	}
+	
+	@Test
+	public void test_changeStatus_Poison() {
+		Player p = new Player(10, 21, 19);
+		p.changeStatus(HealthCondition.POISON);
+		p.getStatus();
+		
+		assertEquals("Testing changeStatus", HealthCondition.POISON, p.getStatus());
+	}
+	
+	@Test
+	public void test_changeStatus_Stun() {
+		Player p = new Player(10, 21, 19);
+		p.changeStatus(HealthCondition.STUN);
+		p.getStatus();
+		
+		assertEquals("Testing changeStatus", HealthCondition.STUN, p.getStatus());
+	}
+	
 	@Test
 	public void test_changeX() {
 		Player p = new Player(12, 5, 9);
@@ -62,6 +88,7 @@ public class PlayerTest {
 		assertEquals("Testing changeY", 18, p.getY());
 	}
 	
+	//Testing player moves
 	@Test
 	public void test_playerMoveNORTH() {
 		Player p = new Player(4, 15, 8);
