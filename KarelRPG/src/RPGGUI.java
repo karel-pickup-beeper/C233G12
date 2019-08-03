@@ -57,10 +57,10 @@ public class RPGGUI extends Application {
 		//setting start title
 		Text Title = new Text("Karel RPG");
 		Title.setFont(Font.font(70));
-		Text paragraph = new Text("\"To input a command: enter a letter key and press the return key. \\n\" +\r\n" + 
-				"    			   \"WASD tells the player to move up, left, down, right respectively.\\n\" +\r\n" + 
-				"    			   \"p tells the player to pick up a collectible. \\n\" +\r\n" + 
-				"    			   \"t tells the player to spin attack enemies in each adjacent tiles.\\n\" +\r\n" +
+		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
+									"WASD tells the player to move up, left, down, right respectively.\n" + 
+									"p tells the player to pick up a collectible.\n" + 
+									"t tells the player to spin attack enemies in each adjacent tiles.\n" +
 									"return to original tile, press f to finish game");
 		paragraph.setFont(Font.font(20));
 	
