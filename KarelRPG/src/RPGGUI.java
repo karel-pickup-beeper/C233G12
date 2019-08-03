@@ -405,10 +405,10 @@ public class RPGGUI extends Application {
 			collectible.setLayoutY(y*50);
 	}
 	}
-
-public static void main (String [] args) {
-	launch(args);
-}
+//
+//public static void main (String [] args) {
+//	launch(args);
+//}
 }
 
 

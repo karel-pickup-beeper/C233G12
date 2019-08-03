@@ -67,6 +67,65 @@ public class VariableClass {
 		map1.getEnemyList().add(mega);
 		
  	}
+	private void play() {
+ 		Scanner com = new Scanner(System.in);
+		String readString = com.nextLine();
+		do {
+			System.out.println(readString);
+	        if (readString.isEmpty())
+	        {
+				/* Printing the list of commands in the beginning. */
+	            System.out.println("Starting Game...");
+	            game.takeCommand(play,map1
+	            		);
+	            
+				/* Prints 0th timestep and all initial variables.*/
+	            System.out.println(0);			
+	            System.out.println("Inventory :  " + play.getInventory().toString());
+	            System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
+	            tony.goInTheGame();
+	            break;
+	        }
+	        readString = com.nextLine();
+		} while(readString!=null);
+		
+		/* Entering actual game play, run a loop for every time-step. */
+		while(!tony.isGameOver())
+		{		
+			/* Prints World and spaces with empty lines after it. */
+			game.printWorld(map1.getLayoutOfCurrentRoom(),play,map1);
+			System.out.println("\n\n\n\n\n");
+			
+			/* Read command from input stream. */
+			while(true){
+				if(com.hasNextLine()) {
+				String name = com.nextLine();
+				game.writeCommand(name);
+				game.takeCommand(play,map1);
+				if (game.getNoMoreGame() == true) {
+					tony.finishTheGame();
+				}
+				break;
+				}
+			}
+			
+			game.changeTimeStep();
+			System.out.println(game.getTimeStep());	//Prints nth timestep.
+			System.out.println("Inventory:\t" + play.getInventory().toString());
+			System.out.println("WANTED-->\t" + map1.getEnemyList().toString());
+		}
+		com.close();
+    }
+	
+	
+    public static void main(String[] args) {
+    	VariableClass game = new VariableClass();
+    	game.start();
+    	game.play();
+    	
+    	
+    }
+
  	
  }
 
