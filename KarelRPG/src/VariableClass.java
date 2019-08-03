@@ -46,6 +46,8 @@ public class VariableClass {
  		/* Create EndGame Object to flash title card. */
         tony.newGame();
         
+        //game.
+        
         /* Initializing Player's Inventory(ArrayList) with the Collectible types. */
  		play.getInventory().add(q);
  		play.getInventory().add(t);

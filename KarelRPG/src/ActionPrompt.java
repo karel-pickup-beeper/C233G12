@@ -22,6 +22,7 @@ public class ActionPrompt
 	private CommandType currentCommand;
 	private int roomNumber;
 	private boolean noMoreGame;
+	private ArrayList<Maps> listOfMaps = new ArrayList <Maps>();
   
 	/* Constructor */
 	public ActionPrompt(int timeStep, CommandType currentCommand, int roomNumber) 
@@ -40,9 +41,7 @@ public class ActionPrompt
 	public int getroomNumber() {
 		return roomNumber;
 	}
-	public int changeTimeStep() {
-		return timeStep++;
-	}
+	
 	public int getTimeStep() {
 		return timeStep;
 	}

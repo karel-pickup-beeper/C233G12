@@ -129,17 +129,6 @@ public class Player {
 		}
 	}
 	
-	/**
-	 * This accessor method will return the number of collectible items in the player's inventory, when called. 
-	 * This is a future feature implementation.
-	 * 
-	 * @param name
-	 * @return 0
-	 * 
-	 */
-	public static int getSingleItemCount(String name) {
-		return 0;
-	}
 	
 	/**
 	 * This accessor method will return a list of collectible items in the player's inventory, when called. 
