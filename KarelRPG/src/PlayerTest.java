@@ -41,6 +41,15 @@ public class PlayerTest {
 		assertEquals("Testing getY", 19, p.getY());
 	}
 	
+	@Test 
+	public void test_setLocation() {
+		Player p  = new Player (13, 21, 47);
+		p.setLocation(21, 47);
+	
+		assertEquals("Testing setLocation", 21, p.getX());
+		assertEquals("Testing setLocation", 47, p.getY());
+	}
+	
 	// Testing change methods.
 	@Test
 	public void test_changeStatus_Good() {
@@ -77,7 +86,6 @@ public class PlayerTest {
 	
 		assertEquals("Testing changeY", 11, p.getX());
 	}
-	
 	
 	@Test
 	public void test_changeY() {
