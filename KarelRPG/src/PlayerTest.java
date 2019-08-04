@@ -26,6 +26,13 @@ public class PlayerTest {
 	}
 	
 	@Test
+	public void test_getInventory() {
+		Player play = new Player(2,3,4);
+		play.setInventory(new Collectible("Key", "object", 0));
+		play.getInventory().add(new Collectible("Star", "object", 0));
+		play.getInventory().toString();
+	}
+	@Test
 	public void test_getX() {
 		Player e= new Player(7, 8, 6);
 		e.getX();
