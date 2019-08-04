@@ -240,6 +240,7 @@ public class RPGGUI extends Application {
 			    				}
 			    			}
 			    		}
+			    		break;
 			    	case P:
 			    		String p = variable.map1.detectItem(variable.play.getX(), variable.play.getY());
 			    		if (p != null)
@@ -405,10 +406,17 @@ public class RPGGUI extends Application {
 			collectible.setLayoutY(y*50);
 	}
 	}
-//
-//public static void main (String [] args) {
-//	launch(args);
-//}
+
+	public static void main (String [] args) {
+		if (args.length>0 && args[0].equalsIgnoreCase("text")) {
+			VariableClass game = new VariableClass();
+	    	game.start();
+	    	game.play();
+		}
+		else {
+			launch(args);
+		}
+	}
 }
 
 

@@ -109,8 +109,8 @@ public class Player {
 	 * 
 	 */
 	/* Preset inventory Collectibles */
-	public void setItem(Collectible item) {
-		inventory.add(item);
+	public void setInventory(Collectible item) {
+		this.inventory.add(item);
 	}
 	
 	
@@ -128,6 +128,7 @@ public class Player {
 			item.increaseCount(1);
 		}
 	}
+
 	
 	/**
 	 * This accessor method will return the number of collectible items in the player's inventory, when called. 
@@ -138,7 +139,7 @@ public class Player {
 	 * 
 	 */
 	public static int getSingleItemCount(String name) {
-		return 0;
+		return 0;//fixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixmefixme;
 	}
 	
 	/**
@@ -148,20 +149,8 @@ public class Player {
 	 * 
 	 */
 	/* Inventory */
-	public ArrayList <Collectible> getInventory() {
-		return inventory;
-	}
-	
-	/**
-	 * This accessor method will return the a list of collectible items in the player's inventory
-	 * as type String, when called. 
-	 * 
-	 * @return inventory
-	 * 
-	 */
-	/* Get Inventory as a String */
-	public String stringInven() {
-		return inventory.toString();
+	public ArrayList<Collectible> getInventory() {
+		return new ArrayList<Collectible>(inventory);
 	}
 	
 	/**

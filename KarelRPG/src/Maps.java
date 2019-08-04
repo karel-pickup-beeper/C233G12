@@ -161,6 +161,11 @@ public class Maps {
 		
 	}
 	
+	public void setMapCollectibles(PhysicalCollectible thing)
+	{
+		this.listOfCollectibles.add(thing);
+	}
+	
 	/**
 	 * Returns an inventory of collectible initialized in the constructor.
 	 * Retrieve the list of collectibles that exists in physical space.
@@ -171,7 +176,7 @@ public class Maps {
 	 */
 	public ArrayList<PhysicalCollectible> getListOfCollectibles()
 	{
-		return listOfCollectibles;
+		return new ArrayList<PhysicalCollectible>(listOfCollectibles);
 	}
 	
 	/**
@@ -199,6 +204,11 @@ public class Maps {
 		
 	}
 	
+	public void setMapEnemies(Enemy monster)
+	{
+		this.enemyList.add(monster);
+	}
+	
 	/**
 	 * This method returns the ArrayList of enemy objects that occupies a location on the map.
 	 * 
@@ -206,7 +216,7 @@ public class Maps {
 	 */
 	public ArrayList<Enemy> getEnemyList()
 	{
-		return enemyList;
+		return new ArrayList<Enemy>(enemyList);
 	}
 	
 	public boolean areWeDoneYet() 

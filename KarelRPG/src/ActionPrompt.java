@@ -38,16 +38,19 @@ public class ActionPrompt
 	}
 
 	public int getroomNumber() {
-		return roomNumber;
+		int r = this.roomNumber;
+		return r;
 	}
-	public int changeTimeStep() {
-		return timeStep++;
+	public void changeTimeStep() {
+		this.timeStep++;
 	}
 	public int getTimeStep() {
-		return timeStep;
+		int t = this.timeStep;
+		return t;
 	}
 	public boolean getNoMoreGame() {
-		return noMoreGame;
+		boolean n = this.noMoreGame;
+		return n;
 	}
 	
     /**
