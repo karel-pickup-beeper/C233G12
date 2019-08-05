@@ -1,5 +1,5 @@
 package com.karelRPG.gameplay;
-public class Enemy {
+public abstract class Enemy {
 	
 	/* Instance variables that are passed as parameters from ActionPrompt class's driver method. */
 	private int health;
@@ -60,26 +60,25 @@ public class Enemy {
 	public void loseHealth(int ouch) {
 		this.health -= ouch;
 	}
-    	/**
-	 * This mutator method will change the x-coordinate of the enemy to a random location, when called.
-	 * 
-	 * @return xLoc
+    /**
+	 * This mutator method will increase the xLoc variable by the parameter (int)jump when called.
 	 */
+	/* Moving the Enemy horizontally across the map by the steps in the parameter jump */
 	public void changeXloc(int jump) {
 		this.xLoc += jump;
 	}
-    	/**
-	 * This mutator method will change the y-coordinate of the enemy to a random location, when called.
-	 * 
-	 * @return yLoc
+    /**
+	 * This mutator method will increase the yLoc variable by the parameter (int)jump when called.
 	 */
+	/* Moving the Enemy vertically across the map by the steps in the parameter jump */
 	public void changeYloc(int jump) {
 		this.yLoc += jump;
 	}
 	
 	/* Enemy's remaining health before it should be despawned. */
 	public int getHealth() {
-		return this.health;
+		int health = this.health;
+		return health;
 	}
 	
 	/**
@@ -106,7 +105,10 @@ public class Enemy {
 	
 	/* Returns string of values. */
 	public String toString() {
-		return" {" + type+ "(" +health+ ")}";
+		return" {" + getType() + "(" +health+ ")}";
 	}
+	
+	public abstract void enemyMove();
 
+	protected abstract String getType();
 }

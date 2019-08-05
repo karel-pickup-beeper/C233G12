@@ -1,5 +1,4 @@
 package com.karelRPG.gameplay;
-import java.util.Scanner;
 import java.util.ArrayList;
   
 enum CardinalDirection
@@ -138,16 +137,8 @@ public class ActionPrompt
         			else
         			{
         				if(mapview.detectEnemy(i, j) != null)
-        				{
-        					String e = "";
-        					switch (mapview.detectEnemy(i, j).getType())
-        					{
-        					case CACTUS:
-        						e = "E";
-        					default:
-        						break;
-        					}
-        					System.out.print(e);
+        				{	
+        					System.out.print(mapview.detectEnemy(i, j).getType().substring(0, 0));
         				}
         				else
         				{

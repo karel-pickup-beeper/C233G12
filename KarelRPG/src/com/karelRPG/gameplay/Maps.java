@@ -221,7 +221,6 @@ public class Maps {
 	public void setMapEnemies(Enemy monster)
 	{
 		this.enemyList.add(monster);
-		
 	}
 	
 	/**

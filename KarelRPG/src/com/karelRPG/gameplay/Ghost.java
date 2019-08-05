@@ -1,12 +1,12 @@
 package com.karelRPG.gameplay;
 
-public class Robot extends Enemy {
+public class Ghost extends Enemy {
 
-	public Robot(int initialHealth, int initialXLoc, int initialYLoc) {
+	public Ghost(int initialHealth, int initialXLoc, int initialYLoc) {
 		super(initialHealth, initialXLoc, initialYLoc);
 	}
 
-	public Robot(Enemy copyEnemy) {
+	public Ghost(Enemy copyEnemy) {
 		super(copyEnemy);
 	}
 
@@ -30,7 +30,6 @@ public class Robot extends Enemy {
 	}
 	
 	protected String getType() {
-		return "Robot";
+		return "Ghost";
 	}
-
 }

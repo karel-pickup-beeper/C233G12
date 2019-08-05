@@ -61,30 +61,30 @@ public class VariableClass {
 		 * Initializing Map(Object)'s enemylist(ArrayList) with recently created Enemy objects.
 		 */
 		/* Map 1 */
-		game.initialiseMap(1, new Enemy(2, 3, 5, EnemyType.CACTUS));
-		game.initialiseMap(1, new Enemy(2, 1, 3, EnemyType.CACTUS));
-		game.initialiseMap(1, new Enemy(3, 4, 1, EnemyType.CACTUS));
-		game.initialiseMap(1, new Enemy(5, 4, 1, EnemyType.CACTUS));
+		game.initialiseMap(1, new Robot(2, 3, 5));
+		game.initialiseMap(1, new Robot(2, 1, 3));
+		game.initialiseMap(1, new Cactus(3, 4, 1));
 		/* Map 2 */
-		game.initialiseMap(2, new Enemy(2, 2, 4, EnemyType.CACTUS));
-		game.initialiseMap(2, new Enemy(4, 2, 1, EnemyType.CACTUS));
-		game.initialiseMap(2, new Enemy(4, 5, 6, EnemyType.CACTUS));
+		game.initialiseMap(2, new Robot(2, 2, 4));
+		game.initialiseMap(2, new Robot(4, 2, 1));
+		game.initialiseMap(2, new Zombie(4, 5, 6));
 		/* Map 3 */
-		game.initialiseMap(3, new Enemy(5, 4, 1, EnemyType.CACTUS));
-		game.initialiseMap(3, new Enemy(4, 3, 2, EnemyType.CACTUS));
-		game.initialiseMap(3, new Enemy(15, 3, 8, EnemyType.CACTUS));
+		game.initialiseMap(3, new Zombie(5, 4, 1));
+		game.initialiseMap(3, new Zombie(4, 3, 2));
+		game.initialiseMap(3, new Cactus(15, 3, 8));
+		game.initialiseMap(3, new Ghost(2, 1, 8));
 		/* Map 4 */
-		game.initialiseMap(4, new Enemy(1, 1, 8, EnemyType.CACTUS));
-		game.initialiseMap(4, new Enemy(1, 2, 8, EnemyType.CACTUS));
-		game.initialiseMap(4, new Enemy(1, 3, 8, EnemyType.CACTUS));
-		game.initialiseMap(4, new Enemy(6, 8, 7, EnemyType.CACTUS));
+		game.initialiseMap(4, new Ghost(1, 1, 8));
+		game.initialiseMap(4, new Ghost(1, 2, 8));
+		game.initialiseMap(4, new Ghost(1, 3, 8));
+		game.initialiseMap(4, new Zombie(6, 8, 7));
 		/* Map 5 */
-		game.initialiseMap(5, new Enemy(5, 6, 1, EnemyType.CACTUS));
-		game.initialiseMap(5, new Enemy(5, 8, 2, EnemyType.CACTUS));
-		game.initialiseMap(5, new Enemy(5, 6, 3, EnemyType.CACTUS));
-		game.initialiseMap(5, new Enemy(5, 8, 4, EnemyType.CACTUS));
-		game.initialiseMap(5, new Enemy(5, 7, 5, EnemyType.CACTUS));
-		game.initialiseMap(5, new Enemy(10, 8, 6, EnemyType.CACTUS));
+		game.initialiseMap(5, new Robot(5, 6, 1));
+		game.initialiseMap(5, new Robot(5, 8, 2));
+		game.initialiseMap(5, new Robot(5, 6, 3));
+		game.initialiseMap(5, new Zombie(6, 8, 4));
+		game.initialiseMap(5, new Zombie(7, 7, 5));
+		game.initialiseMap(5, new Cactus(10, 8, 6));
 		
  	}
 	public void play() {
