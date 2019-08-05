@@ -1,3 +1,4 @@
+package com.karelRPG.gameplay;
 enum WinCondition
 {
 	win,dead,in,out;

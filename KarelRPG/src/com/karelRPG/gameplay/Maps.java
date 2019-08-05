@@ -1,3 +1,4 @@
+package com.karelRPG.gameplay;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,7 +9,7 @@ public class Maps {
 	private ArrayList<PhysicalCollectible> listOfCollectibles = new ArrayList<PhysicalCollectible>();
 	private ArrayList<Enemy> enemyList = new ArrayList<Enemy>();
 	
-	
+	/* Simplistic Constructor for initializing maps at the start of the game. This constructor should only be called at the beginning of the game, and no more. */
 	public Maps(int room) {
 
 		switch (room)
@@ -27,7 +28,7 @@ public class Maps {
 			    {"X","X","X","X","X","X","X","X","X","X"}};
 			    break;
 			
-			case 1: //fourth row from bottom, on right side, X is supposed to be "_"
+			case 1:
 				layoutOfCurrentRoom = new String[][] {
 				{"X","X","X","X","X","X","X","X","X","X"},
 				{"X","_","_","_","_","x","_","_","_","X"},
@@ -35,7 +36,7 @@ public class Maps {
 				{"X","_","_","_","_","x","_","_","_","X"},
 				{"X","x","x","_","_","x","_","_","_","X"},
 				{"X","_","_","_","_","_","_","x","x","X"},
-				{"X","_","_","_","_","_","x","x","_","X"},
+				{"X","_","_","_","_","_","x","x","_","_"},
 				{"X","_","x","_","_","_","_","_","_","X"},
 				{"X","_","x","_","_","_","_","_","_","X"},
 				{"X","X","X","X","X","X","X","X","X","X"}};
@@ -60,12 +61,12 @@ public class Maps {
 				{"X","_","X","X","X","X","_","X","_","X"},
 				{"X","_","x","_","_","x","_","x","_","X"},
 				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","_","_","_","_","_","x","_","X"},
-				{"X","x","x","x","x","x","x","x","_","X"},
-				{"X","_","x","_","_","_","_","_","_","X"},
-				{"X","_","x","_","_","_","_","_","_","X"},
+				{"X","_","x","_","_","_","_","x","_","X"},
+				{"X","_","x","_","_","_","x","_","_","X"},
+				{"X","_","_","_","x","x","_","_","x","X"},
+				{"X","x","x","x","_","_","_","x","_","_"},
+				{"X","_","x","_","_","x","x","_","_","X"},
+				{"X","_","x","_","x","_","_","_","_","X"},
 				{"X","X","X","X","X","X","X","X","X","X"}};
 				break;
 				
@@ -76,23 +77,23 @@ public class Maps {
 				{"X","_","x","_","_","x","_","_","_","X"},
 				{"X","_","x","x","_","_","_","_","_","X"},
 				{"X","_","_","_","x","_","_","_","_","X"},
-				{"X","x","x","_","x","_","_","x","x","X"},
-				{"_","_","_","_","x","_","x","x","_","_"},
-				{"X","x","x","x","_","_","x","x","_","X"},
+				{"X","X","X","X","X","X","X","X","X","X"},
+				{"_","_","_","_","x","_","x","x","_","X"},
+				{"X","x","x","_","_","_","_","x","_","X"},
 				{"X","_","_","_","_","x","_","_","_","X"},
-				{"X","_","X","X","X","X","_","X","_","X"}};
+				{"X","_","X","X","X","X","X","_","X","X"}};
 				break;
 				
 			case 5:
 				layoutOfCurrentRoom = new String[][] {
-				{"X","_","X","X","X","X","_","X","_","X"},
-				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","x","_","_","x","_","x","_","X"},
-				{"X","_","_","_","_","_","_","x","_","X"},
-				{"X","x","x","x","x","x","x","x","_","X"},
-				{"X","_","x","_","_","_","_","_","_","X"},
+				{"X","_","X","X","X","X","X","_","X","X"},
+				{"X","_","x","_","_","x","_","_","_","X"},
+				{"X","_","x","_","_","x","_","_","_","X"},
+				{"X","_","x","_","_","x","_","_","_","X"},
+				{"X","_","x","_","_","x","_","_","_","X"},
+				{"X","x","x","_","_","x","_","_","_","X"},
+				{"_","_","x","x","x","x","x","x","_","X"},
+				{"X","_","_","_","_","_","_","_","_","X"},
 				{"X","_","x","_","_","_","_","_","_","X"},
 				{"X","X","X","X","X","X","X","X","X","X"}};
 				break;
@@ -100,6 +101,19 @@ public class Maps {
 			default:
 				break;
 		}	
+	}
+	
+	/* Variant of Constructor that requires the parameters of all instances. To be used solely by the copy constructor. */
+	public Maps(int room, String[][] layout, ArrayList<PhysicalCollectible> list, ArrayList<Enemy> elist) {
+		this.sizeOfCurrentRoom = room;
+		this.layoutOfCurrentRoom = layout;
+		this.listOfCollectibles = list;
+		this.enemyList = elist;
+	}
+	
+	/* Copy Constructor */
+	public Maps(Maps m) {
+		this(m.sizeOfCurrentRoom, m.layoutOfCurrentRoom, m.listOfCollectibles, m.enemyList);
 	}
 
 
@@ -207,6 +221,7 @@ public class Maps {
 	public void setMapEnemies(Enemy monster)
 	{
 		this.enemyList.add(monster);
+		
 	}
 	
 	/**
@@ -219,12 +234,23 @@ public class Maps {
 		return new ArrayList<Enemy>(enemyList);
 	}
 	
-	public boolean areWeDoneYet() 
+	public boolean enemiesRemaining() 
 	{
-		boolean yep = false;
+		boolean yep = true;
 		
-		if (listOfCollectibles.isEmpty() && enemyList.isEmpty()) {
-			yep = true;
+		if (this.enemyList.isEmpty()) {
+			yep = false;
+		}
+		
+		return yep;
+	}
+	
+	public boolean collectiblesRemaining()
+	{
+		boolean yep = true;
+		
+		if (this.listOfCollectibles.isEmpty()) {
+			yep = false;
 		}
 		
 		return yep;

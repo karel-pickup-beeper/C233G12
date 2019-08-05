@@ -1,3 +1,4 @@
+package com.karelRPG.gameplay;
 import java.util.Scanner;
 import java.util.ArrayList;
   
@@ -8,7 +9,7 @@ enum CardinalDirection
 
 enum CommandType 
 { 
-    left,up,right,down,pickup,attack,help,no,wincheck; 
+    left,up,right,down,pickup,attack,help,no,systemcheck; 
 } 
   
 /*
@@ -22,6 +23,7 @@ public class ActionPrompt
 	private CommandType currentCommand;
 	private int roomNumber;
 	private boolean noMoreGame;
+	private ArrayList<Maps> dungeon = new ArrayList<Maps>();
   
 	/* Constructor */
 	public ActionPrompt(int timeStep, CommandType currentCommand, int roomNumber) 
@@ -36,7 +38,9 @@ public class ActionPrompt
 	{
     		this(a.timeStep, a.currentCommand, a.roomNumber);
 	}
-
+	
+	/* Methods */
+	
 	public int getroomNumber() {
 		int r = this.roomNumber;
 		return r;
@@ -53,6 +57,39 @@ public class ActionPrompt
 		return n;
 	}
 	
+	/**
+	 * This mutator method will index Maps into the ArrayList of Maps in the dungeon, when called. 
+	 * 
+	 * @param map
+	 * 
+	 */
+	/* Preset all possible maps in this dungeon. */
+	public void indexDungeon(Maps map) {
+		this.dungeon.add(map);
+	}
+	
+	/**
+	 * This accessor method will return the list of Maps of this dungeon, when called. 
+	 * 
+	 * @return dungeon
+	 * 
+	 */
+	/* Dungeon's list of maps. */
+	public ArrayList<Maps> getDungeon() {
+		return new ArrayList<Maps>(dungeon);
+	}
+	
+	public Maps getCurrentRoomMap() {
+		return new Maps(dungeon.get(this.roomNumber));
+	}
+	
+	public void initialiseMap(int num, PhysicalCollectible thing) {
+		dungeon.get(num).setMapCollectibles(thing);
+	}
+	
+	public void initialiseMap(int num, Enemy monster) {
+		dungeon.get(num).setMapEnemies(monster);
+	}
     /**
 	 * This method will prints the world screen and all associated objects
 	 * when it is called.
@@ -64,8 +101,11 @@ public class ActionPrompt
 	/* Printing the entirety of the world map with objects on top, printing pirority goes to
 	 * Player > Collectible > Enemy > Map Tile
 	 */
-    public void printWorld(String[][] thisWorld, Player player1, Maps mapview)
-    { 
+    public void printWorld(Player player1)
+    {
+    	Maps mapview = this.getDungeon().get(this.roomNumber);
+    	String[][] thisWorld = mapview.getLayoutOfCurrentRoom();
+    	
         for(int j=0;j<thisWorld.length; j++)
         {
         	for(int i=0;i<thisWorld[j].length; i++)
@@ -75,8 +115,8 @@ public class ActionPrompt
         			System.out.print("U");
         		}
         		else
-        		{
-        			if (mapview.detectItem(i, j) != null)
+        		{	if (this.roomNumber==3&&i==5&&j==8) System.out.print("W");
+        		else if (mapview.detectItem(i, j) != null)
         			{
         				String s = "";
         				switch (mapview.detectItem(i, j))
@@ -102,7 +142,7 @@ public class ActionPrompt
         					String e = "";
         					switch (mapview.detectEnemy(i, j).getType())
         					{
-        					case robot:
+        					case CACTUS:
         						e = "E";
         					default:
         						break;
@@ -128,14 +168,29 @@ public class ActionPrompt
 	 * @Param mapwalk
 	 * 
 	 */
-    public void takeCommand(Player user, Maps mapwalk)
+    public void takeCommand(Player user)
     {
+    	Maps mapwalk = this.getDungeon().get(this.roomNumber);
     	int x = user.getX();
 		int y = user.getY();
+		
     	switch (this.currentCommand)
     	{
     	case left:
-    		if (mapwalk.detectEnemy(x-1, y) != null)
+    		/* Room Change Handlers */
+    		if (this.roomNumber==2 && x==0) {
+    			user.changeX(9);
+    			this.roomNumber = 1;
+    		} else if (this.roomNumber==4 && x==0) {
+    			user.changeX(9);
+    			this.roomNumber = 2;
+    		} else if (this.roomNumber==5 && x==0) {
+    			user.changeX(9);
+    			this.roomNumber = 3;
+    		}
+    		
+    		/* Collision Checks */
+    		else if (mapwalk.detectEnemy(x-1, y) != null)
     			System.out.println("That tile is occupied by an enemy!!!");
     		else if (mapwalk.detectTile(x-1, y) == "_")
     			user.playerMove(CardinalDirection.WEST);
@@ -144,7 +199,20 @@ public class ActionPrompt
     		break;
     		
     	case right:
-    		if (mapwalk.detectEnemy(x+1, y) != null)
+    		/* Room Change Handlers */
+    		if (this.roomNumber==1 && x==9) {
+    			user.changeX(-9);
+    			this.roomNumber = 2;
+    		} else if (this.roomNumber==2 && x==9) {
+    			user.changeX(-9);
+    			this.roomNumber = 4;
+    		} else if (this.roomNumber==3 && x==9) {
+    			user.changeX(-9);
+    			this.roomNumber = 5;
+    		}
+    		
+    		/* Collision Checks */
+    		else if (mapwalk.detectEnemy(x+1, y) != null)
     			System.out.println("That tile is occupied by an enemy!!!");
     		else if (mapwalk.detectTile(x+1, y) == "_")
     			user.playerMove(CardinalDirection.EAST);
@@ -153,7 +221,17 @@ public class ActionPrompt
     		break;
     		
     	case up:
-    		if (mapwalk.detectEnemy(x, y-1) != null)
+    		/* Room Change Handlers */
+    		if (this.roomNumber==3 && y==0) {
+    			user.changeY(9);
+    			this.roomNumber = 2;
+    		} else if (this.roomNumber==5 && y==0) {
+    			user.changeY(9);
+    			this.roomNumber = 4;
+    		}
+    		
+    		/* Collision Checks */
+    		else if (mapwalk.detectEnemy(x, y-1) != null)
     			System.out.println("That tile is occupied by an enemy!!!");
     		else if (mapwalk.detectTile(x, y-1) == "_")
     			user.playerMove(CardinalDirection.NORTH);
@@ -162,7 +240,17 @@ public class ActionPrompt
     		break;
     		
     	case down:
-    		if (mapwalk.detectEnemy(x, y+1) != null)
+    		/* Room Change Handlers */
+    		if (this.roomNumber==2 && y==9) {
+    			user.changeY(-9);
+    			this.roomNumber = 3;
+    		} else if (this.roomNumber==4 && y==9) {
+    			user.changeY(-9);
+    			this.roomNumber = 5;
+    		}
+    		
+    		/* Collision Checks */
+    		else if (mapwalk.detectEnemy(x, y+1) != null)
     			System.out.println("That tile is occupied by an enemy!!!");
     		else if (mapwalk.detectTile(x, y+1) == "_")
     			user.playerMove(CardinalDirection.SOUTH);
@@ -211,19 +299,34 @@ public class ActionPrompt
     							"h calls up this help command list again.");
     		break;
     		
-    	case wincheck:
+    	case systemcheck:
 			/* This action checks for win status */
-    		if (mapwalk.areWeDoneYet()) {
-    			if(user.getX() == 5 && user.getY() == 5) {
-    				//End the game.
-    				noMoreGame = true;
+    		if (mapwalk.enemiesRemaining()) {
+    			System.out.println("There are still enemies nearby you in this room !!");
+    		}
+    		else if (mapwalk.collectiblesRemaining()) {
+    			System.out.println("There are still collectibles on this room Map !");
+    		}
+    		else {
+    			boolean unfinishedEnemies = false;
+    			boolean unfinishedCollectibles = false;
+    			for (Maps eachMap : this.getDungeon()) {
+    				unfinishedEnemies |= eachMap.enemiesRemaining();
+    				unfinishedCollectibles |= eachMap.collectiblesRemaining();
     			}
-    			else {
-    				System.out.println("Remember to return to the starting position to exit dungeon.");
-    			}
+    			if (unfinishedEnemies)
+    				System.out.println("Enemies are still roaming elsewhere in this dungeon.");
+    			else if (unfinishedCollectibles)
+    				System.out.println("You have yet to collect every treasure in this dungeon.");
+    			else if(this.roomNumber == 3 && user.getX() == 5 && user.getY() == 8)
+    				{
+    					//End the game.
+    					noMoreGame = true;
+    				}
+    			else
+    				System.out.println("Find the position marked by 'W' on Map 3.");
     		}
     		break;
-    		
     	default:
     		System.out.println("You wasted a turn");
     		break;
@@ -284,7 +387,7 @@ public class ActionPrompt
     		break;
     		
     	case "":
-    		this.currentCommand = CommandType.wincheck;
+    		this.currentCommand = CommandType.systemcheck;
     		break;
     		
     	default:

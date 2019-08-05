@@ -1,3 +1,4 @@
+package com.karelRPG.gameplay;
 public class Collectible {
 	/* instances */
 	private String name;

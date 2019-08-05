@@ -1,3 +1,4 @@
+package com.karelRPG.gameplay;
 import java.util.ArrayList;
 
 enum HealthCondition
@@ -160,6 +161,7 @@ public class Player {
 	 * 
 	 */
 	public int getX() {
+		int xCoord = this.xCoord;
 		return xCoord;
 	}
 	
@@ -170,6 +172,7 @@ public class Player {
 	 * 
 	 */
 	public int getY() {
+		int yCoord = this.yCoord;
 		return yCoord;
 	}
 	

@@ -1,3 +1,4 @@
+package com.karelRPG.gameplay;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.*;
@@ -67,7 +68,7 @@ import javafx.stage.Stage;
 	    		break;
 	    		
 	    	case "":
-	    		this.currentCommand = CommandType.wincheck;
+	    		this.currentCommand = CommandType.systemcheck;
 	    		break;
 	    		
 	    	default:

@@ -1,18 +1,13 @@
-enum EnemyType
-{
-	robot, zombie, ghost;
-}
+package com.karelRPG.gameplay;
 public class Enemy {
-
+	
 	/* Instance variables that are passed as parameters from ActionPrompt class's driver method. */
 	private int health;
 	private int xLoc;
 	private int yLoc;
-	private EnemyType type;
 	
-	/* Initialized to 0. Only for Demo 1. */
-	private int attack = 0;
-	
+	/* The attack dealt by enemy to player. */
+	private int attack;
 	
 	/* sightRange = The Euclidean Distance between player and enemy. */
 	private int sightRange;
@@ -23,15 +18,14 @@ public class Enemy {
 	/* The 8 Cardinal Direction the player can be compared to each enemy. */
 	private CardinalDirection directiontoPlayer;
 	
-	
 	/* Constants */
-	public static final int MAX_X = 9;
-	public static final int MIN_X = 0;
-	public static final int MAX_Y = 9;
-	public static final int MIN_Y = 0;
+	public static final int MAX_X = 8;
+	public static final int MIN_X = 1;
+	public static final int MAX_Y = 8;
+	public static final int MIN_Y = 1;
 	
   	/* Constructors */
-	public Enemy (int initialHealth, int initialXLoc, int initialYLoc, EnemyType type)
+	public Enemy (int initialHealth, int initialXLoc, int initialYLoc)
 	{
 		if (initialHealth > 0) {
 			health = initialHealth;
@@ -42,16 +36,15 @@ public class Enemy {
 		if ((initialXLoc <= MAX_X) && (initialXLoc >= MIN_X)) {
 			xLoc = initialXLoc;
 		} else {
-			System.out.println("Error in Enemy constructor. X Location cannot be beyond 0 and 9.");
-			xLoc = 5;
+			System.out.println("Error in Enemy constructor. X Location must be between 1 to 8 in any map.");
+			xLoc = 8;
 		}
 		if ((initialYLoc <= MAX_Y) && (initialYLoc >= MIN_X)) {
 			yLoc = initialYLoc;
 		} else {
-			System.out.println("Error in Enemy constructor. Y Location cannot be beyond 0 and 9.");
-			yLoc = 5;
+			System.out.println("Error in Enemy constructor. Y Location must be between 1 to 8 in any map.");
+			yLoc = 1;
 		}
-		this.type = type;
 	}
   
   	/* Copy Constructor */
@@ -61,6 +54,9 @@ public class Enemy {
 		xLoc = copyEnemy.xLoc;
 		yLoc = copyEnemy.yLoc;
 	}
+	
+	/* Methods */
+	
 	public void loseHealth(int ouch) {
 		this.health -= ouch;
 	}
@@ -81,34 +77,31 @@ public class Enemy {
 		this.yLoc += jump;
 	}
 	
-	/* Returns health. */
+	/* Enemy's remaining health before it should be despawned. */
 	public int getHealth() {
 		return this.health;
 	}
 	
-	/* Need to fix privacy leak here. */
 	/**
-	 * This accessor method will return the x-coordinate of the enemy when called.
+	 * This accessor method will return the xLoc variable of this enemy when called.
 	 * 
 	 * @return xLoc
 	 */
+	/* Enemy's X-Coordinate relative to the map they are on.*/
 	public int getXloc() {
+		int xLoc = this.xLoc;
 		return xLoc;
 	} 
 	
-	/* Need to fix privacy leak here. */
 	/**
-	 * This accessor method will return the y-coordinate of the enemy when called.
+	 * This accessor method will return the yLoc variable of this enemy when called.
 	 * 
 	 * @return yLoc
 	 */
+	/* Enemy's Y-Coordinate relative to the map they are on. */
 	public int getYloc() {
+		int yLoc = this.yLoc;
 		return yLoc;
-	}
-	
-	/* Returns Enemy's type */
-	public EnemyType getType() {
-		return this.type;
 	}
 	
 	/* Returns string of values. */
@@ -116,26 +109,4 @@ public class Enemy {
 		return" {" + type+ "(" +health+ ")}";
 	}
 
-	/*
-	 * This method will call change YLoc and change XLoc. It will change the actual
-	 * location of enemy to move one step.
-	 */
-	/**
-	 * This mutator method will call change YLoc and change XLoc. It will change the actual location of enemy to move 
-	 * one step closer to the player.
-	 * 
-	 * @param playerX
-	 * @param playerY
-	 */
-	public void enemyMove() {
-		System.out.println("This method only verifies player location for Demo 1.");
-		/*
-		 * Here we need to get the xCoord & yCoord of player to compare it with
-		 * enemy xLoc & yLoc to obtain one of the 8 cardinal direction. Then
-		 * simultaneously set the direction to Player variable, Every time the
-		 * enemyMove() method is run.
-		 */
-		
-		/* Then the second part of this code would be to actually move towards that direction. */
-	}
 }
