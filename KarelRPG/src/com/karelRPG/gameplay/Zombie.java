@@ -2,21 +2,27 @@ package com.karelRPG.gameplay;
 
 public class Zombie extends Enemy {
 
-	public Zombie(int initialHealth, int initialXLoc, int initialYLoc) {
+	/* Constructors */
+	public Zombie(int initialHealth, int initialXLoc, int initialYLoc, int bite) {
 		super(initialHealth, initialXLoc, initialYLoc);
 	}
 
+	/* Copy Constructor */
 	public Zombie(Enemy copyEnemy) {
 		super(copyEnemy);
 	}
 
-	/**
-	 * This mutator method will call changeYLoc and changeXLoc. It will change the actual location of enemy to move 
-	 * one step closer to the player.
-	 * 
-	 * @param playerX
-	 * @param playerY
-	 */
+	/* Getter Methods */
+	protected String getType() {
+		return "Zombie";
+	}
+	
+	/* Setter Methods */
+
+	public void enemyAction() {
+		
+	}
+	
 	public void enemyMove() {
 		System.out.println("This method only verifies player location for Demo 1.");
 		/*
@@ -25,12 +31,8 @@ public class Zombie extends Enemy {
 		 * simultaneously set the direction to Player variable, Every time the
 		 * enemyMove() method is run.
 		 */
+		/* If it can move, it moves, if it can't, it attacks. */
 		
 		/* Then the second part of this code would be to actually move towards that direction. */
 	}
-	
-	protected String getType() {
-		return "Zombie";
-	}
-
 }

@@ -58,18 +58,5 @@ public class Collectible {
 	public String toString() {
 		return" (" + name+ ": " +count+ ")";
 	}
-	
-	/**
-	 * This  method will return true value if the player has successfully collected all items, and false if otherwise.
-	 * 
-	 * @Return isComplete
-	 */
-	public boolean isComplete(String name) {
-		if (Player.getSingleItemCount(name)>4) {
-			return true;
-		}
-		return false;
 		
-	}
-	
 } 

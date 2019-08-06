@@ -152,6 +152,71 @@ public class ActionPrompt
     }
     
     /**
+   	 * This method specifies the command in this ActionPrompt class
+	 * that corresponds with the user's input passed as a string, when called.
+   	 * 
+   	 * @Param name
+   	 * 
+   	 * 
+   	 */
+    public void writeCommand(String name)
+    {
+    	switch (name)
+    	{
+    	case "A":
+    	case "a":
+    		this.currentCommand = CommandType.left;
+    		System.out.println("Moved Left");
+    		break;
+    		
+    	case "D":
+    	case "d":
+    		this.currentCommand = CommandType.right;
+    		System.out.println("Moved Right");
+    		break;
+    		
+    	case "W":
+    	case "w":
+    		this.currentCommand = CommandType.up;
+    		System.out.println("Moved Up");
+    		break;
+    		
+    	case "S":
+    	case "s":
+    		this.currentCommand = CommandType.down;
+    		System.out.println("Moved Down");
+    		break;
+    		
+    	case "P":
+    	case "p":
+    		this.currentCommand = CommandType.pickup;
+    		System.out.println("Picking Up the Item");
+    		break;
+    		
+    	case "T":
+    	case "t":
+    		this.currentCommand = CommandType.attack;
+    		System.out.println("ATTACK!");
+    		break;
+    		
+    	case "H":
+    	case "h":
+    		this.currentCommand = CommandType.help;
+    		System.out.println("What were the commands again?");
+    		break;
+    		
+    	case "":
+    		this.currentCommand = CommandType.systemcheck;
+    		break;
+    		
+    	default:
+    		this.currentCommand = CommandType.no;
+    		System.out.println("That was not a valid command, type h for the list of commands.");
+    		break;
+    	}
+    }
+
+    /**
 	 * This method executes a specific command based on ActionPrompt(this class), Player, and Maps classes,
 	 * when called.
 	 *
@@ -181,9 +246,35 @@ public class ActionPrompt
     		}
     		
     		/* Collision Checks */
-    		else if (mapwalk.detectEnemy(x-1, y) != null)
-    			System.out.println("That tile is occupied by an enemy!!!");
-    		else if (mapwalk.detectTile(x-1, y) == "_")
+    		else if (mapwalk.detectEnemy(x-1, y) != null) {
+    			System.out.print("That tile is occupied by an enemy!!! You got hurt !! ");
+    			switch (mapwalk.detectEnemy(x-1, y).getType())
+    			{
+    			case "Cactus":
+    				user.changeHealth(-8);
+    				System.out.println("Cacti are quite prickly, better not walk into them.");
+    				break;
+    				
+    			case "Robot":
+    				user.changeHealth(-5);
+    				System.out.println("The robot buzzed with electricity, touching them gives off a shock.");
+    				break;
+    				
+    			case "Zombie":
+    				user.changeHealth(bite);
+    				
+    				break;
+    				
+    			case "Ghost":
+    				
+    				break;
+    			
+    			default:
+    				System.out.println("The enemy type is undefined.");
+    				user.changeHealth(0);
+    			}
+    			user.changeHealth(-1);
+    		} else if (mapwalk.detectTile(x-1, y) == "_")
     			user.playerMove(CardinalDirection.WEST);
     		else
     			System.out.println("Bump! Whoops, can't pass through walls yet.");
@@ -323,69 +414,5 @@ public class ActionPrompt
     		break;
     	}
     }
-    /**
-   	 * This method specifies the command in this ActionPrompt class
-	 * that corresponds with the user's input passed as a string, when called.
-   	 * 
-   	 * @Param name
-   	 * 
-   	 * 
-   	 */
-    public void writeCommand(String name)
-    {
-    	switch (name)
-    	{
-    	case "A":
-    	case "a":
-    		this.currentCommand = CommandType.left;
-    		System.out.println("Moved Left");
-    		break;
-    		
-    	case "D":
-    	case "d":
-    		this.currentCommand = CommandType.right;
-    		System.out.println("Moved Right");
-    		break;
-    		
-    	case "W":
-    	case "w":
-    		this.currentCommand = CommandType.up;
-    		System.out.println("Moved Up");
-    		break;
-    		
-    	case "S":
-    	case "s":
-    		this.currentCommand = CommandType.down;
-    		System.out.println("Moved Down");
-    		break;
-    		
-    	case "P":
-    	case "p":
-    		this.currentCommand = CommandType.pickup;
-    		System.out.println("Picking Up the Item");
-    		break;
-    		
-    	case "T":
-    	case "t":
-    		this.currentCommand = CommandType.attack;
-    		System.out.println("ATTACK!");
-    		break;
-    		
-    	case "H":
-    	case "h":
-    		this.currentCommand = CommandType.help;
-    		System.out.println("What were the commands again?");
-    		break;
-    		
-    	case "":
-    		this.currentCommand = CommandType.systemcheck;
-    		break;
-    		
-    	default:
-    		this.currentCommand = CommandType.no;
-    		System.out.println("That was not a valid command, type h for the list of commands.");
-    		break;
-    	}
-    }
-
+    
 } 

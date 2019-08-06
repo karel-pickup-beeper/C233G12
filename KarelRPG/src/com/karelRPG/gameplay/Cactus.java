@@ -17,7 +17,7 @@ public class Cactus extends Enemy {
 	 * @param playerX
 	 * @param playerY
 	 */
-	public void enemyMove() {
+	public void enemyAction() {
 		//do nothing
 	}
 	

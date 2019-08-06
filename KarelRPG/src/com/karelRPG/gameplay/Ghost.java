@@ -2,21 +2,27 @@ package com.karelRPG.gameplay;
 
 public class Ghost extends Enemy {
 
-	public Ghost(int initialHealth, int initialXLoc, int initialYLoc) {
+	/* Constructors */
+	public Ghost(int initialHealth, int initialXLoc, int initialYLoc, int reap) {
 		super(initialHealth, initialXLoc, initialYLoc);
 	}
 
+	/* Copy Constructor */
 	public Ghost(Enemy copyEnemy) {
 		super(copyEnemy);
 	}
 
-	/**
-	 * This mutator method will call changeYLoc and changeXLoc. It will change the actual location of enemy to move 
-	 * one step closer to the player.
-	 * 
-	 * @param playerX
-	 * @param playerY
-	 */
+	/* Getter Methods */
+	protected String getType() {
+		return "Ghost";
+	}
+	
+	/* Setter Methods */
+
+	public void enemyAction() {
+		
+	}
+	
 	public void enemyMove() {
 		System.out.println("This method only verifies player location for Demo 1.");
 		/*
@@ -25,11 +31,8 @@ public class Ghost extends Enemy {
 		 * simultaneously set the direction to Player variable, Every time the
 		 * enemyMove() method is run.
 		 */
+		/* If it can move, it moves, if it can't, it attacks. */
 		
 		/* Then the second part of this code would be to actually move towards that direction. */
-	}
-	
-	protected String getType() {
-		return "Ghost";
 	}
 }
