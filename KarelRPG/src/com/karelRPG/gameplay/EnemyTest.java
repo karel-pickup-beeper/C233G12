@@ -24,13 +24,9 @@ public class EnemyTest {
 			return this.type;
 		}
 
-		@Override
-		public void enemyMove(int seen, boolean away, CardinalDirection there) {
-			
-		}
 
 		@Override
-		public void enemyAttack(Player target) {
+		public void enemyAttack(Player target, Maps mapwalk, String direction) {
 			
 		}
 		
@@ -104,6 +100,8 @@ public class EnemyTest {
 		e.getHealth();
 		e.loseHealth(4);
 	
+		String expected = "The enemy lost 4 health";
+		
 		assertEquals("Testing loseHealth", 8, e.getHealth());
 	}
 
@@ -125,7 +123,7 @@ public class EnemyTest {
 		assertEquals("Testing changeYloc", 15, e.getXloc());
 	}
 
-	
+	// Testing toString for 3 different types
 	@Test
 	public void test_toString_1() {
 		Enemy e = new EnemySub(12, 5, 4, "ghost");
