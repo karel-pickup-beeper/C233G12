@@ -40,17 +40,44 @@ public class ActionPrompt
 	
 	/* Methods */
 	
+	
+	/**
+	 * This accessor method will return the room number r, when called.
+	 * 
+	 * @return r: room number of type integer.
+	 * 
+	 */
 	public int getroomNumber() {
 		int r = this.roomNumber;
 		return r;
 	}
+	
+	/**
+	 *
+	 * This mutator method will increment the timeStep by 1, when called.
+	 * 
+	 */
 	public void changeTimeStep() {
 		this.timeStep++;
 	}
+	
+	/**
+	 * This accessor method will return the timeStep t, when called.
+	 * 
+	 * @return t: time step of type integer.
+	 * 
+	 */
 	public int getTimeStep() {
 		int t = this.timeStep;
 		return t;
 	}
+	
+	/**
+	 * This accessor method will return noMoreGame n, when called.
+	 * 
+	 * @return n: noMoreGame of type boolean.
+	 * 
+	 */
 	public boolean getNoMoreGame() {
 		boolean n = this.noMoreGame;
 		return n;
