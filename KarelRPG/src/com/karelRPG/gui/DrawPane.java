@@ -1,4 +1,5 @@
 package com.karelRPG.gui;
+import com.karelRPG.gameplay.*;
 import java.util.ArrayList;
 
 import com.karelRPG.gameplay.VariableClass;

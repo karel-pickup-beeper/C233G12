@@ -3,7 +3,7 @@ import java.util.ArrayList;
   
 enum CardinalDirection
 {
-	NORTH,EAST,SOUTH,WEST,NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST;
+	NORTH,EAST,SOUTH,WEST,NORTHEAST,SOUTHEAST,NORTHWEST,SOUTHWEST, STOP;
 }
 
 enum CommandType 
@@ -115,31 +115,32 @@ public class ActionPrompt
         		}
         		else
         		{	if (this.roomNumber==3&&i==5&&j==8) System.out.print("W");
-        		else if (mapview.detectItem(i, j) != null)
-        			{
-        				String s = "";
-        				switch (mapview.detectItem(i, j))
-        				{
-        				case "Key":
-        					s = "*";
-        					break;
-        				case "Star":
-        					s = "#";
-        					break;
-        				case "Sun":
-        					s = "@";
-        					break;
-        				default:
-        					break;
-        				}
-        				System.out.print(s);
-        			}
+        		else if (mapview.detectEnemy(i, j) != null)
+				{	
+					System.out.print(mapview.detectEnemy(i, j).getType().substring(0, 1));
+				}
+        		
         			else
         			{
-        				if(mapview.detectEnemy(i, j) != null)
-        				{	
-        					System.out.print(mapview.detectEnemy(i, j).getType().substring(0, 0));
-        				}
+        				if (mapview.detectItem(i, j) != null)
+            			{
+            				String s = "";
+            				switch (mapview.detectItem(i, j))
+            				{
+            				case "Key":
+            					s = "*";
+            					break;
+            				case "Star":
+            					s = "#";
+            					break;
+            				case "Sun":
+            					s = "@";
+            					break;
+            				default:
+            					break;
+            				}
+            				System.out.print(s);
+            			}
         				else
         				{
         					System.out.print(mapview.detectTile(i, j));
@@ -216,12 +217,53 @@ public class ActionPrompt
     	}
     }
 
+    public void runEnemiesTurn(Player user)
+    {
+    	dungeon.get(this.roomNumber).doAllEnemyActions(user);
+    }
+    
+    public void enemyPassiveAttack(Player user, Enemy monster)
+    {
+    	switch (monster.getType())
+		{
+		case "Cactus":
+			if (monster.getAttack() == 0) {
+				System.out.print(" You've charged straight into a dormant cacti, the spikes didn't hurt you. ");
+			} else {
+				System.out.print(" The active cacti spiked you. ");
+				user.changeHealth(-monster.getAttack());
+			}
+			System.out.println(" Cacti get prickly when active, better not walk into them.");
+			break;
+			
+		case "Robot":
+			System.out.print("The robot buzzled with electricity, touching them gives off a shock. ");
+			user.changeHealth(-monster.getAttack());
+			((Robot) monster).resetRobotCharge();
+			break;
+			
+		case "Zombie":
+			System.out.print("You flinched while charging at the zombie. ");
+			user.changeHealth(-monster.getAttack());
+			monster.loseHealth(-monster.getAttack()/3);
+			break;
+			
+		case "Ghost":
+			System.out.print("The ghost took a bit of your soul as you charged into it. ");
+			user.changeHealth(-monster.getAttack());
+			monster.loseHealth(-monster.getAttack()/3);
+			break;
+		
+		default:
+			System.out.println("The enemy type is undefined.");
+			user.changeHealth(0);
+		}
+    }
     /**
 	 * This method executes a specific command based on ActionPrompt(this class), Player, and Maps classes,
 	 * when called.
 	 *
 	 * @Param user
-	 * @Param mapwalk
 	 * 
 	 */
     public void takeCommand(Player user)
@@ -247,33 +289,8 @@ public class ActionPrompt
     		
     		/* Collision Checks */
     		else if (mapwalk.detectEnemy(x-1, y) != null) {
-    			System.out.print("That tile is occupied by an enemy!!! You got hurt !! ");
-    			switch (mapwalk.detectEnemy(x-1, y).getType())
-    			{
-    			case "Cactus":
-    				user.changeHealth(-8);
-    				System.out.println("Cacti are quite prickly, better not walk into them.");
-    				break;
-    				
-    			case "Robot":
-    				user.changeHealth(-5);
-    				System.out.println("The robot buzzed with electricity, touching them gives off a shock.");
-    				break;
-    				
-    			case "Zombie":
-    				user.changeHealth(bite);
-    				
-    				break;
-    				
-    			case "Ghost":
-    				
-    				break;
-    			
-    			default:
-    				System.out.println("The enemy type is undefined.");
-    				user.changeHealth(0);
-    			}
-    			user.changeHealth(-1);
+    			System.out.print("That tile is occupied by an enemy!!!");
+    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x-1, y));
     		} else if (mapwalk.detectTile(x-1, y) == "_")
     			user.playerMove(CardinalDirection.WEST);
     		else
@@ -294,9 +311,10 @@ public class ActionPrompt
     		}
     		
     		/* Collision Checks */
-    		else if (mapwalk.detectEnemy(x+1, y) != null)
+    		else if (mapwalk.detectEnemy(x+1, y) != null) {
     			System.out.println("That tile is occupied by an enemy!!!");
-    		else if (mapwalk.detectTile(x+1, y) == "_")
+    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x+1, y));
+    		} else if (mapwalk.detectTile(x+1, y) == "_")
     			user.playerMove(CardinalDirection.EAST);
     		else
     			System.out.println("Bump! Whoops, can't pass through walls yet.");
@@ -313,9 +331,10 @@ public class ActionPrompt
     		}
     		
     		/* Collision Checks */
-    		else if (mapwalk.detectEnemy(x, y-1) != null)
+    		else if (mapwalk.detectEnemy(x, y-1) != null) {
     			System.out.println("That tile is occupied by an enemy!!!");
-    		else if (mapwalk.detectTile(x, y-1) == "_")
+    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x, y-1));
+    		} else if (mapwalk.detectTile(x, y-1) == "_")
     			user.playerMove(CardinalDirection.NORTH);
     		else
     			System.out.println("Bump! Whoops, can't pass through walls yet.");
@@ -332,9 +351,10 @@ public class ActionPrompt
     		}
     		
     		/* Collision Checks */
-    		else if (mapwalk.detectEnemy(x, y+1) != null)
+    		else if (mapwalk.detectEnemy(x, y+1) != null) {
     			System.out.println("That tile is occupied by an enemy!!!");
-    		else if (mapwalk.detectTile(x, y+1) == "_")
+    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x-1, y));
+    		} else if (mapwalk.detectTile(x, y+1) == "_")
     			user.playerMove(CardinalDirection.SOUTH);
     		else
     			System.out.println("Bump! Whoops, can't pass through walls yet.");

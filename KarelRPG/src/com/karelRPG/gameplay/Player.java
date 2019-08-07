@@ -210,16 +210,18 @@ public class Player {
 		}
 	}
 	public void changeHealth(int amount) {
-		life+=amount;
-
-		if (amount < 0)
-			System.out.print("Lost ");
-		else
-			System.out.print("Gained ");
-		
-		
-		System.out.println(amount+" Health");
-		
+		if (amount+this.life<=0) {
+			this.life = 0;
+		} else {
+			life+=amount;
+			System.out.print("You've just ");
+			if (amount <= 0)
+				System.out.print("Lost ");
+			else
+				System.out.print("Gained ");
+			
+			System.out.println(amount+" Health");
+		}
 	}
 	
 public void useCollectible(Collectible c) {

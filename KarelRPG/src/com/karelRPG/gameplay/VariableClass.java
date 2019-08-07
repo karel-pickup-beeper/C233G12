@@ -3,13 +3,13 @@ import java.util.Scanner;
 
 public class VariableClass {
 	
-    ActionPrompt game = new ActionPrompt(0, CommandType.help, 1);
+    private ActionPrompt game = new ActionPrompt(0, CommandType.help, 1);
 	
 	/* Create EndGame Object to flash title card. */
-    EndGame tony = new EndGame();
+    private EndGame tony = new EndGame();
     
  	/* Initializing Player's Inventory(ArrayList) with the Collectible types. */
- 	Player play = new Player(100,5,5);
+ 	private Player play = new Player(100,5,5);
    
  	public void start() {
  		/* Create EndGame Object to flash title card. */
@@ -61,30 +61,30 @@ public class VariableClass {
 		 * Initializing Map(Object)'s enemylist(ArrayList) with recently created Enemy objects.
 		 */
 		/* Map 1 */
-		game.initialiseMap(1, new Robot(2, 3, 5));
-		game.initialiseMap(1, new Robot(2, 1, 3));
-		game.initialiseMap(1, new Cactus(3, 4, 1));
+		game.initialiseMap(1, new Robot(2, 3, 5, 3, true));
+		game.initialiseMap(1, new Robot(2, 1, 3, 2, true));
+		game.initialiseMap(1, new Cactus(3, 4, 1, 5, true));
 		/* Map 2 */
-		game.initialiseMap(2, new Robot(2, 2, 4));
-		game.initialiseMap(2, new Robot(4, 2, 1));
-		game.initialiseMap(2, new Zombie(4, 5, 6));
+		game.initialiseMap(2, new Robot(2, 2, 4, 3, false));
+		game.initialiseMap(2, new Robot(4, 2, 1, 3, false));
+		game.initialiseMap(2, new Zombie(4, 5, 6, 3));
 		/* Map 3 */
-		game.initialiseMap(3, new Zombie(5, 4, 1));
-		game.initialiseMap(3, new Zombie(4, 3, 2));
-		game.initialiseMap(3, new Cactus(15, 3, 8));
-		game.initialiseMap(3, new Ghost(2, 1, 8));
+		game.initialiseMap(3, new Zombie(5, 4, 1, 1));
+		game.initialiseMap(3, new Zombie(4, 3, 2, 1));
+		game.initialiseMap(3, new Cactus(15, 3, 8, 6, false));
+		game.initialiseMap(3, new Ghost(2, 1, 8, 2));
 		/* Map 4 */
-		game.initialiseMap(4, new Ghost(1, 1, 8));
-		game.initialiseMap(4, new Ghost(1, 2, 8));
-		game.initialiseMap(4, new Ghost(1, 3, 8));
-		game.initialiseMap(4, new Zombie(6, 8, 7));
+		game.initialiseMap(4, new Ghost(1, 1, 8, 4));
+		game.initialiseMap(4, new Ghost(1, 2, 8, 3));
+		game.initialiseMap(4, new Ghost(1, 3, 8, 2));
+		game.initialiseMap(4, new Zombie(6, 8, 7, 6));
 		/* Map 5 */
-		game.initialiseMap(5, new Robot(5, 6, 1));
-		game.initialiseMap(5, new Robot(5, 8, 2));
-		game.initialiseMap(5, new Robot(5, 6, 3));
-		game.initialiseMap(5, new Zombie(6, 8, 4));
-		game.initialiseMap(5, new Zombie(7, 7, 5));
-		game.initialiseMap(5, new Cactus(10, 8, 6));
+		game.initialiseMap(5, new Robot(5, 6, 1, 2, false));
+		game.initialiseMap(5, new Robot(5, 8, 2, 3, false));
+		game.initialiseMap(5, new Robot(5, 6, 3, 3, false));
+		game.initialiseMap(5, new Zombie(6, 8, 4, 6));
+		game.initialiseMap(5, new Zombie(7, 7, 5, 6));
+		game.initialiseMap(5, new Cactus(10, 8, 6, 6, false));
 		
  	}
 	public void play() {
@@ -99,9 +99,10 @@ public class VariableClass {
 	            game.takeCommand(play);
 	            
 				/* Prints 0th timestep and all initial variables.*/
-	            System.out.println(0);			
+	            System.out.println(0);
+	            System.out.print("Health "+play.getHealth()+ "  ");
 	            System.out.println("Inventory :  " + play.getInventory().toString());
-	            System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyList().toString());
+	            System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyListString());
 	            tony.goInTheGame();
 	            break;
 	        }
@@ -121,6 +122,10 @@ public class VariableClass {
 			String name = com.nextLine();
 			game.writeCommand(name);
 			game.takeCommand(play);
+			game.runEnemiesTurn(play);
+			if (play.getHealth()==0) {
+				tony.playerDied();
+			}
 			if (game.getNoMoreGame()) {
 				tony.finishTheGame();
 				}
@@ -128,8 +133,9 @@ public class VariableClass {
 			
 			game.changeTimeStep();
 			System.out.println(game.getTimeStep());	//Prints nth timestep.
+            System.out.print("Health "+play.getHealth()+ "  ");
 			System.out.println("Inventory:\t" + play.getInventory().toString());
-			System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyList().toString());
+			System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyListString());
 		}
 		com.close();
     }

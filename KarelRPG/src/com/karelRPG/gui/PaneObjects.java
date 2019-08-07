@@ -1,4 +1,5 @@
 package com.karelRPG.gui;
+import com.karelRPG.gameplay.*;
 import com.karelRPG.gameplay.Enemy;
 import com.karelRPG.gameplay.PhysicalCollectible;
 import com.karelRPG.gameplay.Player;

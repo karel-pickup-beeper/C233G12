@@ -52,7 +52,7 @@ public class EndGame {
 								" | | |_ |  / /\\ \\  | |\\/| | / _ \\| |  | |\\ \\ / /|  __|  | '__|\n" + 
 								" | |__| | / ____ \\ | |  | ||  __/| |__| | \\ V / | |____ | |   \n" + 
 								"  \\_____|/_/    \\_\\|_|  |_| \\___| \\____/   \\_/  |______||_|   \n" + 
-								"       press the ENTER key to go back to the TITLE scrEEN");
+								"       NOW close THE window!!!");
 			break;
 			
 		case out:
@@ -84,6 +84,12 @@ public class EndGame {
 		this.printTitle();
 	}
 	
+	public void playerDied()
+	{
+		this.gameOver = true;
+		this.title = WinCondition.dead;
+		this.printTitle();
+	}
 	/**
 	 * This mutator method will change the game over status of the game to be true midgame,
 	 * and the title screen would also be printed.
