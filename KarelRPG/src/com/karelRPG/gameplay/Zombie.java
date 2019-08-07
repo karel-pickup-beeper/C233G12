@@ -1,8 +1,10 @@
 package com.karelRPG.gameplay;
+import java.util.Random;
 
 public class Zombie extends Enemy {
 
 	private int bite;
+	Random rand = new Random();
 	
 	/* Constructors */
 	public Zombie(int initialHealth, int initialXLoc, int initialYLoc, int bite) {
@@ -23,7 +25,7 @@ public class Zombie extends Enemy {
 
 	/* Getter Methods */
 	@Override
-	protected String getType() {
+	public String getType() {
 		return "Zombie";
 	}
 	
@@ -40,57 +42,65 @@ public class Zombie extends Enemy {
 		case "NORTHEAST":
 			if (target.getX()==this.getXloc()+1 && target.getY()==this.getYloc()-1) {
 				System.out.print("You got scratched by a zombie. ");
-				target.changeHealth(-bite/2);
-				this.loseHealth(-bite/3);
+				target.changeHealth(-bite/5);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/6);
 			}
 			break;
 		case "SOUTHEAST":
 			if (target.getX()==this.getXloc()+1 && target.getY()==this.getYloc()+1) {
 				System.out.print("You got scratched by a zombie. ");
-				target.changeHealth(-bite/2);
-				this.loseHealth(-bite/3);
+				target.changeHealth(-bite/5);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/5);
 			}
 			break;
 		case "NORTHWEST":
 			if (target.getX()==this.getXloc()-1 && target.getY()==this.getYloc()-1) {
 				System.out.print("You got scratched by a zombie. ");
-				target.changeHealth(-bite/2);
-				this.loseHealth(-bite/3);
+				target.changeHealth(-bite/5);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/6);
 			}
 			break;
 		case "SOUTHWEST":
 			if (target.getX()==this.getXloc()-1 && target.getY()==this.getYloc()+1) {
 				System.out.print("You got scratched by a zombie. ");
-				target.changeHealth(-bite/2);
-				this.loseHealth(-bite/3);
+				target.changeHealth(-bite/5);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/6);
 			}
 			break;
 		case "NORTH":
 			if (target.getX()==this.getXloc() && target.getY()==this.getYloc()-1) {
 				System.out.print("You got bitten by a zombie. ");
 				target.changeHealth(-bite);
-				this.loseHealth(-bite/2);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/3);
 			}
 			break;
 		case "SOUTH":
 			if (target.getX()==this.getXloc() && target.getY()==this.getYloc()+1) {
 				System.out.print("You got bitten by a zombie. ");
 				target.changeHealth(-bite);
-				this.loseHealth(-bite/2);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/3);
 			}
 			break;
 		case "EAST":
 			if (target.getX()==this.getXloc()+1 && target.getY()==this.getYloc()) {
 				System.out.print("You got bitten by a zombie. ");
 				target.changeHealth(-bite);
-				this.loseHealth(-bite/2);
+				if (rand.nextBoolean())
+					this.loseHealth(-bite/3);
 			}
 			break;
 		case "WEST":
 			if (target.getX()==this.getXloc()-1 && target.getY()==this.getYloc()) {
 				System.out.print("You got bitten by a zombie. ");
 				target.changeHealth(-bite);
-				this.loseHealth(-bite/2);
+				if (rand.nextBoolean())
+				this.loseHealth(-bite/3);
 			}
 			break;
 		default:

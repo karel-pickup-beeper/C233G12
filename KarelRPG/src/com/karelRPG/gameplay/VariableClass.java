@@ -3,17 +3,17 @@ import java.util.Scanner;
 
 public class VariableClass {
 	
-    private ActionPrompt game = new ActionPrompt(0, CommandType.help, 1);
+    public ActionPrompt game = new ActionPrompt(0, CommandType.help, 1);
 	
 	/* Create EndGame Object to flash title card. */
-    private EndGame tony = new EndGame();
+    public EndGame tony = new EndGame();
     
  	/* Initializing Player's Inventory(ArrayList) with the Collectible types. */
- 	private Player play = new Player(100,5,5);
+ 	public Player play = new Player(100,5,5);
    
  	public void start() {
  		/* Create EndGame Object to flash title card. */
-        tony.newGame();
+ 		tony.newGame();
         /* At this point we are at the Title Screen. */
         
         /* Initializing Player's Inventory(ArrayList) with recently created Collectible objects of all possible types. */
@@ -141,7 +141,7 @@ public class VariableClass {
     }
 	
 
-    public static void main(String[] args) {
+   public static void main(String[] args) {
     	VariableClass game = new VariableClass();
     	game.start();
     	game.play();

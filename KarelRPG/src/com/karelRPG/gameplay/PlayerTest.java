@@ -2,15 +2,11 @@ package com.karelRPG.gameplay;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
 import org.junit.Test;
 
 
 public class PlayerTest { 
 
-	
-	// Testing constructors
 	// for constructor: integer health, integer x, integer y
 	@Test
 	public void test_Constructor() {
@@ -145,19 +141,4 @@ public class PlayerTest {
 		assertEquals("Testing playerMover", expected, actual);
 	}
 
-	// testing pickUpItem
-	/*
-	@Test
-	public void test_pickUpItem() {
-		Player p = new Player(4, 15, 8);
-		
-		p.pickUpItem("key");
-		p.getInventory();
-		
-		ArrayList<Collectible> actual = p.getInventory();
-		Collectible key;
-		ArrayList<Collectible> expected[];
-		assertEquals("Testing playerMover", " ", actual);
-	}
-	*/
 }

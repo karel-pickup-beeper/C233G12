@@ -1,5 +1,4 @@
 package com.karelRPG.gui;
-import com.karelRPG.gameplay.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
@@ -52,7 +51,9 @@ public class KeyBoardEvents implements EventHandler <KeyEvent> {
     		break;
     		//System.out.println("That was not a valid command, type h for the list of commands.");
 		}
-		System.out.println(i);
+	}
+	public String getString() {
+		return i;
 	}
 	
 }

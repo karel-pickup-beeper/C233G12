@@ -39,7 +39,7 @@ public class Robot extends Enemy {
 	/* Getter Methods */
 	
 	@Override
-	protected String getType() {
+	public String getType() {
 		return "Robot";
 	}
 	

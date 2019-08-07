@@ -30,7 +30,7 @@ public class Cactus extends Enemy {
 	/* Getter Methods */
 	
 	@Override
-	protected String getType() {
+	public String getType() {
 		return "Cactus";
 	}
 

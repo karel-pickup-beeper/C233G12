@@ -216,6 +216,7 @@ public class ActionPrompt
     		break;
     	}
     }
+    
 
     public void runEnemiesTurn(Player user)
     {
@@ -245,13 +246,13 @@ public class ActionPrompt
 		case "Zombie":
 			System.out.print("You flinched while charging at the zombie. ");
 			user.changeHealth(-monster.getAttack());
-			monster.loseHealth(-monster.getAttack()/3);
+			monster.loseHealth(-monster.getAttack()/6);
 			break;
 			
 		case "Ghost":
 			System.out.print("The ghost took a bit of your soul as you charged into it. ");
 			user.changeHealth(-monster.getAttack());
-			monster.loseHealth(-monster.getAttack()/3);
+			monster.loseHealth(-monster.getAttack()/5);
 			break;
 		
 		default:

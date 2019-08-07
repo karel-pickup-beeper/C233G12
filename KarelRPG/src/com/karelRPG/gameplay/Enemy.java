@@ -103,7 +103,7 @@ public abstract class Enemy {
 		return attack;
 	}
 	
-	protected abstract String getType();
+	public abstract String getType();
 	
 	/* Returns string of values. */
 	public String toString() {

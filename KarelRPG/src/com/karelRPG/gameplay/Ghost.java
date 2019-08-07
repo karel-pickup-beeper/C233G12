@@ -24,7 +24,7 @@ public class Ghost extends Zombie {
 
 	/* Getter Methods */
 	@Override
-	protected String getType() {
+	public String getType() {
 		return "Ghost";
 	}
 
