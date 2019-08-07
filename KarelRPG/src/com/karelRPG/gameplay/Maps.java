@@ -233,6 +233,23 @@ public class Maps {
 		return new ArrayList<Enemy>(enemyList);
 	}
 	
+
+	public void doAllEnemyActions(Player user)
+	{
+		for (Enemy en : enemyList)
+		{
+			en.enemyAction(user, this);
+		}
+	}
+	public String getEnemyListString() {
+		String display = "";
+		for(Enemy en : enemyList)
+		{
+			display += en.toString();
+		}
+		return display;
+	}
+	
 	public boolean enemiesRemaining() 
 	{
 		boolean yep = true;
@@ -309,9 +326,4 @@ public class Maps {
 		}
 	}
 	
-	
-	public void setTile(int xThere, int yThere) 
-	{
-		/* future implementation */
-	}
 }

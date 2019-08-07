@@ -1,10 +1,20 @@
 package com.karelRPG.gameplay;
+import java.util.Random;
 
-public class Ghost extends Enemy {
+public class Ghost extends Zombie {
 
+	private int reap;
+	
+	/* Random */
+	Random rand = new Random();
+	
 	/* Constructors */
 	public Ghost(int initialHealth, int initialXLoc, int initialYLoc, int reap) {
-		super(initialHealth, initialXLoc, initialYLoc);
+		super(initialHealth, initialXLoc, initialYLoc, reap);
+		if (reap > 0 && reap < 99)
+			this.reap = reap;
+		super.setAttack(this.reap);
+		super.setSightRange(5);
 	}
 
 	/* Copy Constructor */
@@ -13,26 +23,29 @@ public class Ghost extends Enemy {
 	}
 
 	/* Getter Methods */
+	@Override
 	protected String getType() {
 		return "Ghost";
 	}
-	
-	/* Setter Methods */
 
-	public void enemyAction() {
-		
+	@Override
+	public String toString() {
+		return super.toString() + " Rp:{" + reap + "}";
 	}
 	
-	public void enemyMove() {
-		System.out.println("This method only verifies player location for Demo 1.");
-		/*
-		 * Here we need to get the xCoord & yCoord of player to compare it with
-		 * enemy xLoc & yLoc to obtain one of the 8 cardinal direction. Then
-		 * simultaneously set the direction to Player variable, Every time the
-		 * enemyMove() method is run.
-		 */
-		/* If it can move, it moves, if it can't, it attacks. */
-		
-		/* Then the second part of this code would be to actually move towards that direction. */
+	/* Setter Methods */
+	@Override
+	public boolean isSpaceClear(int deltaX, int deltaY, Player hero, Maps mapgait) {
+		boolean canMove = true;
+		int toBeX = deltaX + this.getXloc();
+		int toBeY = deltaY + this.getYloc();
+		if (toBeX == hero.getX() && toBeY == hero.getY()) {
+			canMove = false;
+		} else if (mapgait.detectEnemy(toBeX, toBeY) != null) {
+			canMove = false;
+		} else if (toBeX == 9 || toBeX == 0 || toBeY == 9 || toBeY == 0) {
+			canMove = false;
+		}
+		return canMove;
 	}
 }

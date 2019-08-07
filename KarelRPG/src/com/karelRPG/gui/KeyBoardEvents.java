@@ -1,4 +1,5 @@
 package com.karelRPG.gui;
+import com.karelRPG.gameplay.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
 
