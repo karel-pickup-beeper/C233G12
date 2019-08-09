@@ -354,7 +354,7 @@ public class ActionPrompt
     		/* Collision Checks */
     		else if (mapwalk.detectEnemy(x, y+1) != null) {
     			System.out.println("That tile is occupied by an enemy!!!");
-    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x-1, y));
+    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x, y+1));
     		} else if (mapwalk.detectTile(x, y+1) == "_")
     			user.playerMove(CardinalDirection.SOUTH);
     		else

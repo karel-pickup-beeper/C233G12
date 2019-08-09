@@ -41,7 +41,7 @@ public class Zombie extends Enemy {
 		{
 		case "NORTHEAST":
 			if (target.getX()==this.getXloc()+1 && target.getY()==this.getYloc()-1) {
-				System.out.print("You got scratched by a zombie. ");
+				System.out.print("You got scratched by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite/5);
 				if (rand.nextBoolean())
 				this.loseHealth(-bite/6);
@@ -49,7 +49,7 @@ public class Zombie extends Enemy {
 			break;
 		case "SOUTHEAST":
 			if (target.getX()==this.getXloc()+1 && target.getY()==this.getYloc()+1) {
-				System.out.print("You got scratched by a zombie. ");
+				System.out.print("You got scratched by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite/5);
 				if (rand.nextBoolean())
 				this.loseHealth(-bite/5);
@@ -57,7 +57,7 @@ public class Zombie extends Enemy {
 			break;
 		case "NORTHWEST":
 			if (target.getX()==this.getXloc()-1 && target.getY()==this.getYloc()-1) {
-				System.out.print("You got scratched by a zombie. ");
+				System.out.print("You got scratched by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite/5);
 				if (rand.nextBoolean())
 				this.loseHealth(-bite/6);
@@ -65,7 +65,7 @@ public class Zombie extends Enemy {
 			break;
 		case "SOUTHWEST":
 			if (target.getX()==this.getXloc()-1 && target.getY()==this.getYloc()+1) {
-				System.out.print("You got scratched by a zombie. ");
+				System.out.print("You got scratched by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite/5);
 				if (rand.nextBoolean())
 				this.loseHealth(-bite/6);
@@ -73,7 +73,7 @@ public class Zombie extends Enemy {
 			break;
 		case "NORTH":
 			if (target.getX()==this.getXloc() && target.getY()==this.getYloc()-1) {
-				System.out.print("You got bitten by a zombie. ");
+				System.out.print("You got bitten by a "+this.getType().toLowerCase()+".");
 				target.changeHealth(-bite);
 				if (rand.nextBoolean())
 				this.loseHealth(-bite/3);
@@ -81,7 +81,7 @@ public class Zombie extends Enemy {
 			break;
 		case "SOUTH":
 			if (target.getX()==this.getXloc() && target.getY()==this.getYloc()+1) {
-				System.out.print("You got bitten by a zombie. ");
+				System.out.print("You got bitten by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite);
 				if (rand.nextBoolean())
 				this.loseHealth(-bite/3);
@@ -89,7 +89,7 @@ public class Zombie extends Enemy {
 			break;
 		case "EAST":
 			if (target.getX()==this.getXloc()+1 && target.getY()==this.getYloc()) {
-				System.out.print("You got bitten by a zombie. ");
+				System.out.print("You got bitten by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite);
 				if (rand.nextBoolean())
 					this.loseHealth(-bite/3);
@@ -97,9 +97,10 @@ public class Zombie extends Enemy {
 			break;
 		case "WEST":
 			if (target.getX()==this.getXloc()-1 && target.getY()==this.getYloc()) {
-				System.out.print("You got bitten by a zombie. ");
+				System.out.print("You got bitten by a " +this.getType().toLowerCase()+".");
 				target.changeHealth(-bite);
 				if (rand.nextBoolean())
+					
 				this.loseHealth(-bite/3);
 			}
 			break;

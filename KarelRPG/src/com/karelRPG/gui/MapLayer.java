@@ -22,10 +22,9 @@ public void setMap(Maps map1) {
 	GraphicsContext context = canvas.getGraphicsContext2D();
 	Image grass = new Image ("res/Grass.png");
 	Image rock = new Image ("res/Rock.png");
-	context.drawImage(rock, 0,50);
 	Maps mappo = new Maps(map1);
 	for (String[] y:mappo.getLayoutOfCurrentRoom()) { 
-		drawXCoord=0; 
+		drawXCoord=0;
 		for (String x:y) {
 			if (x.equals("X")) { 
 				context.drawImage(rock, drawXCoord,drawYCoord); 

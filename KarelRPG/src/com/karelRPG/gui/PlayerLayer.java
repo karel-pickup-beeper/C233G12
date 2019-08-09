@@ -14,15 +14,18 @@ public class PlayerLayer extends Pane{
 		setPrefSize(500,500);
 	}
 	public void setPlayer(Player play) {
+		
 		Pane player = new Pane();
+		
 		Image playerpic = new Image ("res/Player.png");
 		ImageView e = new ImageView(playerpic);
-		int y = play.getX();
-		int x = play.getY();
+		int x = play.getX();
+		int y = play.getY();
 		player.getChildren().add(e);
 		getChildren().add(e);
 		setLayoutX(x*50);
 		setLayoutY(y*50);	
 	}
+	
 	
 }
