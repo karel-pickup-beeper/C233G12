@@ -16,6 +16,7 @@ public MapLayer() {
 }
 
 public void setMap(Maps map1) {
+	getChildren().clear();
 	int drawXCoord=0;
 	int drawYCoord=0;
 	Canvas canvas = new Canvas(500,500);
