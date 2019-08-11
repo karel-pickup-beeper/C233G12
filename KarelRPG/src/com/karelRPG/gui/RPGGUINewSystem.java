@@ -21,18 +21,11 @@ public class RPGGUINewSystem extends Application{
 		DrawPane board = new DrawPane(primaryStage);
 		board.SwitchScene(primaryStage, board.openingScene());
 		primaryStage.show();
-
-		
-		
-		
-			
-		//game start:
 	}
-
 	
-public static void main (String [] args) {
+	public static void main (String [] args) {
 	launch(args);
-}
+	}
 
 }
 

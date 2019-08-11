@@ -15,34 +15,23 @@ public class CollectibleLayer extends Pane{
 	public CollectibleLayer() {
 		setPrefSize(500,500);
 	}
-	
+
 	public void setCollectibleLayer(ArrayList<PhysicalCollectible> collectiblelist) {
-		
-		
-		for (PhysicalCollectible w: collectiblelist) {
-			Pane multi = new Pane();
-			if (w.getTag()=="Key") {
+		getChildren().clear();
+	for (int index =0;index<collectiblelist.size();index++) {
+			PhysicalCollectible singleItem = collectiblelist.get(index);
+			if (singleItem.getTag()=="Key") {
 				Pane item = new Pane();
-				int xpos = w.getX()*50;
-				int ypos = w.getY()*50;
+				int xpos = singleItem.getX()*50;
+				int ypos = singleItem.getY()*50;
 				Image keypic = new Image ("res/Key.png");
 				ImageView e = new ImageView(keypic);
+				getChildren().add(item);
 				item.getChildren().add(e);
 				item.setLayoutX(xpos);
 				item.setLayoutY(ypos);
-				multi.getChildren().add(item);
 			}
-			else if(w.getTag()=="Sword") {
-				Pane item = new Pane();
-				int xpos = w.getX()*50;
-				int ypos = w.getY()*50;
-				Image sword = new Image ("res/Sword.png");
-				ImageView e = new ImageView(sword);
-				item.getChildren().add(e);
-				item.setLayoutX(xpos);
-				item.setLayoutY(ypos);
-				multi.getChildren().add(item);
-			}
+			
 		}
 	}
 

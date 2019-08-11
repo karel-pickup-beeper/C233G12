@@ -55,7 +55,9 @@ public class ActionPrompt
 		boolean n = this.noMoreGame;
 		return n;
 	}
-	
+	public String getCommandType() {
+		return currentCommand.toString();
+	}
 	/**
 	 * This mutator method will index Maps into the ArrayList of Maps in the dungeon, when called. 
 	 * 
@@ -299,6 +301,8 @@ public class ActionPrompt
     		break;
     		
     	case right:
+    		System.out.println(this.currentCommand.toString());
+
     		/* Room Change Handlers */
     		if (this.roomNumber==1 && x==9) {
     			user.changeX(-9);
@@ -322,6 +326,7 @@ public class ActionPrompt
     		break;
     		
     	case up:
+    		
     		/* Room Change Handlers */
     		if (this.roomNumber==3 && y==0) {
     			user.changeY(9);
@@ -354,7 +359,7 @@ public class ActionPrompt
     		/* Collision Checks */
     		else if (mapwalk.detectEnemy(x, y+1) != null) {
     			System.out.println("That tile is occupied by an enemy!!!");
-    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x-1, y));
+    			this.enemyPassiveAttack(user, mapwalk.detectEnemy(x, y+1));
     		} else if (mapwalk.detectTile(x, y+1) == "_")
     			user.playerMove(CardinalDirection.SOUTH);
     		else

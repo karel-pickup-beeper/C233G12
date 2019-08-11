@@ -9,23 +9,24 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 
 public class MapLayer extends Pane{
-
+	private final int  moveXPixel = 50;
+	private final int moveYPixel = 50;
 	
 public MapLayer() {
-	setPrefSize(500,500);	
+	setPrefSize(700,700);	
 }
 
 public void setMap(Maps map1) {
+	getChildren().clear();
 	int drawXCoord=0;
 	int drawYCoord=0;
-	Canvas canvas = new Canvas(500,500);
+	Canvas canvas = new Canvas(700,700);
 	GraphicsContext context = canvas.getGraphicsContext2D();
 	Image grass = new Image ("res/Grass.png");
 	Image rock = new Image ("res/Rock.png");
-	context.drawImage(rock, 0,50);
 	Maps mappo = new Maps(map1);
 	for (String[] y:mappo.getLayoutOfCurrentRoom()) { 
-		drawXCoord=0; 
+		drawXCoord=0;
 		for (String x:y) {
 			if (x.equals("X")) { 
 				context.drawImage(rock, drawXCoord,drawYCoord); 
@@ -34,9 +35,9 @@ public void setMap(Maps map1) {
 				}else {
 				context.drawImage(grass, drawXCoord,drawYCoord); 
 			}
-			drawXCoord+=50; 
+			drawXCoord+=moveXPixel; 
 			}
-		drawYCoord+=50;
+		drawYCoord+=moveYPixel;
 
 	}
 	getChildren().addAll(canvas);
