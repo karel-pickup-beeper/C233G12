@@ -9,8 +9,6 @@ import com.karelRPG.gameplay.VariableClass;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -24,17 +22,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 	
 public class DrawPane implements EventHandler<KeyEvent> {
 	private Stage t;
-	private static final int lengthOfStage=900;
-	private static final int widthOfStage=900;
+	private static final int lengthOfStage=1280;
+	private static final int widthOfStage=960;
 	private static final int lengthOfGameArea = 500;
 	private static final int widthOfGameArea = 500;
 	
@@ -60,7 +56,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 
 	public Scene openingScene() { //this draws the opening screen
 		Button button1=new Button();
-		button1.setMinSize(300, 50); 
+		button1.setMinSize(300, 100); 
 		button1.setStyle("-fx-background-color:white");
 		button1.setStyle("-fx-border-color:black");
 		button1.setText("Start Game");
@@ -73,12 +69,12 @@ public class DrawPane implements EventHandler<KeyEvent> {
 
 		//setting start title
 		Text Title = new Text("Karel RPG");
-		Title.setFont(Font.font("Arial",FontWeight.BOLD, 70));
-		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
-						"WASD tells the player to move up, left, down, right respectively.\n" + 
-						"p tells the player to pick up a collectible.\n" + 
-						"t tells the player to spin attack enemies in each adjacent tiles.\n" +
-						"return to original tile, press f to finish game");
+		Title.setFont(Font.font(70));
+		Text paragraph = new Text("\"To input a command: enter a letter key and press the return key. \\n\" +\r\n" + 
+				"    			   \"WASD tells the player to move up, left, down, right respectively.\\n\" +\r\n" + 
+				"    			   \"p tells the player to pick up a collectible. \\n\" +\r\n" + 
+				"    			   \"t tells the player to spin attack enemies in each adjacent tiles.\\n\" +\r\n" +
+				"return to original tile, press f to finish game");
 		paragraph.setFont(Font.font(20));
 
 		//set up layout
@@ -88,23 +84,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		V.getChildren().addAll(H,button1);		
 
 		borderpane.setCenter(V);
-		paragraph.setFill(Color.BLACK);
-
-
-		//Sets border size (top, right,bottom,left)
-		borderpane.setPadding(new Insets(100, 20, 200, 20));
-		
-		
 		borderpane.setTop(Title); 
-		BorderPane.setAlignment(Title, Pos.TOP_CENTER);
-
-		borderpane.setCenter(button1);
-
-		borderpane.setBottom(paragraph);
-		BorderPane.setAlignment(paragraph, Pos.BOTTOM_CENTER);		
-
-
-
 		return openScene;
 	}
 	//the game scene set up 
@@ -113,12 +93,13 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		BorderPane b = new BorderPane();
 		Pane center = new Pane();
 		Pane right = new Pane();
+		b.autosize();
 		game.start();
 		center.getChildren().addAll(maplayer,enemylayer,collectlayer,playerlayer);
 		right.getChildren().add(statslayer);
 		b.setCenter(center);
 		b.setRight(right);
-		gameStart = new Scene (b, widthOfStage, lengthOfStage);
+		gameStart = new Scene (b, lengthOfStage, widthOfStage);
 		gameStart.setOnKeyPressed(this);
 		System.out.println("BEEEE");
 		game.tony.goInTheGame();
