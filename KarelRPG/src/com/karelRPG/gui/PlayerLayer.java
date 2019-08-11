@@ -19,7 +19,7 @@ public class PlayerLayer extends Pane{
 		Pane player = new Pane();
 		
 		if (direction.getCommandType()=="right") {
-			Image playerpic = new Image ("res/Player Right.gif");
+			Image playerpic = new Image ("res/Player/Player Right.gif");
 			ImageView e = new ImageView(playerpic);
 			int x = play.getX();
 			int y = play.getY();
@@ -28,7 +28,7 @@ public class PlayerLayer extends Pane{
 			player.getChildren().add(e);
 			getChildren().add(player);
 		}else if (direction.getCommandType()=="down") {
-			Image playerpic = new Image ("res/Player Front.gif");
+			Image playerpic = new Image ("res/Player/Player Front.gif");
 			ImageView e = new ImageView(playerpic);
 			int x = play.getX();
 			int y = play.getY();
@@ -38,7 +38,7 @@ public class PlayerLayer extends Pane{
 			getChildren().add(player);
 			
 		}else if (direction.getCommandType()=="left") {
-			Image playerpic = new Image ("res/Player Left.gif");
+			Image playerpic = new Image ("res/Player/Player Left.gif");
 			ImageView e = new ImageView(playerpic);
 			int x = play.getX();
 			int y = play.getY();
@@ -48,7 +48,7 @@ public class PlayerLayer extends Pane{
 			getChildren().add(player);
 			
 		}else if (direction.getCommandType()=="up") {
-			Image playerpic = new Image ("res/Player Back.gif");
+			Image playerpic = new Image ("res/Player/Player Back.gif");
 			ImageView e = new ImageView(playerpic);
 			int x = play.getX();
 			int y = play.getY();
@@ -58,7 +58,7 @@ public class PlayerLayer extends Pane{
 			getChildren().add(player);
 			
 		}else {
-			Image playerpic = new Image ("res/Player Default.gif");
+			Image playerpic = new Image ("res/Player/Player Default.gif");
 			ImageView e = new ImageView(playerpic);
 			int x = play.getX();
 			int y = play.getY();
