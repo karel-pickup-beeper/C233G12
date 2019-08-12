@@ -56,24 +56,18 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		s.setTitle("Karel RPG");
 		s.setScene(openingScene());
 		t=s;
-	}//make the pane big 500x500, and add the canvas to the pain, and the canvas will be drawing each enemy on different layers
+	}
 
-
-	public Scene openingScene() { //this draws the opening screen
+	// This draws opening screen.
+	public Scene openingScene() {
 		Image image = new Image("res/Button/STARTGAME.png");
 		ImageView start = new ImageView(image);
-		Button button1 = new Button("", start);
-		button1.setMinSize(80, 50); 
-		button1.setStyle("-fx-background-color: transparent;");
-//		Button button1=new Button();
-		
-		
-//		Button button1=new Button();
-//		button1.setMinSize(300, 50); 
-//		button1.setStyle("-fx-background-color:white");
-//		button1.setStyle("-fx-border-color:black");
-//		button1.setText("Start Game");
-		button1.setOnAction(e-> t.setScene(gameScene()));
+		Button startButton = new Button("", start);
+//		Button startButton = new Button ("Start Game");
+//		startButton.setMinSize(218, 98); 
+		startButton.setStyle("-fx-background-color: transparent;");
+
+		startButton.setOnAction(e-> t.setScene(gameScene()));
 		//set button with text
 		//this is drawing a scene that is a border pane, the size of the stage
 		
@@ -91,25 +85,18 @@ public class DrawPane implements EventHandler<KeyEvent> {
 //						"return to original tile, press f to finish game");
 //		paragraph.setFont(Font.font(20));
 //
-//		//set up layout
-//		HBox H = new HBox();
-//		H.getChildren().add(paragraph);
-//		VBox V = new VBox();
-//		V.getChildren().addAll(H,button1);		
-//
-//		borderpane.setCenter(V);
-//		paragraph.setFill(Color.BLACK);
+
 		
 // 		This is the start screen art.
 		Image startImage = new Image ("res/StartScreen.png");
 		
 		stackPane.getChildren().add(new ImageView(startImage));
-		button1.setLayoutX(500);
-		button1.setLayoutY(500);
+		startButton.setTranslateX(18);
+		startButton.setTranslateY(-122);
 
 		
 //		Sets border size (top, right,bottom,left)
-		stackPane.getChildren().add(button1);
+		stackPane.getChildren().add(startButton);
 
 
 		return openScene;
