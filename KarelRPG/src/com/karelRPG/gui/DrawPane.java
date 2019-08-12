@@ -21,6 +21,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -76,8 +77,8 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		//set button with text
 		//this is drawing a scene that is a border pane, the size of the stage
 		
-		BorderPane borderpane = new BorderPane();
-		openScene = new Scene(borderpane, lengthOfStage, widthOfStage);	
+		StackPane stackPane = new StackPane();
+		openScene = new Scene(stackPane, lengthOfStage, widthOfStage);	
 		//setting up button;
 
 		//setting start title
@@ -101,12 +102,14 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		
 // 		This is the start screen art.
 		Image startImage = new Image ("res/StartScreen.png");
-		borderpane.getChildren().add(new ImageView(startImage));
+		
+		stackPane.getChildren().add(new ImageView(startImage));
+		button1.setLayoutX(500);
+		button1.setLayoutY(500);
+
 		
 //		Sets border size (top, right,bottom,left)
-		borderpane.setPadding(new Insets(40, 20, 250, 55));
-
-		borderpane.setCenter(button1);
+		stackPane.getChildren().add(button1);
 
 
 		return openScene;
