@@ -289,5 +289,4 @@ public class EnemyTest {
 	
 		assertEquals("Testing toString", expected, actual);
 	}
-	
 }
