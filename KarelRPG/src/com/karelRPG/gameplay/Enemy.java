@@ -31,6 +31,15 @@ public abstract class Enemy {
 	public static final int MIN_Y = 1;
 	
   	/* Constructors */
+	
+	/**
+	 * Creates a new instance of Enemy with initial health, 
+	 * initial x location, and initial y location values
+	 * 
+	 * @param initialHealth The initial health of the enemy instance.
+	 * @param initialXLoc The initial location of the enemy instance relative to the x-axis.
+	 * @param initialYLoc The initial location of the enemy instance relative to the y-axis.
+	 */
 	public Enemy (int initialHealth, int initialXLoc, int initialYLoc)
 	{
 		if (initialHealth > 0) {
@@ -70,34 +79,41 @@ public abstract class Enemy {
 	
 	/* Getter Methods */
 	
-	/* Enemy's remaining health before it should be despawned. */
+	/**
+	 * Gets the value of health
+	 * 
+	 * @return health The remaining health of the enemy instance.
+	 */
 	public int getHealth() {
 		int health = this.health;
 		return health;
 	}
 	
 	/**
-	 * This accessor method will return the xLoc variable of this enemy when called.
+	 * Gets the value of xLoc
 	 * 
-	 * @return xLoc
+	 * @return xLoc The location of the enemy instance relative to the x-axis.
 	 */
-	/* Enemy's X-Coordinate relative to the map they are on.*/
 	public int getXloc() {
 		int xLoc = this.xLoc;
 		return xLoc;
 	} 
 	
 	/**
-	 * This accessor method will return the yLoc variable of this enemy when called.
+	 * Gets the value of yLoc
 	 * 
-	 * @return yLoc
+	 * @return yLoc The location of the enemy instance relative to the y-axis.
 	 */
-	/* Enemy's Y-Coordinate relative to the map they are on. */
 	public int getYloc() {
 		int yLoc = this.yLoc;
 		return yLoc;
 	}
 	
+	/**
+	 * Gets the value of attack
+	 * 
+	 * @return attack The value of the attack points of the enemy instance.
+	 */
 	public int getAttack() {
 		int attack = this.attack;
 		return attack;
@@ -113,32 +129,36 @@ public abstract class Enemy {
 	
 	/* Setter Methods */
 	
+	/**
+	 * Sets the value of health by subtracting an integer, ouch
+	 * 
+	 * @param ouch Either the amount of health points subtracted as a result of a player's attack on the enemy or the amount of health
+	 * points added as a result of an enemy's attack on a player.
+	 */
 	public void loseHealth(int ouch) {
 		if (ouch>=0)
-			System.out.print("The enemy lost "+ouch+"health");
+			System.out.print("The enemy lost "+ ouch +" health");
 		else if (ouch<0)
-			System.out.print("The enemy healed itself "+ouch+"HP from your health. ");
+			System.out.print("The enemy healed itself "+ ouch +" HP from your health. ");
 		else
 			System.out.print("The enemy received no damage. ");
 		this.health -= ouch;
 	}
 	
     /**
-	 * This mutator method will increase the value of this xLoc variable.
-	 * The jump argument must specify an Integer.
-     * @param jump
+	 * Sets the value of xLoc by a adding an integer jump
+	 * 
+     * @param jump The integer that specifies the amount of tiles an enemy moves relative to the x-axis.
 	 */
-	/* Moving the Enemy horizontally across the map by the steps in the parameter jump */
 	public void changeXloc(int jump){
 		this.xLoc += jump;
 	}
 	
     /**
-	 * This mutator method will increase the value of this yLoc variable.
-	 * The jump argument must specify an Integer.
-     * @param
+	 * Sets the value of yLoc by adding an integer jump
+	 * 
+     * @param jump The integer that specifies the amount of tiles an enemy moves relative to the y-axis.
 	 */
-	/* Moving the Enemy vertically across the map by the steps in the parameter jump */
 	public void changeYloc(int jump){
 		this.yLoc += jump;
 	}
