@@ -59,52 +59,54 @@ public class DrawPane implements EventHandler<KeyEvent> {
 
 
 	public Scene openingScene() { //this draws the opening screen
-		Button button1=new Button();
-		button1.setMinSize(300, 50); 
-		button1.setStyle("-fx-background-color:white");
-		button1.setStyle("-fx-border-color:black");
-		button1.setText("Start Game");
+		Image image = new Image("res/Button/STARTGAME.png");
+		ImageView start = new ImageView(image);
+		Button button1 = new Button("", start);
+		button1.setMinSize(80, 50); 
+		button1.setStyle("-fx-background-color: transparent;");
+//		Button button1=new Button();
+		
+		
+//		Button button1=new Button();
+//		button1.setMinSize(300, 50); 
+//		button1.setStyle("-fx-background-color:white");
+//		button1.setStyle("-fx-border-color:black");
+//		button1.setText("Start Game");
 		button1.setOnAction(e-> t.setScene(gameScene()));
 		//set button with text
 		//this is drawing a scene that is a border pane, the size of the stage
+		
 		BorderPane borderpane = new BorderPane();
 		openScene = new Scene(borderpane, lengthOfStage, widthOfStage);	
 		//setting up button;
 
 		//setting start title
-		Text Title = new Text("Karel RPG");
-		Title.setFont(Font.font("Arial",FontWeight.BOLD, 70));
-		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
-						"WASD tells the player to move up, left, down, right respectively.\n" + 
-						"p tells the player to pick up a collectible.\n" + 
-						"t tells the player to spin attack enemies in each adjacent tiles.\n" +
-						"return to original tile, press f to finish game");
-		paragraph.setFont(Font.font(20));
-
-		//set up layout
-		HBox H = new HBox();
-		H.getChildren().add(paragraph);
-		VBox V = new VBox();
-		V.getChildren().addAll(H,button1);		
-
-		borderpane.setCenter(V);
-		paragraph.setFill(Color.BLACK);
-
-
-		//Sets border size (top, right,bottom,left)
-		borderpane.setPadding(new Insets(100, 20, 200, 20));
-
-
-
-		borderpane.setTop(Title); 
-		BorderPane.setAlignment(Title, Pos.TOP_CENTER);
+//		Text Title = new Text("Karel RPG");
+//		Title.setFont(Font.font("Arial",FontWeight.BOLD, 70));
+//		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
+//						"WASD tells the player to move up, left, down, right respectively.\n" + 
+//						"p tells the player to pick up a collectible.\n" + 
+//						"t tells the player to spin attack enemies in each adjacent tiles.\n" +
+//						"return to original tile, press f to finish game");
+//		paragraph.setFont(Font.font(20));
+//
+//		//set up layout
+//		HBox H = new HBox();
+//		H.getChildren().add(paragraph);
+//		VBox V = new VBox();
+//		V.getChildren().addAll(H,button1);		
+//
+//		borderpane.setCenter(V);
+//		paragraph.setFill(Color.BLACK);
+		
+// 		This is the start screen art.
+		Image startImage = new Image ("res/StartScreen.png");
+		borderpane.getChildren().add(new ImageView(startImage));
+		
+//		Sets border size (top, right,bottom,left)
+		borderpane.setPadding(new Insets(40, 20, 250, 55));
 
 		borderpane.setCenter(button1);
-
-		borderpane.setBottom(paragraph);
-		BorderPane.setAlignment(paragraph, Pos.BOTTOM_CENTER);		
-
-
 
 
 		return openScene;
