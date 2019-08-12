@@ -19,13 +19,23 @@ public class Collectible {
 		count=c.count;
 	}
 	
+	/* methods */
+	/**
+	 * This Accessor method returns a string depicting whether this object is classified as
+	 * a self-defined object type or weapon type.
+	 * @return type
+	 */
+	public String getClassification() {
+		return this.type;
+	}
+	
 	/**
 	 * This accessor method will return a count, when called.
 	 * 
 	 * @Return count
 	 */
-	/* methods */
 	public int getCount() {
+		int count = this.count;
 		return count;
 	}
 	
@@ -44,7 +54,7 @@ public class Collectible {
 	 * @Return name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 	
 	/**

@@ -9,11 +9,6 @@ enum CardinalDirection
 enum CommandType 
 { 
     left,up,right,down,pickup,attack,help,no,systemcheck; 
-} 
-
-enum ItemSelection
-{
-	potion,bigsword,whacksword;
 }
 /*
  * Driver class Action Prompt that reads and writes current command
@@ -27,7 +22,7 @@ public class ActionPrompt
 	private int roomNumber = 1;
 	private boolean noMoreGame;
 	private ArrayList<Maps> dungeon = new ArrayList<Maps>();
-	private ItemSelection itemSelected = ItemSelection.potion; 
+	private ItemSelection itemSelected = ItemSelection.normalsword; 
   
 	/* Constructor */
 	public ActionPrompt(int timeStep, CommandType currentCommand) 
@@ -165,8 +160,17 @@ public class ActionPrompt
             				case "Star":
             					s = "#";
             					break;
-            				case "Sun":
+            				case "Potion":
             					s = "@";
+            					break;
+            				case "NormalSword":
+            					s = "s";
+            					break;
+            				case "BigSword":
+            					s = "S";
+            					break;
+            				case "WhackSword":
+            					s = "~";
             					break;
             				default:
             					break;
@@ -221,22 +225,26 @@ public class ActionPrompt
     		System.out.println("Picking Up the Item");
     		break;
     		
-    	case "X":
-    		System.out.print("got here");
-    		switch (itemSelected)
-    		{
-    		case potion:
-    			this.itemSelected = ItemSelection.bigsword;
-    			break;
-    		case bigsword:
-    			this.itemSelected = ItemSelection.whacksword;
-    			break;
-    		case whacksword:
-    			this.itemSelected = ItemSelection.potion;
-    			break;
-    		default:
-    			break;
-    		}
+    	case "0":
+    		this.itemSelected = ItemSelection.normalsword;
+    		System.out.println("You have unequipped all special equipment.");
+    		this.currentCommand = CommandType.no;
+    		break;
+    	case "1":
+    		this.itemSelected = ItemSelection.potion;
+    		System.out.println("You have equipped potion.");
+    		this.currentCommand = CommandType.no;
+    		break;
+    	case "2":
+    		this.itemSelected = ItemSelection.bigsword;
+    		System.out.println("You have equipped bigsword.");
+    		this.currentCommand = CommandType.no;
+    		break;
+    	case "3":
+    		this.itemSelected = ItemSelection.whacksword;
+    		System.out.println("You have equipped whacksword");
+    		this.currentCommand = CommandType.no;
+    		break;
     	case "T":
     		this.currentCommand = CommandType.attack;
     		if (this.itemSelected != ItemSelection.potion)
@@ -314,6 +322,7 @@ public class ActionPrompt
     	Maps mapwalk = this.getDungeon().get(this.roomNumber);
     	int x = user.getX();
 		int y = user.getY();
+		user.changeEquip(this.itemSelected);
 		
     	switch (this.currentCommand)
     	{
@@ -431,7 +440,9 @@ public class ActionPrompt
     				for (int z=-1; z<2; z++) {
     					Enemy a = mapwalk.detectEnemy(x+w, y+z);
     					if (a != null) {
-    						if (this.itemSelected == ItemSelection.bigsword) {
+    						if (this.itemSelected == ItemSelection.normalsword) {
+    							a.loseHealth(1);
+    						} else if (this.itemSelected == ItemSelection.bigsword) {
     							a.loseHealth(2);
     						} else if (this.itemSelected == ItemSelection.whacksword) {
     							a.loseHealth(1);
@@ -515,7 +526,6 @@ public class ActionPrompt
 					System.out.println("You have to at least collect all "+7+" keys to win.");
 				}
 			}
-		else
     		break;
     	default:
     		System.out.println("You wasted a turn");

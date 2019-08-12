@@ -19,8 +19,10 @@ public class VariableClass {
         /* Initializing Player's Inventory(ArrayList) with recently created Collectible objects of all possible types. */
  		play.setInventory(new Collectible("Key", "object", 0));
  		play.setInventory(new Collectible("Star", "object", 0));
- 		play.setInventory(new Collectible("Potion", "object", 5));
- 		play.setInventory(new Collectible("sword", "weapon", 0));
+ 		play.setInventory(new Collectible("Potion", "object", 0));
+ 		play.setInventory(new Collectible("NormalSword", "weapon", 0));
+ 		play.setInventory(new Collectible("BigSword", "weapon", 0));
+ 		play.setInventory(new Collectible("WhackSword", "weapon", 0));
  		
  		/* Creating map with borders, walls, and empty spaces. And indexing them in the ArrayList 'dungeon' in ActionPrompt. */
  		game.indexDungeon(new Maps(0));

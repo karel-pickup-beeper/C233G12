@@ -6,6 +6,32 @@ enum HealthCondition
 	GOOD,POISON,STUN;
 }
 
+enum ItemSelection
+{
+	potion,normalsword,bigsword,whacksword;
+	public String toString() {
+		String n = "";
+		switch (this)
+		{
+		case potion:
+			n += "Potion";
+			break;
+		case normalsword:
+			n += "(default sword)";
+			break;
+		case bigsword:
+			n += "Big Sword";
+			break;
+		case whacksword:
+			n += "Whack Sword";
+			break;
+		default:
+			break;
+		}
+		return n;
+	}
+}
+
 public class Player {
 	
 	
@@ -17,7 +43,7 @@ public class Player {
 	private ArrayList<Integer> stats = new ArrayList <Integer>();
 	private HealthCondition status;
 	private int strengthindex=1;
-	private int speedindex=2;
+	private ItemSelection itemSelected = ItemSelection.normalsword; 
 	
 	/* Constructors */
 	public Player(int health1, int x, int y) {
@@ -48,6 +74,18 @@ public class Player {
 
 				
 	}
+	
+	/**
+	 * This mutator method will change the statistics of the player to 
+	 * values , when called. This is a future feature implementation.
+	 * 
+	 * @param index
+	 * @param num
+	 */
+	public void changeEquip(ItemSelection something) {
+		this.itemSelected = something;
+	}
+	
 	/**
 	 * This accessor method will return the statistics of the player, when called. 
 	 * 
@@ -133,7 +171,7 @@ public class Player {
 	public void useUpItem(String name) {
 	for (Collectible item : inventory) {
 		if (item.getName() == name)
-		item.increaseCount(-1);
+			item.increaseCount(-1);
 	}
 }
 
@@ -146,6 +184,23 @@ public class Player {
 	/* Inventory */
 	public ArrayList<Collectible> getInventory() {
 		return new ArrayList<Collectible>(inventory);
+	}
+	
+	/**
+	 * This accessor method will return a list of collectible items in the player's inventory
+	 * as a display string.
+	 * @return inventory
+	 * 
+	 */
+	/* Inventory Display Text */
+	public String getInventoryString() {
+		String text = "";
+		for (Collectible item : inventory) {
+			if (item.getClassification() == "object")
+				text += item.toString() + "  ";
+		}
+		text += "  Equipped with: " + this.itemSelected.toString();
+		return text;
 	}
 	
 	/**
