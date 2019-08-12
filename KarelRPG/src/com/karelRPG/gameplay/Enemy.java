@@ -137,7 +137,7 @@ public abstract class Enemy {
 	 */
 	public void loseHealth(int ouch) {
 		if (ouch>=0)
-			System.out.print("The enemy lost "+ ouch +" health");
+			System.out.print("The enemy lost "+ ouch +" health.");
 		else if (ouch<0)
 			System.out.print("The enemy healed itself "+ ouch +" HP from your health. ");
 		else
@@ -245,7 +245,7 @@ public abstract class Enemy {
 	}
 	
 	/**
-	 *  Determines whether the space is clear.
+	 *  Determines whether the space is clear for the enemy to move in.
 	 *  
 	 * @param deltaX The change to be represented in the checked location relative to the x axis.
 	 * @param deltaY The change to be represented in the checked location relative to the y axis.
@@ -268,6 +268,30 @@ public abstract class Enemy {
 		}
 		return canMove;
 	}
+	
+	/**
+	 *  Determines whether the space is clear for the enemy to move in.
+	 *  
+	 * @param deltaX The change to be represented in the checked location relative to the x axis.
+	 * @param deltaY The change to be represented in the checked location relative to the y axis.
+	 * @param hero An object of class Player that provides the position of the player relative to the x and y axis.
+	 * @param mapgait An object of class Maps that provides information for the validity of enemyMove and enemyAttack methods.
+	 * @return true if the space is not occupied by a player or a collectible.
+	 */
+	public boolean isSpaceClear(int deltaX, int deltaY, Maps mapgait) {
+		boolean canMove = true;
+		int toBeX = deltaX + this.xLoc;
+		int toBeY = deltaY + this.yLoc;
+		if (mapgait.detectEnemy(toBeX, toBeY) != null) {
+			canMove = false;
+		} else if (mapgait.detectTile(toBeX, toBeY) != "_") {
+			canMove = false;
+		} else if (toBeX == 9 || toBeX == 0 || toBeY == 9 || toBeY == 0) {
+			canMove = false;
+		}
+		return canMove;
+	}
+	
 	/**
 	 * Sets the xLoc and yLoc to value that is closer to the player position relative to the x and y axis via the changeXloc 
 	 * or changeYloc methods, if isSpaceClear method returns true
@@ -365,8 +389,78 @@ public abstract class Enemy {
 			break;
 		}
 	}
+	/**
+	 * Abstract method to be implemented differently in each subclass of Enemy.
+	 * @param target Calling Player mutator methods to change its health variable.
+	 * @param mapwalk Calling detection accessor methods in Maps for attacking relative position.
+	 * @param direction Specifies the directional case of where the attack is from.
+	 */
 	public abstract void enemyAttack(Player target, Maps mapwalk, String direction);
 	
+	public void enemyKnockBack(CardinalDirection aim, Maps mapgait) {
+		switch (aim)
+		{
+		case NORTHEAST:
+			while (isSpaceClear(0,-1,mapgait) && isSpaceClear(1,0,mapgait)) {
+					this.changeYloc(-1);
+					this.changeXloc(1);
+			} while (isSpaceClear(0,-1,mapgait)) {
+				this.changeYloc(-1);
+			} while (isSpaceClear(1,0,mapgait)) {
+				this.changeXloc(1);
+			}
+			break;
+		case EAST:
+			while (isSpaceClear(1,0,mapgait))
+				this.changeXloc(1);
+			break;
+		case NORTHWEST:
+			while (isSpaceClear(0,-1,mapgait) && isSpaceClear(-1,0,mapgait)) {
+					this.changeXloc(-1);
+					this.changeYloc(-1);
+			} while (isSpaceClear(0,-1,mapgait)) {
+				this.changeYloc(-1);
+			} while (isSpaceClear(-1,0,mapgait)) {
+				this.changeXloc(-1);
+			}		
+			break;
+		case NORTH:
+			while (isSpaceClear(0,-1,mapgait))
+				this.changeYloc(-1);
+			break;
+		case SOUTHEAST:
+			while (isSpaceClear(0,1,mapgait) && isSpaceClear(1,0,mapgait)) {
+					this.changeXloc(1);
+					this.changeYloc(1);
+			} while (isSpaceClear(0,1,mapgait)) {
+				this.changeYloc(1);
+			} while (isSpaceClear(1,0,mapgait)) {
+				this.changeXloc(1);
+			}		
+			break;
+		case SOUTH:
+			while (isSpaceClear(0,1,mapgait))
+				this.changeYloc(1);
+			break;
+		case SOUTHWEST:
+			while (isSpaceClear(0,1,mapgait) && isSpaceClear(-1,0,mapgait)) {
+					this.changeYloc(1);
+					this.changeXloc(-1);
+			} while (isSpaceClear(0,1,mapgait)) {
+				this.changeYloc(1);
+			} while (isSpaceClear(-1,0,mapgait)) {
+				this.changeXloc(-1);
+			}		
+			break;
+		case WEST:
+			while (isSpaceClear(-1,0,mapgait))
+				this.changeXloc(-1);
+			break;
+		case STOP:
+		default:
+			break;
+		}
+	}
 	/* Tile Taken Exception Class */
 	class TileTakenException extends Exception
 	{

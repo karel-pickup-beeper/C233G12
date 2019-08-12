@@ -10,7 +10,11 @@ enum CommandType
 { 
     left,up,right,down,pickup,attack,help,no,systemcheck; 
 } 
-  
+
+enum ItemSelection
+{
+	potion,bigsword,whacksword;
+}
 /*
  * Driver class Action Prompt that reads and writes current command
  * and the entire game which runs in main().
@@ -20,22 +24,22 @@ public class ActionPrompt
 	/* instances */
 	private int timeStep;
 	private CommandType currentCommand;
-	private int roomNumber;
+	private int roomNumber = 1;
 	private boolean noMoreGame;
 	private ArrayList<Maps> dungeon = new ArrayList<Maps>();
+	private ItemSelection itemSelected = ItemSelection.potion; 
   
 	/* Constructor */
-	public ActionPrompt(int timeStep, CommandType currentCommand, int roomNumber) 
+	public ActionPrompt(int timeStep, CommandType currentCommand) 
     	{ 
         	this.timeStep = timeStep;
         	this.currentCommand = currentCommand;
-        	this.roomNumber = roomNumber;
     	}
 
 	/* Copy Constructor */
 	public ActionPrompt(ActionPrompt a)
 	{
-    		this(a.timeStep, a.currentCommand, a.roomNumber);
+    		this(a.timeStep, a.currentCommand);
 	}
 	
 	/* Methods */
@@ -190,46 +194,56 @@ public class ActionPrompt
    	 */
     public void writeCommand(String name)
     {
-    	switch (name)
+    	switch (name.toUpperCase())
     	{
     	case "A":
-    	case "a":
     		this.currentCommand = CommandType.left;
     		System.out.println("Moved Left");
     		break;
     		
     	case "D":
-    	case "d":
     		this.currentCommand = CommandType.right;
     		System.out.println("Moved Right");
     		break;
     		
     	case "W":
-    	case "w":
     		this.currentCommand = CommandType.up;
     		System.out.println("Moved Up");
     		break;
     		
     	case "S":
-    	case "s":
     		this.currentCommand = CommandType.down;
     		System.out.println("Moved Down");
     		break;
     		
     	case "P":
-    	case "p":
     		this.currentCommand = CommandType.pickup;
     		System.out.println("Picking Up the Item");
     		break;
     		
+    	case "X":
+    		System.out.print("got here");
+    		switch (itemSelected)
+    		{
+    		case potion:
+    			this.itemSelected = ItemSelection.bigsword;
+    			break;
+    		case bigsword:
+    			this.itemSelected = ItemSelection.whacksword;
+    			break;
+    		case whacksword:
+    			this.itemSelected = ItemSelection.potion;
+    			break;
+    		default:
+    			break;
+    		}
     	case "T":
-    	case "t":
     		this.currentCommand = CommandType.attack;
-    		System.out.println("ATTACK!");
+    		if (this.itemSelected != ItemSelection.potion)
+    			System.out.println("ATTACK!");
     		break;
     		
     	case "H":
-    	case "h":
     		this.currentCommand = CommandType.help;
     		System.out.println("What were the commands again?");
     		break;
@@ -404,24 +418,61 @@ public class ActionPrompt
     		break;
     		
     	case attack:
-    		int v = 0;
-    		for (int w=-1; w<2; w++) {
-    			for (int z=-1; z<2; z++) {
-    				Enemy a = mapwalk.detectEnemy(x+w, y+z);
-    				if (a != null) {
-    					mapwalk.detectEnemy(x+w, y+z).loseHealth(1);
-    					if (mapwalk.detectEnemy(x+w, y+z).getHealth() == 0) {
-    						System.out.println("You've killed an Enemy! " + "Yay!");
-    						mapwalk.popEnemy(x+w, y+z);
-    					} else {
-    	     			System.out.println("The enemy now has " + mapwalk.detectEnemy(x+w, y+z).getHealth() + " health left!");
+    		if (this.itemSelected == ItemSelection.potion) {
+    			if (user.countSingleItem("Potion") > 0) {
+    				user.useUpItem("Potion");
+    				user.changeHealth(15);
+    			} else {
+    				System.out.println("You've got no potions to use.");
+    			}
+    		} else {
+    			int v = 0;
+    			for (int w=-1; w<2; w++) {
+    				for (int z=-1; z<2; z++) {
+    					Enemy a = mapwalk.detectEnemy(x+w, y+z);
+    					if (a != null) {
+    						if (this.itemSelected == ItemSelection.bigsword) {
+    							a.loseHealth(2);
+    						} else if (this.itemSelected == ItemSelection.whacksword) {
+    							a.loseHealth(1);
+    							int xDistance = a.getXloc()-user.getX();
+    							int yDistance = a.getYloc()-user.getY();
+    							CardinalDirection tempAim = CardinalDirection.STOP;
+    							if (xDistance > 0) {
+    								tempAim = CardinalDirection.EAST;
+    							} else if (xDistance < 0) {
+    								tempAim = CardinalDirection.WEST;
+    							}
+    							if (yDistance > 0) {
+    								if (tempAim == CardinalDirection.EAST)
+    									tempAim = CardinalDirection.SOUTHEAST;
+    								else if (tempAim == CardinalDirection.WEST)
+    									tempAim = CardinalDirection.SOUTHWEST;
+    								else
+    									tempAim = CardinalDirection.SOUTH;
+    							} else if (yDistance < 0) {
+    								if (tempAim == CardinalDirection.EAST)
+    									tempAim = CardinalDirection.NORTHEAST;
+    								else if (tempAim == CardinalDirection.WEST)
+    									tempAim = CardinalDirection.NORTHWEST;
+    								else
+    									tempAim = CardinalDirection.NORTH;
+    							}
+    							a.enemyKnockBack(tempAim, mapwalk);
+    						}
+    						if (a.getHealth() == 0) {
+    							System.out.println("You've killed an Enemy! " + "Yay!");
+    							mapwalk.popEnemy(a);
+    						} else {
+    							System.out.println("The enemy now has " + a.getHealth() + " health left!");
+    						}
+    						v++;
     					}
-    					v++;
     				}
     			}
+    			if (v == 0)
+         			System.out.println("But there are no enemies nearby to attack?");
     		}
-    		if (v == 0)
-     			System.out.println("But there are no enemies nearby to attack?");
     		break;
     		
     	case help:
@@ -452,14 +503,19 @@ public class ActionPrompt
     				System.out.println("Enemies are still roaming elsewhere in this dungeon.");
     			else if (unfinishedCollectibles)
     				System.out.println("You have yet to collect every treasure in this dungeon.");
-    			else if(this.roomNumber == 3 && user.getX() == 5 && user.getY() == 8)
-    				{
-    					//End the game.
-    					noMoreGame = true;
-    				}
-    			else
-    				System.out.println("Find the position marked by 'W' on Map 3.");
+    			else 
+    				System.out.println("You have completed conquering this dungeon. Now Find the position marked by 'W' on Map 3.");
     		}
+    		if(this.roomNumber == 3 && user.getX() == 5 && user.getY() == 8)
+			{
+				if (user.haveAllKeys()) {
+					//End the game.
+					noMoreGame = true;
+				} else {
+					System.out.println("You have to at least collect all "+7+" keys to win.");
+				}
+			}
+		else
     		break;
     	default:
     		System.out.println("You wasted a turn");

@@ -16,16 +16,16 @@ public class Maps {
 		{
 		case 0:
 			layoutOfCurrentRoom = new String[][] {
-				{"X","X","X","X","X","X","X","X","X","X"},
-				{"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","_","_","_","_","_","_","_","_","X"},
-			    {"X","X","X","X","X","X","X","X","X","X"}};
+				{"X","X","X","X","X","X","X","X","X","X","X"},
+				{"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","_","_","_","_","_","_","_","_","X","X"},
+			    {"X","X","X","X","X","X","X","X","X","X","X"}};
 			    break;
 			
 			case 1:
@@ -302,7 +302,7 @@ public class Maps {
 	
 	/**
 	 * This method searches for an enemy at a specified location. If the enemy 
-	 * is present in that location it is removed from the arrayList and no longer shown 
+	 * is present in that location it is removed from the ArrayList and no longer shown 
 	 * on the map.
 	 * This is done by iterating through the enemyList ArrayList with an iterator
 	 * until we find a match between the xHere and yHere coordinates
@@ -321,6 +321,29 @@ public class Maps {
 		for (Iterator<Enemy> iterator = enemyList.iterator(); iterator.hasNext();) {
 			Enemy stuff = iterator.next();
 			if (stuff.getXloc() == xHere && stuff.getYloc() == yHere) {
+			iterator.remove();
+			}
+		}
+	}
+	
+	/**
+	 * This method searches for an enemy object specified by the parameters. If the enemy 
+	 * is present it is removed from the ArrayList and no longer shown on the map.
+	 * This is done by iterating through the enemyList ArrayList with an iterator
+	 * until we find a match between iterated Enemy object and the specified parameter.
+	 * 
+	 * @param en specified Enemy object to be popped from the ArrayList of Enemy objects.
+	 */
+	public void popEnemy (Enemy en)
+	{
+		/*
+		 * Now we must iterate through the ArrayList of Enemy objects
+		 * representing the enemies' existence on the map, until we find a location
+		 * match with our passed parameters. And ultimately, to delete them from the ArrayList.
+		 */
+		for (Iterator<Enemy> iterator = enemyList.iterator(); iterator.hasNext();) {
+			Enemy stuff = iterator.next();
+			if (stuff.equals(en)) {
 			iterator.remove();
 			}
 		}

@@ -129,6 +129,13 @@ public class Player {
 			item.increaseCount(1);
 		}
 	}
+	
+	public void useUpItem(String name) {
+	for (Collectible item : inventory) {
+		if (item.getName() == name)
+		item.increaseCount(-1);
+	}
+}
 
 	/**
 	 * This accessor method will return a list of collectible items in the player's inventory, when called. 
@@ -212,7 +219,7 @@ public class Player {
 	public void changeHealth(int amount) {
 		if (amount+this.life<=0) {
 			this.life = 0;
-		} else {
+		} else if (amount+this.life<=100) {
 			life+=amount;
 			System.out.print("You've just ");
 			if (amount <= 0)
@@ -221,10 +228,30 @@ public class Player {
 				System.out.print("Gained ");
 			
 			System.out.println(amount+" Health");
+		} else {
+			this.life = 100;
+			System.out.println("Maximum Vitality Reached, health cannot go higher.");
 		}
 	}
 	
-public void useCollectible(Collectible c) {
+	public int countSingleItem(String name) {
+		int i=0;
+		for (Collectible item : inventory) {
+			if (item.getName() == name)
+				i = item.getCount();
+		}
+		return i;
+	}
+	public boolean haveAllKeys() {
+		boolean yep = false;
+		for (Collectible item : inventory) {
+			if (item.getName() == "Key" && item.getCount() == 7)
+				yep = true;
+		}
+		return yep;
+	}
+	
+	public void useCollectible(Collectible c) {
 		
 		if (c.getName() == "Sun") {
 			changeStats(strengthindex, 5);

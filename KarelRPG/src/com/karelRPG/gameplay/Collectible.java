@@ -35,9 +35,8 @@ public class Collectible {
 	 * @Param c
 	 * @Return count
 	 */
-	public int increaseCount(int c) {
+	public void increaseCount(int c) {
 		count+=c;
-		return count;	
 	}
 	/**
 	 * This accessor method will return the name of the collectible, when called.
