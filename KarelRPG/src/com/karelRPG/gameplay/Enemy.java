@@ -146,7 +146,7 @@ public abstract class Enemy {
 	}
 	
     /**
-	 * Sets the value of xLoc by a adding an integer jump
+	 * Sets the value of xLoc by a adding an integer, jump
 	 * 
      * @param jump The integer that specifies the amount of tiles an enemy moves relative to the x-axis.
 	 */
@@ -155,7 +155,7 @@ public abstract class Enemy {
 	}
 	
     /**
-	 * Sets the value of yLoc by adding an integer jump
+	 * Sets the value of yLoc by adding an integer, jump
 	 * 
      * @param jump The integer that specifies the amount of tiles an enemy moves relative to the y-axis.
 	 */
@@ -163,14 +163,31 @@ public abstract class Enemy {
 		this.yLoc += jump;
 	}
 	
+	/**
+	 * Sets the value of attack to an integer, threat
+	 * 
+	 * @param threat The integer that specifies the attack points of an enemy.
+	 */
 	public void setAttack(int threat) {
 		this.attack = threat;
 	}
 	
+	/**
+	 * Sets the value of sightRange to an integer, far
+	 * 
+	 * @param far The integer that specifies the sightRange of an enemy.
+	 */
 	public void setSightRange(int far) {
 		this.sightRange = far;
 	}
 
+	/**
+	 * Calls enemyMove method, if exception is caught, it will call enemyAttack method instead
+	 * 
+	 * 
+	 * @param user An object of class player that provides the position of the player relative to the x and y axis.
+	 * @param mapgait An object of class Maps that provides information for the validity of enemyMove and enemyAttack methods.
+	 */
 	public void enemyAction(Player user, Maps mapgait)
 	{
 		/*
@@ -227,6 +244,15 @@ public abstract class Enemy {
 		}
 	}
 	
+	/**
+	 *  Determines whether the space is clear.
+	 *  
+	 * @param deltaX The change to be represented in the checked location relative to the x axis.
+	 * @param deltaY The change to be represented in the checked location relative to the y axis.
+	 * @param hero An object of class Player that provides the position of the player relative to the x and y axis.
+	 * @param mapgait An object of class Maps that provides information for the validity of enemyMove and enemyAttack methods.
+	 * @return true if the space is not occupied by a player or a collectible.
+	 */
 	public boolean isSpaceClear(int deltaX, int deltaY, Player hero, Maps mapgait) {
 		boolean canMove = true;
 		int toBeX = deltaX + this.xLoc;
@@ -243,14 +269,14 @@ public abstract class Enemy {
 		return canMove;
 	}
 	/**
-	 * This mutator method will call the methods changeXloc or changeYloc in this enemy object.
-	 * If there is no collision, the enemy object will successfully move in a specific pattern.
-	 * The aim argument must specify an enumeration of CardinalDirection type.
-	 * @param aim
-	 * @throws TileTakenException
+	 * Sets the xLoc and yLoc to value that is closer to the player position relative to the x and y axis via the changeXloc 
+	 * or changeYloc methods, if isSpaceClear method returns true
+	 * 
+	 * @param aim An object of class CardinalDirection that provides the argument for the switch statement under this method.
+	 * @throws TileTakenException to pass to the enemyAction method which catches this exception to call enemyAttack, instead 
 	 */
 	public void enemyMove(CardinalDirection aim, Player hero, Maps mapgait) throws TileTakenException {
-		/* Then this code would be to actually move towards that direction. */
+		/* This tells the enemy where to move. */
 		boolean r = rand.nextBoolean();
 		switch (aim)
 		{
