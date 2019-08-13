@@ -39,7 +39,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private static final int lengthOfGameArea = 500;
 	private static final int widthOfGameArea = 500;
 	
-	private Scene openScene, gameStart, gameEnd;
+	private Scene openScene, helpScene, creditsScene, gameStart, gameEnd;
 	private VariableClass game = new VariableClass();
 	private ToolBar inventory = new ToolBar();
 	private PlayerLayer playerlayer = new PlayerLayer();
@@ -47,7 +47,6 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private CollectibleLayer collectlayer = new CollectibleLayer();
 	private MapLayer maplayer = new MapLayer();
 	private StatsBars statslayer = new StatsBars();
-	
 	
 	private boolean turn = true;
 
@@ -60,8 +59,6 @@ public class DrawPane implements EventHandler<KeyEvent> {
 
 	// This draws opening screen.
 	public Scene openingScene() {
-		
-
 		
 		//This is drawing a scene that is a stackPane, with a custom size.
 		StackPane stackPane = new StackPane();
@@ -76,7 +73,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Image image = new Image("res/Button/STARTGAME.png");
 		ImageView start = new ImageView(image);
 		Button startButton = new Button("", start);
-//		Button startButton = new Button ("Start Game");
+		//Button startButton = new Button ("Start Game");
 		startButton.setMinSize(218, 98); 
 		startButton.setStyle("-fx-background-color: transparent;");
 		startButton.setOnAction(e-> t.setScene(gameScene()));
@@ -89,7 +86,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button helpButton = new Button ("Help");
 		helpButton.setMinSize(218, 90); 
 		//helpButton.setStyle("-fx-background-color: transparent;");
-		//helpButton.setOnAction(f-> t.setScene(helpScene()));
+		helpButton.setOnAction(f-> t.setScene(helpScene()));
 			
 		stackPane.getChildren().add(helpButton);
 		helpButton.setTranslateX(18);
@@ -100,7 +97,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button creditsButton = new Button ("Credits");
 		creditsButton.setMinSize(218, 98); 
 		//helpButton.setStyle("-fx-background-color: transparent;");
-				
+		creditsButton.setOnAction(f-> t.setScene(creditsScene()));		
 				
 		stackPane.getChildren().add(creditsButton);
 		creditsButton.setTranslateX(18);
@@ -114,10 +111,61 @@ public class DrawPane implements EventHandler<KeyEvent> {
 //		"t tells the player to spin attack enemies in each adjacent tiles.\n" +
 //		"return to original tile, press f to finish game");
 //		paragraph.setFont(Font.font(20));
-//
+
 
 		return openScene;
+
 	}
+	
+	public Scene helpScene() { //this draws the end screen
+		StackPane helpStack = new StackPane();
+		helpScene = new Scene (helpStack, lengthOfStage, widthOfStage);	
+				
+				
+		// This is the help screen art.
+		Image helpImage = new Image ("res/StartScreen.png");
+		helpStack.getChildren().add(new ImageView(helpImage));		
+		
+		Button tempInstructions = new Button ("To input a command: enter a letter key and press the return key.\n" + 
+				"WASD tells the player to move up, left, down, right respectively.\n" + 
+				"p tells the player to pick up a collectible.\n" + 
+				"t tells the player to spin attack enemies in each adjacent tiles.\n" +
+				"return to original tile, press f to finish game");
+		helpStack.getChildren().add(tempInstructions);
+		
+		// This button goes back to start screen from the help screen.
+		Button helpBackButton = new Button ("GO BACK TO HOME SCREEN \nFROM HELP");
+		helpBackButton.setMinSize(218, 90); 
+		//helpBackButton.setStyle("-fx-background-color: transparent;");
+		helpBackButton.setOnAction(f-> t.setScene(openingScene()));
+				
+		helpStack.getChildren().add(helpBackButton);
+		helpBackButton.setTranslateX(18);
+		helpBackButton.setTranslateY(112);
+		
+		return helpScene;
+	}
+	
+	public Scene creditsScene() { //this draws the end screen
+		StackPane creditsStack = new StackPane();
+		creditsScene = new Scene (creditsStack, lengthOfStage, widthOfStage);
+		
+		// This is the credit screen art.
+		Image creditsImage = new Image ("res/StartScreen.png");
+		creditsStack.getChildren().add(new ImageView(creditsImage));
+		
+		Button creditsBackButton = new Button ("GO BACK TO HOME SCREEN \nFROM CREDITS");
+		creditsBackButton.setMinSize(218, 90); 
+		//creditsBackButton.setStyle("-fx-background-color: transparent;");
+		creditsBackButton.setOnAction(f-> t.setScene(openingScene()));
+
+		creditsStack.getChildren().add(creditsBackButton);
+		creditsBackButton.setTranslateX(18);
+		creditsBackButton.setTranslateY(112);
+		
+		return creditsScene;
+	}
+	
 	//the game scene set up 
 	
 	public Scene gameScene() {
