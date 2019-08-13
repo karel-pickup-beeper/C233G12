@@ -218,10 +218,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		inventory.slot4.getChildren().add(wackS);
 		inventory.slot5.getChildren().add(bigS);
 		
-		
-		
-		
-		
+						
 		bottom.getChildren().addAll(inventory);
 		inventory.setLayoutX(300);
 		inventory.setLayoutY(0);
@@ -258,27 +255,20 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		status.setStatus(variables.game);
 	}				
 
-//	public Scene GameEnd() { //this draws the end screen
-//		BorderPane layout3 = new BorderPane();
-//		Text text = new Text ("You've won!");
-//		text.setFont(Font.font(40));
-//		Group end = new Group();
-//		end.getChildren().add(text);
-//		layout3.setCenter(end);
-//
-//		return gameEnd = new Scene (layout3, widthOfStage, lengthOfStage);
-//	}
-	
 	public Scene GameWin() { //this draws the end screen when player wins
 		
-		BorderPane layout3 = new BorderPane();
-		Text text = new Text ("You've won!");
-		text.setFont(Font.font("Snap ITC", 40));
-		Group end = new Group();
-		end.getChildren().add(text);
-		layout3.setCenter(end);
+		StackPane gameWinStack = new StackPane();
+		Scene gameWinScene = new Scene(gameWinStack, lengthOfStage, widthOfStage);
 		
-		return gameEnd = new Scene (layout3, lengthOfStage, widthOfStage);
+		Image gameWinImage = new Image ("res/GameWin.png");
+		gameWinStack.getChildren().add(new ImageView(gameWinImage));		
+		
+		Text text = new Text ("You Win!");
+		text.setFont(Font.font("Snap ITC",60));
+		gameWinStack.getChildren().add(text);
+		text.setTranslateY(-400);
+
+		return gameWinScene;
 	}
 	
 	public Scene GameOver() { //this draws the end screen when player dies
@@ -286,7 +276,6 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		StackPane gameOverStack = new StackPane();
 		Scene gameOverScene = new Scene(gameOverStack, lengthOfStage, widthOfStage);
 		
-		// This is the help screen art.
 		Image gameOverImage = new Image ("res/GameOver.png");
 		gameOverStack.getChildren().add(new ImageView(gameOverImage));		
 		
