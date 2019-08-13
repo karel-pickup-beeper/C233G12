@@ -15,9 +15,9 @@ public class CollectibleLayer extends Pane{
 	
 	/* Initialise all images. */
 	Image keyPic = new Image ("res/items/Key.png", 50, 50, true, true);
-	Image potionPic = new Image ("res/items/Potion.png", 50, 50, true, true);
+	Image potionPic = new Image ("res/items/Potion.gif", 50, 50, true, true);
 	Image starPic = new Image ("res/items/Star.png", 50, 50, true, true);
-	Image bigSwordArt = new Image ("res/items/BigSword.png", 50, 50, true, true);
+	Image bigSwordArt = new Image ("res/items/BigSword.gif", 50, 50, true, true);
 	Image whackSwordArt = new Image ("res/items/WhackSword.png", 50, 50, true, true);
 	
 	public CollectibleLayer() {

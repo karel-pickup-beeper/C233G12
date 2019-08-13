@@ -51,6 +51,8 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private MapLayer terrain = new MapLayer();
 	private HealthBar health = new HealthBar();
 	private PlayerStatistics status = new PlayerStatistics();
+	private InventoryLayer inventory = new InventoryLayer();
+
 	
 	private boolean turn = true;
 
@@ -64,7 +66,6 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	// This draws opening screen.
 	public Scene openingScene() {
 		
-		//This is drawing a scene that is a stackPane, with a custom size.
 		StackPane stackPane = new StackPane();
 		openScene = new Scene(stackPane, lengthOfStage, widthOfStage);	
 				
@@ -178,15 +179,57 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		BorderPane root = new BorderPane();
 		StackPane center = new StackPane();
 		VBox left = new VBox();
-		VBox bottom = new VBox();
-		root.autosize();
+		left.setPrefWidth(100);
+		Pane bottom = new Pane();
+		bottom.setPrefHeight(200);
+		Image po = new Image("res/big border.png");
+		ImageView i = new ImageView(po);
 		variables.start();
-		center.getChildren().addAll(terrain,enemyRadar,scatteredTreasures,playerLocation);
+		
+		center.getChildren().addAll(i,terrain,scatteredTreasures,enemyRadar,playerLocation);
 		left.getChildren().addAll(health,status);
 		//bottom.getChildren().addAll(inventory/*, systemMessage */);
+		
+		
+	
+		Button key = inventory.keyButton();
+		Button star = inventory.starButton();
+		Button potion = inventory.potionButton();
+		Button wackS = inventory.wackSword();
+		Button bigS = inventory.bigSword();
+		
+		star.setOnAction(e->{
+    		variables.game.switchEquipment("star");
+		});
+		potion.setOnAction(e->{
+			variables.game.switchEquipment("potion");
+		});
+		wackS.setOnAction(e->{
+			variables.game.switchEquipment("whack");
+		});
+		bigS.setOnAction(e->{
+    		variables.game.switchEquipment("big");
+		});
+		
+		
+		inventory.slot1.getChildren().add(key);
+		inventory.slot2.getChildren().add(star);
+		inventory.slot3.getChildren().add(potion);
+		inventory.slot4.getChildren().add(wackS);
+		inventory.slot5.getChildren().add(bigS);
+		
+		
+		
+		
+		
+		bottom.getChildren().addAll(inventory);
+		inventory.setLayoutX(300);
+		inventory.setLayoutY(0);
+
 		root.setCenter(center);
 		root.setLeft(left);
 		root.setBottom(bottom);
+		
 		gameStart = new Scene (root, lengthOfStage, widthOfStage);
 		gameStart.setOnKeyPressed(this);
 		variables.tony.goInTheGame();
@@ -211,7 +254,6 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		playerLocation.setPlayer(variables.game,variables.play);
 		enemyRadar.setEnemyLayer(variables.game.getCurrentRoomMap().getEnemyList());
 		scatteredTreasures.setCollectibleLayer(variables.game.getCurrentRoomMap().getListOfCollectibles());
-		//inventory.
 		health.setHealth(variables.play);
 		status.setStatus(variables.game);
 	}				
@@ -304,28 +346,29 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	    		break;
 	    		
 	    	//Placeholder Cases, they should not be here, they should be called by button clicks.
-	    	case NUMPAD0:
-	    		variables.game.switchEquipment("normal");
-	    		break;
-	    	case NUMPAD1:
-	    		variables.game.switchEquipment("potion");
-	    		break;
-	    	case NUMPAD2:
-	    		variables.game.switchEquipment("big");
-	    		break;
-	    	case NUMPAD3:
-	    		variables.game.switchEquipment("whack");
-	    		break;
-	    	case NUMPAD4:
-	    		variables.game.switchEquipment("star");
-	    		break;
-	    	//End of placeholder case, Feifei when you read this please copy the things
-	    	//underneath each case into the button set on clicks. (exclude break statements)
-	    	default:
-	    		System.out.println("That was not a valid command, type h for the list of commands.");
-	    		break;
-	    		//System.out.println("That was not a valid command, type h for the list of commands.");
-			}
+//	    	case NUMPAD0:
+//	    		variables.game.switchEquipment("normal");
+//	    		break;
+//	    	case NUMPAD1:
+//	    		variables.game.switchEquipment("potion");
+//	    		break;
+//	    	case NUMPAD2:
+//	    		variables.game.switchEquipment("big");
+//	    		break;
+//	    	case NUMPAD3:
+//	    		variables.game.switchEquipment("whack");
+//	    		break;
+//	    	case NUMPAD4:
+//	    		variables.game.switchEquipment("star");
+//	    		break;
+//	    	//End of placeholder case, Feifei when you read this please copy the things
+//	    	//underneath each case into the button set on clicks. (exclude break statements)
+//	    	default:
+//	    		System.out.println("That was not a valid command, type h for the list of commands.");
+//	    		break;
+//	    		//System.out.println("That was not a valid command, type h for the list of commands.");
+//			}
 		}
+}
 }
 

@@ -60,7 +60,7 @@ public class EnemyLayer extends Pane {
 			}
 			else if((enemysingle.getType()=="Robot")) {
 				Pane enemy4 = new Pane();
-				Image zombiePic = new Image ("res/zombie enemy.gif");
+				Image zombiePic = new Image ("res/Robot enemy.gif");
 				ImageView e = new ImageView(zombiePic);
 				int xpos = enemysingle.getXloc()*50;
 				int ypos = enemysingle.getYloc()*50;

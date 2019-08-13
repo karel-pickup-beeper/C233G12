@@ -11,9 +11,9 @@ public class PlayerStatistics extends VBox {
 	/* Initialise all images. */
 	
 	Image normalIcon = new Image ("res/status/equipment/NormalSword.png");
-	Image bigIcon = new Image ("res/status/equipment/BigSword.png");
+	Image bigIcon = new Image ("res/status/equipment/BigSword.gif");
 	Image whackIcon = new Image ("res/status/equipment/WhackSword.png");
-	Image potionIcon = new Image ("res/status/equipment/Potion.png");
+	Image potionIcon = new Image ("res/status/equipment/Potion.gif");
 	ImageView equip;
 	
 	Image runIcon = new Image ("res/status/run.png");
