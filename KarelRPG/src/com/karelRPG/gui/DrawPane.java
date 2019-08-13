@@ -145,9 +145,11 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		game.game.runEnemiesTurn(game.play);
 		if (game.play.getHealth()==0) {
 			game.tony.playerDied();
+			t.setScene(GameOver());
 		}
 		if (game.game.getNoMoreGame()) {
 			game.tony.finishTheGame();
+			t.setScene(GameWin());
 		}
 		maplayer.setMap(game.game.getCurrentRoomMap());
 		playerlayer.setPlayer(game.game,game.play);
@@ -156,16 +158,43 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		statslayer.setStats(game.play, game.game.getCurrentRoomMap().getEnemyList());
 	}				
 
-	public Scene GameEnd() { //this draws the end screen
+//	public Scene GameEnd() { //this draws the end screen
+//		BorderPane layout3 = new BorderPane();
+//		Text text = new Text ("You've won!");
+//		text.setFont(Font.font(40));
+//		Group end = new Group();
+//		end.getChildren().add(text);
+//		layout3.setCenter(end);
+//
+//		return gameEnd = new Scene (layout3, widthOfStage, lengthOfStage);
+//	}
+	
+	public Scene GameWin() { //this draws the end screen when player wins
+		
 		BorderPane layout3 = new BorderPane();
 		Text text = new Text ("You've won!");
-		text.setFont(Font.font(40));
+		text.setFont(Font.font("Snap ITC", 40));
 		Group end = new Group();
 		end.getChildren().add(text);
 		layout3.setCenter(end);
-
-		return gameEnd = new Scene (layout3, widthOfStage, lengthOfStage);
+		
+		return gameEnd = new Scene (layout3, lengthOfStage, widthOfStage);
 	}
+	
+	public Scene GameOver() { //this draws the end screen when player dies
+
+		BorderPane layout3 = new BorderPane();
+		Text text = new Text ("GAME OVER!");
+		text.setFont(Font.font("Snap ITC",40));
+		Group end = new Group();
+		end.getChildren().add(text);
+		layout3.setCenter(end);
+	
+		
+		return gameEnd = new Scene (layout3, lengthOfStage, widthOfStage);
+	}
+
+	
 	
 	public void SwitchScene (Stage s, Scene i) {
 		s.setScene(i);
