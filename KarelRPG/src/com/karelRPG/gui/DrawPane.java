@@ -87,9 +87,12 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		startButton.setTranslateY(-122);
 		
 		// This is the help button.
-		Button helpButton = new Button ("Help");
+		Image helpButtonImage = new Image("res/Button/HELP.png");
+		ImageView help = new ImageView(helpButtonImage);
+		Button helpButton = new Button("", help);
+		//Button helpButton = new Button ("Help");
 		helpButton.setMinSize(218, 90); 
-		//helpButton.setStyle("-fx-background-color: transparent;");
+		helpButton.setStyle("-fx-background-color: transparent;");
 		helpButton.setOnAction(f-> t.setScene(helpScene()));
 			
 		stackPane.getChildren().add(helpButton);
@@ -98,24 +101,18 @@ public class DrawPane implements EventHandler<KeyEvent> {
 				
 		
 		// This is the credits button.
-		Button creditsButton = new Button ("Credits");
+		Image creditsButtonimage = new Image("res/Button/CREDIT.png");
+		ImageView credits = new ImageView(creditsButtonimage);
+		Button creditsButton = new Button("", credits);
+		//Button creditsButton = new Button ("Credits");
 		creditsButton.setMinSize(218, 98); 
-		//helpButton.setStyle("-fx-background-color: transparent;");
+		creditsButton.setStyle("-fx-background-color: transparent;");
 		creditsButton.setOnAction(f-> t.setScene(creditsScene()));		
 				
 		stackPane.getChildren().add(creditsButton);
 		creditsButton.setTranslateX(18);
 		creditsButton.setTranslateY(112);
 		
-		
-		
-//		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
-//		"WASD tells the player to move up, left, down, right respectively.\n" + 
-//		"p tells the player to pick up a collectible.\n" + 
-//		"t tells the player to spin attack enemies in each adjacent tiles.\n" +
-//		"return to original tile, press f to finish game");
-//		paragraph.setFont(Font.font(20));
-
 
 		return openScene;
 
