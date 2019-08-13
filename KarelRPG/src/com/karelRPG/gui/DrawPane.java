@@ -60,44 +60,60 @@ public class DrawPane implements EventHandler<KeyEvent> {
 
 	// This draws opening screen.
 	public Scene openingScene() {
+		
+
+		
+		//This is drawing a scene that is a stackPane, with a custom size.
+		StackPane stackPane = new StackPane();
+		openScene = new Scene(stackPane, lengthOfStage, widthOfStage);	
+				
+				
+		// This is the start screen art.
+		Image startImage = new Image ("res/StartScreen.png");
+		stackPane.getChildren().add(new ImageView(startImage));		
+		
+		// This is the start button.
 		Image image = new Image("res/Button/STARTGAME.png");
 		ImageView start = new ImageView(image);
 		Button startButton = new Button("", start);
 //		Button startButton = new Button ("Start Game");
-//		startButton.setMinSize(218, 98); 
+		startButton.setMinSize(218, 98); 
 		startButton.setStyle("-fx-background-color: transparent;");
 
 		startButton.setOnAction(e-> t.setScene(gameScene()));
-		//set button with text
-		//this is drawing a scene that is a border pane, the size of the stage
-		
-		StackPane stackPane = new StackPane();
-		openScene = new Scene(stackPane, lengthOfStage, widthOfStage);	
-		//setting up button;
-
-		//setting start title
-//		Text Title = new Text("Karel RPG");
-//		Title.setFont(Font.font("Arial",FontWeight.BOLD, 70));
-//		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
-//						"WASD tells the player to move up, left, down, right respectively.\n" + 
-//						"p tells the player to pick up a collectible.\n" + 
-//						"t tells the player to spin attack enemies in each adjacent tiles.\n" +
-//						"return to original tile, press f to finish game");
-//		paragraph.setFont(Font.font(20));
-//
-
-		
-// 		This is the start screen art.
-		Image startImage = new Image ("res/StartScreen.png");
-		
-		stackPane.getChildren().add(new ImageView(startImage));
 		startButton.setTranslateX(18);
 		startButton.setTranslateY(-122);
-
 		
-//		Sets border size (top, right,bottom,left)
-		stackPane.getChildren().add(startButton);
-
+		// This is the help button.
+		Button helpButton = new Button ("Help");
+		helpButton.setMinSize(218, 90); 
+		//helpButton.setStyle("-fx-background-color: transparent;");
+		helpButton.setOnAction(f-> t.setScene(helpScene()));
+			
+		stackPane.getChildren().add(helpButton);
+		helpButton.setTranslateX(18);
+		helpButton.setTranslateY(-7);
+				
+		
+		// This is the credits button.
+		Button creditsButton = new Button ("Credits");
+		creditsButton.setMinSize(218, 98); 
+		//helpButton.setStyle("-fx-background-color: transparent;");
+				
+				
+		stackPane.getChildren().add(creditsButton);
+		creditsButton.setTranslateX(18);
+		creditsButton.setTranslateY(112);
+		
+		
+		
+//		Text paragraph = new Text(	"To input a command: enter a letter key and press the return key.\n" + 
+//		"WASD tells the player to move up, left, down, right respectively.\n" + 
+//		"p tells the player to pick up a collectible.\n" + 
+//		"t tells the player to spin attack enemies in each adjacent tiles.\n" +
+//		"return to original tile, press f to finish game");
+//		paragraph.setFont(Font.font(20));
+//
 
 		return openScene;
 	}
