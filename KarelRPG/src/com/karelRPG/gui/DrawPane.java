@@ -88,7 +88,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button helpButton = new Button ("Help");
 		helpButton.setMinSize(218, 90); 
 		//helpButton.setStyle("-fx-background-color: transparent;");
-		helpButton.setOnAction(f-> t.setScene(helpScene()));
+		//helpButton.setOnAction(f-> t.setScene(helpScene()));
 			
 		stackPane.getChildren().add(helpButton);
 		helpButton.setTranslateX(18);
