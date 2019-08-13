@@ -362,13 +362,13 @@ public class ActionPrompt
     	case left:
     		/* Room Change Handlers */
     		if (this.roomNumber==2 && x==0) {
-    			user.changeX(9);
+    			user.changeX(14);
     			this.roomNumber = 1;
     		} else if (this.roomNumber==4 && x==0) {
-    			user.changeX(9);
+    			user.changeX(14);
     			this.roomNumber = 2;
     		} else if (this.roomNumber==5 && x==0) {
-    			user.changeX(9);
+    			user.changeX(14);
     			this.roomNumber = 3;
     		}
     		
@@ -386,14 +386,14 @@ public class ActionPrompt
     		System.out.println(this.currentCommand.toString());
 
     		/* Room Change Handlers */
-    		if (this.roomNumber==1 && x==9) {
-    			user.changeX(-9);
+    		if (this.roomNumber==1 && x==14) {
+    			user.changeX(-14);
     			this.roomNumber = 2;
-    		} else if (this.roomNumber==2 && x==9) {
-    			user.changeX(-9);
+    		} else if (this.roomNumber==2 && x==14) {
+    			user.changeX(-14);
     			this.roomNumber = 4;
-    		} else if (this.roomNumber==3 && x==9) {
-    			user.changeX(-9);
+    		} else if (this.roomNumber==3 && x==14) {
+    			user.changeX(-14);
     			this.roomNumber = 5;
     		}
     		
@@ -411,10 +411,10 @@ public class ActionPrompt
     		
     		/* Room Change Handlers */
     		if (this.roomNumber==3 && y==0) {
-    			user.changeY(9);
+    			user.changeY(14);
     			this.roomNumber = 2;
     		} else if (this.roomNumber==5 && y==0) {
-    			user.changeY(9);
+    			user.changeY(14);
     			this.roomNumber = 4;
     		}
     		
@@ -430,11 +430,11 @@ public class ActionPrompt
     		
     	case down:
     		/* Room Change Handlers */
-    		if (this.roomNumber==2 && y==9) {
-    			user.changeY(-9);
+    		if (this.roomNumber==2 && y==14) {
+    			user.changeY(-14);
     			this.roomNumber = 3;
-    		} else if (this.roomNumber==4 && y==9) {
-    			user.changeY(-9);
+    		} else if (this.roomNumber==4 && y==14) {
+    			user.changeY(-14);
     			this.roomNumber = 5;
     		}
     		

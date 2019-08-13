@@ -267,7 +267,7 @@ public abstract class Enemy {
 			canMove = false;
 		} else if (mapgait.detectTile(toBeX, toBeY) != "_") {
 			canMove = false;
-		} else if (toBeX == 9 || toBeX == 0 || toBeY == 9 || toBeY == 0) {
+		} else if (toBeX == 14 || toBeX == 0 || toBeY == 14 || toBeY == 0) {
 			canMove = false;
 		}
 		return canMove;
