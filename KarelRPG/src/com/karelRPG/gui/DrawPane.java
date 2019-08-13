@@ -40,7 +40,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private static final int widthOfGameArea = 500;
 	
 	/* Logic Objects */
-	private Scene openScene, helpScene, creditsScene, gameStart, gameEnd;
+	private Scene openScene, helpScene, creditsScene, gameStart, gameEnd, gameOverScene;
 	private VariableClass variables = new VariableClass();
 	
 	/* Panes */
@@ -283,17 +283,20 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	
 	public Scene GameOver() { //this draws the end screen when player dies
 
-		BorderPane layout3 = new BorderPane();
-		Text text = new Text ("GAME OVER!");
-		text.setFont(Font.font("Snap ITC",40));
-		Group end = new Group();
-		end.getChildren().add(text);
-		layout3.setCenter(end);
-	
+		StackPane gameOverStack = new StackPane();
+		Scene gameOverScene = new Scene(gameOverStack, lengthOfStage, widthOfStage);
 		
-		return gameEnd = new Scene (layout3, lengthOfStage, widthOfStage);
+		// This is the help screen art.
+		Image gameOverImage = new Image ("res/GameOver.png");
+		gameOverStack.getChildren().add(new ImageView(gameOverImage));		
+		
+		Text text = new Text ("GAME OVER!");
+		text.setFont(Font.font("Snap ITC",60));
+		gameOverStack.getChildren().add(text);
+		text.setTranslateY(-400);
+		
+		return gameOverScene;
 	}
-
 	
 	
 	public void SwitchScene (Stage s, Scene i) {
