@@ -79,8 +79,9 @@ public class DrawPane implements EventHandler<KeyEvent> {
 //		Button startButton = new Button ("Start Game");
 		startButton.setMinSize(218, 98); 
 		startButton.setStyle("-fx-background-color: transparent;");
-
 		startButton.setOnAction(e-> t.setScene(gameScene()));
+		
+		stackPane.getChildren().add(startButton);
 		startButton.setTranslateX(18);
 		startButton.setTranslateY(-122);
 		
