@@ -44,7 +44,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private VariableClass variables = new VariableClass();
 	
 	/* Panes */
-	private ToolBar inventory = new ToolBar();
+	//private InventoryLayer inventory = new InventoryLayer();
 	private PlayerLayer playerLocation = new PlayerLayer();
 	private EnemyLayer enemyRadar = new EnemyLayer();
 	private CollectibleLayer scatteredTreasures = new CollectibleLayer();
@@ -173,16 +173,19 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	//the game scene set up 
 	
 	public Scene gameScene() {
-		BorderPane b = new BorderPane();
+		BorderPane root = new BorderPane();
 		StackPane center = new StackPane();
 		VBox left = new VBox();
-		b.autosize();
+		VBox bottom = new VBox();
+		root.autosize();
 		variables.start();
 		center.getChildren().addAll(terrain,enemyRadar,scatteredTreasures,playerLocation);
 		left.getChildren().addAll(health,status);
-		b.setCenter(center);
-		b.setLeft(left);
-		gameStart = new Scene (b, lengthOfStage, widthOfStage);
+		//bottom.getChildren().addAll(inventory/*, systemMessage */);
+		root.setCenter(center);
+		root.setLeft(left);
+		root.setBottom(bottom);
+		gameStart = new Scene (root, lengthOfStage, widthOfStage);
 		gameStart.setOnKeyPressed(this);
 		variables.tony.goInTheGame();
 		if(!variables.tony.isGameOver()) {
@@ -206,6 +209,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		playerLocation.setPlayer(variables.game,variables.play);
 		enemyRadar.setEnemyLayer(variables.game.getCurrentRoomMap().getEnemyList());
 		scatteredTreasures.setCollectibleLayer(variables.game.getCurrentRoomMap().getListOfCollectibles());
+		//inventory.
 		health.setHealth(variables.play);
 		status.setStatus(variables.game);
 	}				

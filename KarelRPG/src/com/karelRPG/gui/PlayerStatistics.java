@@ -10,13 +10,13 @@ public class PlayerStatistics extends VBox {
 
 	/* Initialise all images. */
 	
-	Image normal = new Image ("res/status/equipment/NormalSword.png");
-	Image big = new Image ("res/status/equipment/BigSword.png");
-	Image whack = new Image ("res/status/equipment/WhackSword.png");
-	Image potion = new Image ("res/status/equipment/Potion.png");
+	Image normalIcon = new Image ("res/status/equipment/NormalSword.png");
+	Image bigIcon = new Image ("res/status/equipment/BigSword.png");
+	Image whackIcon = new Image ("res/status/equipment/WhackSword.png");
+	Image potionIcon = new Image ("res/status/equipment/Potion.png");
 	ImageView equip;
 	
-	Image run = new Image ("res/status/run.png");
+	Image runIcon = new Image ("res/status/run.png");
 	ImageView icon1;
 	
 	public PlayerStatistics() {
@@ -30,16 +30,16 @@ public class PlayerStatistics extends VBox {
 		switch(game.getEquipmentString())
 		{
 		case "Potion":
-			equip = new ImageView(potion);
+			equip = new ImageView(potionIcon);
 			break;
 		case "(default sword)":
-			equip = new ImageView(normal);
+			equip = new ImageView(normalIcon);
 			break;
 		case "Big Sword":
-			equip = new ImageView(big);
+			equip = new ImageView(bigIcon);
 			break;
 		case "Whack Sword":
-			equip = new ImageView(whack);
+			equip = new ImageView(whackIcon);
 			break;
 		default:
 			break;
@@ -48,7 +48,7 @@ public class PlayerStatistics extends VBox {
 		
 		
 		if (game.soDoEnemiesRun()) {
-			icon1 = new ImageView(run);
+			icon1 = new ImageView(runIcon);
 			getChildren().add(icon1);
 		}
 		

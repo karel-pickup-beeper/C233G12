@@ -22,8 +22,8 @@ public void setMap(Maps map1) {
 	int drawYCoord=0;
 	Canvas canvas = new Canvas(700,700);
 	GraphicsContext context = canvas.getGraphicsContext2D();
-	Image grass = new Image ("res/Grass.png");
-	Image rock = new Image ("res/Rock.png");
+	Image grass = new Image ("res/terrain/grass.png");
+	Image rock = new Image ("res/terrain/rock.png");
 	Maps mappo = new Maps(map1);
 	for (String[] y:mappo.getLayoutOfCurrentRoom()) { 
 		drawXCoord=0;

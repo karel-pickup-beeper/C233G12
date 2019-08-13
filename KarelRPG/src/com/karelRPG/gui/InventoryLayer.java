@@ -14,33 +14,42 @@ import javafx.scene.layout.Pane;
 
 public class InventoryLayer extends ToolBar{
 	
+	/* Initialise all images. */
+	Image potionItem = new Image ("res/items/Potion.png");
+	Image starItem = new Image ("res/items/Star.png");
+	Image keyItem = new Image ("res/items/Key.png");
+	Image noEquipment = new Image ("res/items/No.png");
+	Image bigEquipped = new Image ("res/items/BigSword.png");
+	Image whackEquipped = new Image ("res/items/WhackSword.png");
+	
 	Button key,star,potion,ns,bs,ws;
 	//ArrayList <Button> buttons = new ArrayList<Button>();
 
+	public static final int buttonSize = 100;
 	
 	public Button potionButton() { 
 		Image po = new Image("res/potion.png");
 		ImageView i = new ImageView(po);
 		potion = new Button("",i);
-		potion.setMinSize(50, 50);
+		potion.setMinSize(buttonSize, buttonSize);
 		//potion.setOnAction(); INSERT ACTION HERE
 		return potion;
 		
 	}
 	public Button keyButton() {
-		Image ke = new Image("res/Key.png");
+		Image ke = new Image("res/key.png");
 		ImageView i3 = new ImageView(ke);
 		key = new Button("", i3);
-		key.setMinSize(50, 50); 
+		key.setMinSize(buttonSize, buttonSize); 
 		//potion.setOnAction(); INSERT ACTION HERE
 
 		return key;
 	}
 	public Button startSword() {
-		Image sw = new Image("res/Sword.png");
+		Image sw = new Image("res/sword.png");
 		ImageView i2 = new ImageView(sw);
 		ns = new Button("", i2);
-		ns.setMinSize(50, 50); 
+		ns.setMinSize(buttonSize, buttonSize); 
 		//potion.setOnAction(); INSERT ACTION HERE
 
 
@@ -50,7 +59,7 @@ public class InventoryLayer extends ToolBar{
 		Image sw = new Image("res/star.png");
 		ImageView i2 = new ImageView(sw);
 		star = new Button("", i2);
-		star.setMinSize(50, 50); 
+		star.setMinSize(buttonSize, buttonSize); 
 		//potion.setOnAction(); INSERT ACTION HERE
 		return star;
 	}

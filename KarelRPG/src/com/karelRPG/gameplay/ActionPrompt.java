@@ -325,7 +325,7 @@ public class ActionPrompt
     		//End of equipping cases!!!!
     	case "U":
     		this.currentCommand = CommandType.use;
-    		if (this.itemSelected != ItemSelection.potion||this.itemSelected != ItemSelection.repel)
+    		if (this.itemSelected != ItemSelection.potion&&this.itemSelected != ItemSelection.repel)
     			System.out.println("ATTACK!");
     		break;
     	case "H":
