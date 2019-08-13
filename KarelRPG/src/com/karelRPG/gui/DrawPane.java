@@ -39,14 +39,18 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private static final int lengthOfGameArea = 500;
 	private static final int widthOfGameArea = 500;
 	
+	/* Logic Objects */
 	private Scene openScene, helpScene, creditsScene, gameStart, gameEnd;
-	private VariableClass game = new VariableClass();
+	private VariableClass variables = new VariableClass();
+	
+	/* Panes */
 	private ToolBar inventory = new ToolBar();
-	private PlayerLayer playerlayer = new PlayerLayer();
-	private EnemyLayer enemylayer = new EnemyLayer();
-	private CollectibleLayer collectlayer = new CollectibleLayer();
-	private MapLayer maplayer = new MapLayer();
-	private StatsBars statslayer = new StatsBars();
+	private PlayerLayer playerLocation = new PlayerLayer();
+	private EnemyLayer enemyRadar = new EnemyLayer();
+	private CollectibleLayer scatteredTreasures = new CollectibleLayer();
+	private MapLayer terrain = new MapLayer();
+	private HealthBar health = new HealthBar();
+	private PlayerStatistics status = new PlayerStatistics();
 	
 	private boolean turn = true;
 
@@ -170,40 +174,40 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	
 	public Scene gameScene() {
 		BorderPane b = new BorderPane();
-		Pane center = new Pane();
-		Pane right = new Pane();
+		StackPane center = new StackPane();
+		VBox left = new VBox();
 		b.autosize();
-		game.start();
-		center.getChildren().addAll(maplayer,enemylayer,collectlayer,playerlayer);
-		right.getChildren().add(statslayer);
+		variables.start();
+		center.getChildren().addAll(terrain,enemyRadar,scatteredTreasures,playerLocation);
+		left.getChildren().addAll(health,status);
 		b.setCenter(center);
-		b.setRight(right);
+		b.setLeft(left);
 		gameStart = new Scene (b, lengthOfStage, widthOfStage);
 		gameStart.setOnKeyPressed(this);
-		System.out.println("BEEEE");
-		game.tony.goInTheGame();
-		if(!game.tony.isGameOver()) {
+		variables.tony.goInTheGame();
+		if(!variables.tony.isGameOver()) {
 			update();
 		}
 		return gameStart;
 	}
 	
 	public void update() {
-		game.game.takeCommand(game.play);
-		game.game.runEnemiesTurn(game.play);
-		if (game.play.getHealth()==0) {
-			game.tony.playerDied();
+		variables.game.takeCommand(variables.play);
+		variables.game.runEnemiesTurn(variables.play);
+		if (variables.play.getHealth()==0) {
+			variables.tony.playerDied();
 			t.setScene(GameOver());
 		}
-		if (game.game.getNoMoreGame()) {
-			game.tony.finishTheGame();
+		if (variables.game.getNoMoreGame()) {
+			variables.tony.finishTheGame();
 			t.setScene(GameWin());
 		}
-		maplayer.setMap(game.game.getCurrentRoomMap());
-		playerlayer.setPlayer(game.game,game.play);
-		enemylayer.setEnemyLayer(game.game.getCurrentRoomMap().getEnemyList());
-		collectlayer.setCollectibleLayer(game.game.getCurrentRoomMap().getListOfCollectibles());
-		statslayer.setStats(game.play, game.game.getCurrentRoomMap().getEnemyList());
+		terrain.setMap(variables.game.getCurrentRoomMap());
+		playerLocation.setPlayer(variables.game,variables.play);
+		enemyRadar.setEnemyLayer(variables.game.getCurrentRoomMap().getEnemyList());
+		scatteredTreasures.setCollectibleLayer(variables.game.getCurrentRoomMap().getListOfCollectibles());
+		health.setHealth(variables.play);
+		status.setStatus(variables.game);
 	}				
 
 //	public Scene GameEnd() { //this draws the end screen
@@ -255,41 +259,62 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		switch (event.getCode())
 			{
 			case A:
-	    		game.game.writeCommand("A");
+	    		variables.game.writeCommand("A");
 	    		update();
 	    		break;
 	    		
 	    	case D:
-	    		game.game.writeCommand("D");
+	    		variables.game.writeCommand("D");
 	    		update();
 	    		break;
 	    	case W:
-	       		game.game.writeCommand("W");
+	       		variables.game.writeCommand("W");
 	    		update();
 	    		break;
 	    	case S:
-	    		game.game.writeCommand("S");
+	    		variables.game.writeCommand("S");
 	    		update();
 	    		break;
 	    		
 	    	case P:
-	    		game.game.writeCommand("P");  
+	    		variables.game.writeCommand("P");  
 	    		update();
 	    		break;
 	    		
-	    	case T:
-	    		game.game.writeCommand("T");
+	    	case U:
+	    		variables.game.writeCommand("U");
 	    		update();
 	    		break;
+	    		
 	    	case H:
 	    		System.out.println("What were the commands again?");
-	    		game.game.writeCommand("H");
+	    		variables.game.writeCommand("H");
 	    		update();
 	    		break;
+	    		
 	    	case ENTER:
-	    		game.game.writeCommand("");
+	    		variables.game.writeCommand("");
 	    		update();
 	    		break;
+	    		
+	    	//Placeholder Cases, they should not be here, they should be called by button clicks.
+	    	case NUMPAD0:
+	    		variables.game.switchEquipment("normal");
+	    		break;
+	    	case NUMPAD1:
+	    		variables.game.switchEquipment("potion");
+	    		break;
+	    	case NUMPAD2:
+	    		variables.game.switchEquipment("big");
+	    		break;
+	    	case NUMPAD3:
+	    		variables.game.switchEquipment("whack");
+	    		break;
+	    	case NUMPAD4:
+	    		variables.game.switchEquipment("star");
+	    		break;
+	    	//End of placeholder case, Feifei when you read this please copy the things
+	    	//underneath each case into the button set on clicks. (exclude break statements)
 	    	default:
 	    		System.out.println("That was not a valid command, type h for the list of commands.");
 	    		break;

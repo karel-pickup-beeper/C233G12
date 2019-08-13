@@ -10,6 +10,33 @@ enum CommandType
 { 
     left,up,right,down,pickup,use,help,no,systemcheck; 
 }
+
+enum ItemSelection
+{
+	potion,normalsword,bigsword,whacksword,repel;
+	public String toString() {
+		String n = "";
+		switch (this)
+		{
+		case potion:
+			n += "Potion";
+			break;
+		case normalsword:
+			n += "(default sword)";
+			break;
+		case bigsword:
+			n += "Big Sword";
+			break;
+		case whacksword:
+			n += "Whack Sword";
+			break;
+		default:
+			break;
+		}
+		return n;
+	}
+}
+
 /*
  * Driver class Action Prompt that reads and writes current command
  * and the entire game which runs in main().
@@ -82,9 +109,51 @@ public class ActionPrompt
 		boolean n = this.noMoreGame;
 		return n;
 	}
+	
+	
 	public String getCommandType() {
 		return currentCommand.toString();
 	}
+	
+	public String toEquipmentString() {
+		return "Equipped with: " + itemSelected.toString();
+	}
+
+    public String getEquipmentString()
+    {
+    	return this.itemSelected.toString();
+    }
+    
+    public boolean soDoEnemiesRun() {
+    	boolean n = this.doEnemiesRun;
+    	return n;
+    }
+    
+    public void switchEquipment(String choice)
+    {
+    	System.out.print("Equipping "+choice);
+    	switch(choice)
+    	{
+    	case "normal":
+    		this.itemSelected = ItemSelection.normalsword;
+    		break;
+    	case "big":
+    		this.itemSelected = ItemSelection.bigsword;
+    		break;
+    	case "whack":
+    		this.itemSelected = ItemSelection.whacksword;
+    		break;
+    	case "potion":
+    		this.itemSelected = ItemSelection.potion;
+    		break;
+    	case "star":
+    		this.itemSelected = ItemSelection.repel;
+    		break;
+    	default:
+    		break;
+    	}
+    }
+    
 	/**
 	 * This mutator method will index Maps into the ArrayList of Maps in the dungeon, when called. 
 	 * 
@@ -118,6 +187,7 @@ public class ActionPrompt
 	public void initialiseMap(int num, Enemy monster) {
 		dungeon.get(num).setMapEnemies(monster);
 	}
+	
     /**
 	 * This method will prints the world screen and all associated objects
 	 * when it is called.
@@ -255,7 +325,7 @@ public class ActionPrompt
     		//End of equipping cases!!!!
     	case "U":
     		this.currentCommand = CommandType.use;
-    		if (this.itemSelected != ItemSelection.potion)
+    		if (this.itemSelected != ItemSelection.potion||this.itemSelected != ItemSelection.repel)
     			System.out.println("ATTACK!");
     		break;
     	case "H":
@@ -274,54 +344,6 @@ public class ActionPrompt
     	}
     }
     
-
-    public void runEnemiesTurn(Player user)
-    {
-    	if (this.countdown>0) {
-    		this.countdown--;
-    	} else {
-    		this.doEnemiesRun = false;
-    	}
-    	dungeon.get(this.roomNumber).doAllEnemyActions(user, doEnemiesRun);
-    }
-    
-    public void enemyPassiveAttack(Player user, Enemy monster)
-    {
-    	switch (monster.getType())
-		{
-		case "Cactus":
-			if (monster.getAttack() == 0) {
-				System.out.print(" You've charged straight into a dormant cacti, the spikes didn't hurt you. ");
-			} else {
-				System.out.print(" The active cacti spiked you. ");
-				user.changeHealth(-monster.getAttack());
-			}
-			System.out.println(" Cacti get prickly when active, better not walk into them.");
-			break;
-			
-		case "Robot":
-			System.out.print("The robot buzzled with electricity, touching them gives off a shock. ");
-			user.changeHealth(-monster.getAttack());
-			((Robot) monster).resetRobotCharge();
-			break;
-			
-		case "Zombie":
-			System.out.print("You flinched while charging at the zombie. ");
-			user.changeHealth(-monster.getAttack());
-			monster.loseHealth(-monster.getAttack()/6);
-			break;
-			
-		case "Ghost":
-			System.out.print("The ghost took a bit of your soul as you charged into it. ");
-			user.changeHealth(-monster.getAttack());
-			monster.loseHealth(-monster.getAttack()/5);
-			break;
-		
-		default:
-			System.out.println("The enemy type is undefined.");
-			user.changeHealth(0);
-		}
-    }
     /**
 	 * This method executes a specific command based on ActionPrompt(this class), Player, and Maps classes,
 	 * when called.
@@ -334,7 +356,6 @@ public class ActionPrompt
     	Maps mapwalk = this.getDungeon().get(this.roomNumber);
     	int x = user.getX();
 		int y = user.getY();
-		user.changeEquip(this.itemSelected);
 		
     	switch (this.currentCommand)
     	{
@@ -556,4 +577,53 @@ public class ActionPrompt
     	}
     }
     
+    public void enemyPassiveAttack(Player user, Enemy monster)
+    {
+    	switch (monster.getType())
+		{
+		case "Cactus":
+			if (monster.getAttack() == 0) {
+				System.out.print(" You've charged straight into a dormant cacti, the spikes didn't hurt you. ");
+			} else {
+				System.out.print(" The active cacti spiked you. ");
+				user.changeHealth(-monster.getAttack());
+			}
+			System.out.println(" Cacti get prickly when active, better not walk into them.");
+			break;
+			
+		case "Robot":
+			System.out.print("The robot buzzled with electricity, touching them gives off a shock. ");
+			user.changeHealth(-monster.getAttack());
+			((Robot) monster).resetRobotCharge();
+			break;
+			
+		case "Zombie":
+			System.out.print("You flinched while charging at the zombie. ");
+			user.changeHealth(-monster.getAttack());
+			monster.loseHealth(-monster.getAttack()/6);
+			break;
+			
+		case "Ghost":
+			System.out.print("The ghost took a bit of your soul as you charged into it. ");
+			user.changeHealth(-monster.getAttack());
+			monster.loseHealth(-monster.getAttack()/5);
+			break;
+		
+		default:
+			System.out.println("The enemy type is undefined.");
+			user.changeHealth(0);
+		}
+    }
+    
+    public void runEnemiesTurn(Player user)
+    {
+    	if (this.countdown>0) {
+    		this.countdown--;
+    	} else {
+    		this.doEnemiesRun = false;
+    	}
+    	dungeon.get(this.roomNumber).doAllEnemyActions(user, doEnemiesRun);
+    }
+    
+    //end of class
 } 

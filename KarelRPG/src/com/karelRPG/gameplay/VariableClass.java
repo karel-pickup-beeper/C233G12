@@ -102,7 +102,7 @@ public class VariableClass {
 				/* Prints 0th timestep and all initial variables.*/
 	            System.out.println(0);
 	            System.out.print("Health "+play.getHealth()+ "  ");
-	            System.out.println("Inventory :  " + play.getInventoryString());
+	            System.out.println("Inventory :  " + play.getInventoryString() + game.toEquipmentString());
 	            System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyListString());
 	            tony.goInTheGame();
 	            break;
@@ -135,7 +135,7 @@ public class VariableClass {
 			game.changeTimeStep();
 			System.out.println(game.getTimeStep());	//Prints nth timestep.
             System.out.print("Health "+play.getHealth()+ "  ");
-			System.out.println("Inventory:\t" + play.getInventoryString());
+			System.out.println("Inventory:\t" + play.getInventoryString() + game.toEquipmentString());
 			System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyListString());
 		}
 		com.close();
