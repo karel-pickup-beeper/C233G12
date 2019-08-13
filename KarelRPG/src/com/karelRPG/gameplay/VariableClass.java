@@ -17,10 +17,9 @@ public class VariableClass {
         /* At this point we are at the Title Screen. */
         
         /* Initializing Player's Inventory(ArrayList) with recently created Collectible objects of all possible types. */
- 		play.setInventory(new Collectible("Key", "object", 0));
- 		play.setInventory(new Collectible("Star", "object", 0));
- 		play.setInventory(new Collectible("Potion", "object", 0));
- 		play.setInventory(new Collectible("NormalSword", "weapon", 0));
+ 		play.setInventory(new Collectible("Key", "object", 5));
+ 		play.setInventory(new Collectible("Star", "object", 5));
+ 		play.setInventory(new Collectible("Potion", "object", 5));
  		play.setInventory(new Collectible("BigSword", "weapon", 0));
  		play.setInventory(new Collectible("WhackSword", "weapon", 0));
  		
@@ -103,7 +102,7 @@ public class VariableClass {
 				/* Prints 0th timestep and all initial variables.*/
 	            System.out.println(0);
 	            System.out.print("Health "+play.getHealth()+ "  ");
-	            System.out.println("Inventory :  " + play.getInventory().toString());
+	            System.out.println("Inventory :  " + play.getInventoryString());
 	            System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyListString());
 	            tony.goInTheGame();
 	            break;
@@ -136,7 +135,7 @@ public class VariableClass {
 			game.changeTimeStep();
 			System.out.println(game.getTimeStep());	//Prints nth timestep.
             System.out.print("Health "+play.getHealth()+ "  ");
-			System.out.println("Inventory:\t" + play.getInventory().toString());
+			System.out.println("Inventory:\t" + play.getInventoryString());
 			System.out.println("WANTED-->\t" + game.getCurrentRoomMap().getEnemyListString());
 		}
 		com.close();

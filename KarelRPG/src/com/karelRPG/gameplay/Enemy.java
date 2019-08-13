@@ -119,6 +119,10 @@ public abstract class Enemy {
 		return attack;
 	}
 	
+	public void flee(boolean yes) {
+		this.runFromPlayer = yes;
+	}
+	
 	public abstract String getType();
 	
 	/* Returns string of values. */

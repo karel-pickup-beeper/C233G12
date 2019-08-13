@@ -234,10 +234,11 @@ public class Maps {
 	}
 	
 
-	public void doAllEnemyActions(Player user)
+	public void doAllEnemyActions(Player user, boolean run)
 	{
 		for (Enemy en : enemyList)
 		{
+			en.flee(run);
 			en.enemyAction(user, this);
 		}
 	}

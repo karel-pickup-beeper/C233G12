@@ -8,7 +8,7 @@ enum HealthCondition
 
 enum ItemSelection
 {
-	potion,normalsword,bigsword,whacksword;
+	potion,normalsword,bigsword,whacksword,repel;
 	public String toString() {
 		String n = "";
 		switch (this)

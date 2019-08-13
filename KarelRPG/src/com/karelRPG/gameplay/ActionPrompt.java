@@ -8,7 +8,7 @@ enum CardinalDirection
 
 enum CommandType 
 { 
-    left,up,right,down,pickup,attack,help,no,systemcheck; 
+    left,up,right,down,pickup,use,help,no,systemcheck; 
 }
 /*
  * Driver class Action Prompt that reads and writes current command
@@ -22,7 +22,9 @@ public class ActionPrompt
 	private int roomNumber = 1;
 	private boolean noMoreGame;
 	private ArrayList<Maps> dungeon = new ArrayList<Maps>();
-	private ItemSelection itemSelected = ItemSelection.normalsword; 
+	private ItemSelection itemSelected = ItemSelection.normalsword;
+	private boolean doEnemiesRun = false;
+	private int countdown = 0;
   
 	/* Constructor */
 	public ActionPrompt(int timeStep, CommandType currentCommand) 
@@ -224,33 +226,38 @@ public class ActionPrompt
     		this.currentCommand = CommandType.pickup;
     		System.out.println("Picking Up the Item");
     		break;
-    		
-    	case "0":
-    		this.itemSelected = ItemSelection.normalsword;
-    		System.out.println("You have unequipped all special equipment.");
-    		this.currentCommand = CommandType.no;
-    		break;
-    	case "1":
-    		this.itemSelected = ItemSelection.potion;
-    		System.out.println("You have equipped potion.");
-    		this.currentCommand = CommandType.no;
-    		break;
-    	case "2":
-    		this.itemSelected = ItemSelection.bigsword;
-    		System.out.println("You have equipped bigsword.");
-    		this.currentCommand = CommandType.no;
-    		break;
-    	case "3":
-    		this.itemSelected = ItemSelection.whacksword;
-    		System.out.println("You have equipped whacksword");
-    		this.currentCommand = CommandType.no;
-    		break;
-    	case "T":
-    		this.currentCommand = CommandType.attack;
+    		//These cases should never be run by GUI implicitly, GUI must have a separate command that changes ItemSelection without taking a turn!!!!
+						    	case "0":
+						    		this.itemSelected = ItemSelection.normalsword;
+						    		System.out.println("You have unequipped all special equipment.");
+						    		this.currentCommand = CommandType.no;
+						    		break;
+						    	case "1":
+						    		this.itemSelected = ItemSelection.potion;
+						    		System.out.println("You have equipped potion.");
+						    		this.currentCommand = CommandType.no;
+						    		break;
+						    	case "2":
+						    		this.itemSelected = ItemSelection.bigsword;
+						    		System.out.println("You have equipped bigsword.");
+						    		this.currentCommand = CommandType.no;
+						    		break;
+						    	case "3":
+						    		this.itemSelected = ItemSelection.whacksword;
+						    		System.out.println("You have equipped whacksword.");
+						    		this.currentCommand = CommandType.no;
+						    		break;
+						    	case "4":
+						    		this.itemSelected = ItemSelection.repel;
+						    		System.out.println("You are prepared to use star.");
+						    		this.currentCommand = CommandType.no;
+						    		break;
+    		//End of equipping cases!!!!
+    	case "U":
+    		this.currentCommand = CommandType.use;
     		if (this.itemSelected != ItemSelection.potion)
     			System.out.println("ATTACK!");
     		break;
-    		
     	case "H":
     		this.currentCommand = CommandType.help;
     		System.out.println("What were the commands again?");
@@ -270,7 +277,12 @@ public class ActionPrompt
 
     public void runEnemiesTurn(Player user)
     {
-    	dungeon.get(this.roomNumber).doAllEnemyActions(user);
+    	if (this.countdown>0) {
+    		this.countdown--;
+    	} else {
+    		this.doEnemiesRun = false;
+    	}
+    	dungeon.get(this.roomNumber).doAllEnemyActions(user, doEnemiesRun);
     }
     
     public void enemyPassiveAttack(Player user, Enemy monster)
@@ -426,13 +438,21 @@ public class ActionPrompt
     			System.out.println("There is no item to be picked up.");
     		break;
     		
-    	case attack:
-    		if (this.itemSelected == ItemSelection.potion) {
+    	case use:
+    		if (this.itemSelected == ItemSelection.repel) {
+    			if (user.countSingleItem("Star") > 0) {
+    				user.useUpItem("Star");
+    				this.countdown = 6;
+    				this.doEnemiesRun = true;
+    			} else {
+    				System.out.print("You don't have any stars to use. ");
+    			}
+    		} else if (this.itemSelected == ItemSelection.potion) {
     			if (user.countSingleItem("Potion") > 0) {
     				user.useUpItem("Potion");
     				user.changeHealth(15);
     			} else {
-    				System.out.println("You've got no potions to use.");
+    				System.out.print("You've got no potions to use. ");
     			}
     		} else {
     			int v = 0;
@@ -526,6 +546,9 @@ public class ActionPrompt
 					System.out.println("You have to at least collect all "+7+" keys to win.");
 				}
 			}
+    		break;
+    	case no:
+    		System.out.println("Command_Type = no");
     		break;
     	default:
     		System.out.println("You wasted a turn");

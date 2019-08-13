@@ -12,7 +12,7 @@ public class Zombie extends Enemy {
 		if (bite > 0 && bite < 99)
 			this.bite = bite;
 		super.setAttack(this.bite);
-		super.setSightRange(8);
+		super.setSightRange(6);
 	}
 
 	/* Copy Constructor */
