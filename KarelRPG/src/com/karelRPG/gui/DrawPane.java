@@ -124,25 +124,30 @@ public class DrawPane implements EventHandler<KeyEvent> {
 				
 				
 		// This is the help screen art.
-		Image helpImage = new Image ("res/StartScreen.png");
+		Image helpImage = new Image ("res/HelpScreen.png");
 		helpStack.getChildren().add(new ImageView(helpImage));		
 		
-		Button tempInstructions = new Button ("To input a command: enter a letter key and press the return key.\n" + 
-				"WASD tells the player to move up, left, down, right respectively.\n" + 
-				"p tells the player to pick up a collectible.\n" + 
-				"t tells the player to spin attack enemies in each adjacent tiles.\n" +
-				"return to original tile, press f to finish game");
-		helpStack.getChildren().add(tempInstructions);
+		// This is the player GIF.
+		Image playerImageInHelp = new Image("res/PlayerInHelp.gif");
+		ImageView player = new ImageView(playerImageInHelp);
+		Button playerInHelp = new Button("", player);
+		
+		playerInHelp.setStyle("-fx-background-color: transparent;");
+			
+				
+		helpStack.getChildren().add(playerInHelp);
+		playerInHelp.setTranslateX(10);
+		playerInHelp.setTranslateY(-240);
 		
 		// This button goes back to start screen from the help screen.
-		Button helpBackButton = new Button ("GO BACK TO HOME SCREEN \nFROM HELP");
+		Button helpBackButton = new Button ();
 		helpBackButton.setMinSize(218, 90); 
-		//helpBackButton.setStyle("-fx-background-color: transparent;");
+		helpBackButton.setStyle("-fx-background-color: transparent;");
 		helpBackButton.setOnAction(f-> t.setScene(openingScene()));
 				
 		helpStack.getChildren().add(helpBackButton);
-		helpBackButton.setTranslateX(18);
-		helpBackButton.setTranslateY(112);
+		helpBackButton.setTranslateX(-475);
+		helpBackButton.setTranslateY(-400);
 		
 		return helpScene;
 	}
