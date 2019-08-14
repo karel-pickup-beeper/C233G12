@@ -205,7 +205,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button key = inventory.keyButton();
 		Button star = inventory.starButton();
 		Button potion = inventory.potionButton();
-		Button wackS = inventory.wackSword();
+		Button wackS = inventory.whackSword();
 		Button bigS = inventory.bigSword();
 		
 		star.setOnAction(e->{

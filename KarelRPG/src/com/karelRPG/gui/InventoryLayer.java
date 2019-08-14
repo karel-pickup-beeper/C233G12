@@ -33,54 +33,47 @@ public class InventoryLayer extends ToolBar{
 	 * @return
 	 */
 	
-	public Button potionButton() { 
-		Image po = potionItem;
-		ImageView i = new ImageView(po);
-		potion = new Button("",i);
+	public Button potionButton() {
+		ImageView i3 = new ImageView(potionItem);
+		potion = new Button("",i3);
 		potion.setStyle("-fx-background-color: transparent;");
 		potion.setMinSize(buttonSize, buttonSize);
 		return potion;
 		
 	}
 	public Button keyButton() {
-		Image ke = keyItem;
-		ImageView i3 = new ImageView(ke);
-		key = new Button("", i3);
+		ImageView i1 = new ImageView(keyItem);
+		key = new Button("", i1);
 		key.setMinSize(buttonSize, buttonSize); 
 		key.setStyle("-fx-background-color: transparent;");
 
 
 		return key;
 	}
-//	public Button startSword() {
-//		Image sw = starItem;
-//		ImageView i2 = new ImageView(sw);
-//		ns = new Button("", i2);
-//		ns.setMinSize(buttonSize, buttonSize); 
-//		//potion.setOnAction(); INSERT ACTION HERE
-//
-//
-//		return ns;
-//	}
+	public Button unEquip() {
+		ImageView i0 = new ImageView(noEquipment);
+		no = new Button("", i0);
+		no.setMinSize(buttonSize, buttonSize);
+
+
+		return no;
+	}
 	public Button starButton() {
-		Image sw = starItem;
-		ImageView i2 = new ImageView(sw);
+		ImageView i2 = new ImageView(starItem);
 		star = new Button("", i2);
 		star.setStyle("-fx-background-color: transparent;");
 		star.setMinSize(buttonSize, buttonSize); 
 		return star;
 	}
-	public Button wackSword() {
-		Image sw = whackEquipped;
-		ImageView i2 = new ImageView(sw);
+	public Button whackSword() {
+		ImageView i2 = new ImageView(whackEquipped);
 		ws = new Button("", i2);
 		ws.setStyle("-fx-background-color: transparent;");
 		ws.setMinSize(buttonSize, buttonSize); 
 		return ws;
 	}
 	public Button bigSword() {
-		Image sw = bigEquipped;
-		ImageView i2 = new ImageView(sw);
+		ImageView i2 = new ImageView(bigEquipped);
 		bs = new Button("", i2);
 		bs.setStyle("-fx-background-color: transparent;");
 		bs.setMinSize(buttonSize, buttonSize); 
@@ -88,14 +81,14 @@ public class InventoryLayer extends ToolBar{
 	}
 	public InventoryLayer() {
 		setStyle("-fx-background-color: black;");
-		private Image po = new Image("res/WoodFrame.png");
-		private i = new ImageView(po);
-		private ImageView i1 = new ImageView(po);
-		private ImageView i2 = new ImageView(po);
-		private ImageView i3 = new ImageView(po);
-		private ImageView i4 = new ImageView(po);
-		private ImageView i5 = new ImageView(po);
-		private ImageView i6 = new ImageView(po);
+		Image po = new Image("res/WoodFrame.png");
+		ImageView i = new ImageView(po);
+		ImageView i1 = new ImageView(po);
+		ImageView i2 = new ImageView(po);
+		ImageView i3 = new ImageView(po);
+		ImageView i4 = new ImageView(po);
+		ImageView i5 = new ImageView(po);
+		ImageView i6 = new ImageView(po);
 		
 		slot1 = new StackPane();
 		slot2 = new StackPane();
