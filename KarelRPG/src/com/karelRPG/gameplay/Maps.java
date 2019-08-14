@@ -101,10 +101,11 @@ public class Maps {
 			default:
 				break;
 		}*/
+		
 		switch (room)
 		{
 		case 0:
-			layoutOfCurrentRoom = new String[][] {
+				layoutOfCurrentRoom = new String[][] {
 				{"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"},
 				{"X","_","_","_","_","_","_","_","_","_","_","_","_","_","X"},
 			    {"X","_","_","_","_","_","_","_","_","_","_","_","_","_","X"},
@@ -216,7 +217,6 @@ public class Maps {
 				{"X","_","x","x","x","_","x","x","_","_","_","_","x","X","X"},
 				{"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"}};
 				break;
-				
 			default:
 				break;
 		}

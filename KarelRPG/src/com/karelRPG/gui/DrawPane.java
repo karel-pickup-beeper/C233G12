@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.karelRPG.gameplay.ActionPrompt;
 import com.karelRPG.gameplay.EndGame;
 import com.karelRPG.gameplay.Maps;
+import com.karelRPG.gameplay.Player;
 import com.karelRPG.gameplay.VariableClass;
 
 import javafx.animation.AnimationTimer;
@@ -42,6 +43,10 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	/* Logic Objects */
 	private Scene openScene, helpScene, creditsScene, gameStart, gameEnd, gameOverScene;
 	private VariableClass variables = new VariableClass();
+	/* Reiterated Variables */
+	ActionPrompt console = variables.game;
+	Player person = variables.play;
+	EndGame flag = variables.tony;
 	
 	/* Panes */
 	//private InventoryLayer inventory = new InventoryLayer();
@@ -52,6 +57,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	private HealthBar health = new HealthBar();
 	private PlayerStatistics status = new PlayerStatistics();
 	private InventoryLayer inventory = new InventoryLayer();
+
 
 	
 	private boolean turn = true;
@@ -190,6 +196,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		i.setTranslateY(-63);
 		variables.start();
 		
+		
 		center.getChildren().addAll(i,terrain,scatteredTreasures,enemyRadar,playerLocation);
 		left.getChildren().addAll(health,status);
 		
@@ -202,16 +209,16 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button bigS = inventory.bigSword();
 		
 		star.setOnAction(e->{
-    		variables.game.switchEquipment("star");
+    		console.switchEquipment("star");
 		});
 		potion.setOnAction(e->{
-			variables.game.switchEquipment("potion");
+			console.switchEquipment("potion");
 		});
 		wackS.setOnAction(e->{
-			variables.game.switchEquipment("whack");
+			console.switchEquipment("whack");
 		});
 		bigS.setOnAction(e->{
-    		variables.game.switchEquipment("big");
+    		console.switchEquipment("big");
 		});
 		
 		
@@ -232,30 +239,30 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		
 		gameStart = new Scene (root, lengthOfStage, widthOfStage);
 		gameStart.setOnKeyPressed(this);
-		variables.tony.goInTheGame();
-		if(!variables.tony.isGameOver()) {
+		flag.goInTheGame();
+		if(!flag.isGameOver()) {
 			update();
 		}
 		return gameStart;
 	}
 	
 	public void update() {
-		variables.game.takeCommand(variables.play);
-		variables.game.runEnemiesTurn(variables.play);
-		if (variables.play.getHealth()==0) {
-			variables.tony.playerDied();
+		console.takeCommand(person);
+		console.runEnemiesTurn(person);
+		if (person.getHealth()==0) {
+			flag.playerDied();
 			t.setScene(GameOver());
 		}
-		if (variables.game.getNoMoreGame()) {
-			variables.tony.finishTheGame();
+		if (console.getNoMoreGame()) {
+			flag.finishTheGame();
 			t.setScene(GameWin());
 		}
-		terrain.setMap(variables.game.getCurrentRoomMap());
-		playerLocation.setPlayer(variables.game,variables.play);
-		enemyRadar.setEnemyLayer(variables.game.getCurrentRoomMap().getEnemyList());
-		scatteredTreasures.setCollectibleLayer(variables.game.getCurrentRoomMap().getListOfCollectibles());
-		health.setHealth(variables.play);
-		status.setStatus(variables.game);
+		terrain.setMap(console);
+		playerLocation.setPlayer(console,person);
+		enemyRadar.setEnemyLayer(console.getCurrentRoomMap().getEnemyList());
+		scatteredTreasures.setCollectibleLayer(console.getCurrentRoomMap().getListOfCollectibles());
+		health.setHealth(person);
+		status.setStatus(console);
 	}				
 
 	public Scene GameWin() { //this draws the end screen when player wins
@@ -304,68 +311,68 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		switch (event.getCode())
 			{
 			case A:
-	    		variables.game.writeCommand("A");
+	    		console.writeCommand("A");
 	    		update();
 	    		break;
 	    		
 	    	case D:
-	    		variables.game.writeCommand("D");
+	    		console.writeCommand("D");
 	    		update();
 	    		break;
 	    	case W:
-	       		variables.game.writeCommand("W");
+	       		console.writeCommand("W");
 	    		update();
 	    		break;
 	    	case S:
-	    		variables.game.writeCommand("S");
+	    		console.writeCommand("S");
 	    		update();
 	    		break;
 	    		
 	    	case P:
-	    		variables.game.writeCommand("P");  
+	    		console.writeCommand("P");  
 	    		update();
 	    		break;
 	    		
 	    	case U:
-	    		variables.game.writeCommand("U");
+	    		console.writeCommand("U");
 	    		update();
 	    		break;
 	    		
 	    	case H:
 	    		System.out.println("What were the commands again?");
-	    		variables.game.writeCommand("H");
+	    		console.writeCommand("H");
 	    		update();
 	    		break;
 	    		
 	    	case ENTER:
-	    		variables.game.writeCommand("");
+	    		console.writeCommand("");
 	    		update();
 	    		break;
 	    		
 	    	//Placeholder Cases, they should not be here, they should be called by button clicks.
-//	    	case NUMPAD0:
-//	    		variables.game.switchEquipment("normal");
-//	    		break;
-//	    	case NUMPAD1:
-//	    		variables.game.switchEquipment("potion");
-//	    		break;
-//	    	case NUMPAD2:
-//	    		variables.game.switchEquipment("big");
-//	    		break;
-//	    	case NUMPAD3:
-//	    		variables.game.switchEquipment("whack");
-//	    		break;
-//	    	case NUMPAD4:
-//	    		variables.game.switchEquipment("star");
-//	    		break;
-//	    	//End of placeholder case, Feifei when you read this please copy the things
-//	    	//underneath each case into the button set on clicks. (exclude break statements)
-//	    	default:
-//	    		System.out.println("That was not a valid command, type h for the list of commands.");
-//	    		break;
-//	    		//System.out.println("That was not a valid command, type h for the list of commands.");
-//			}
+	    	case NUMPAD0:
+	    		console.switchEquipment("normal");
+	    		break;
+	    	case NUMPAD1:
+	    		console.switchEquipment("potion");
+	    		break;
+	    	case NUMPAD2:
+	    		console.switchEquipment("big");
+	    		break;
+	    	case NUMPAD3:
+	    		console.switchEquipment("whack");
+	    		break;
+	    	case NUMPAD4:
+	    		console.switchEquipment("star");
+	    		break;
+	    	//End of placeholder case
+	    	//underneath each case into the button set on clicks. (exclude break statements)
+	    	default:
+	    		System.out.print(event.getCode().toString());
+	    		System.out.println(" That was not a valid command, type h for the list of commands.");
+	    		break;
+	    		
+			}
 		}
-}
 }
 

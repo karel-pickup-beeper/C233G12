@@ -10,7 +10,7 @@ import javafx.scene.layout.Pane;
 public class EnemyLayer extends Pane {
 
 	public EnemyLayer() {
-		setPrefSize(500,500);
+		setPrefSize(750,750);
 	}
 	public void setEnemyLayer(ArrayList<Enemy> enemylist) {
 		getChildren().clear();

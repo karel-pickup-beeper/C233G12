@@ -74,7 +74,7 @@ public class ActionPrompt
 	 * @return r: room number of type integer.
 	 * 
 	 */
-	public int getroomNumber() {
+	public int getRoomNumber() {
 		int r = this.roomNumber;
 		return r;
 	}
