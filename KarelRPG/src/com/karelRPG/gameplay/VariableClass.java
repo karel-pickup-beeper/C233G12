@@ -17,8 +17,8 @@ public class VariableClass {
         /* At this point we are at the Title Screen. */
         
         /* Initializing Player's Inventory(ArrayList) with recently created Collectible objects of all possible types. */
- 		play.setInventory(new Collectible("Key", "object", 5));
- 		play.setInventory(new Collectible("Star", "object", 5));
+ 		play.setInventory(new Collectible("Key", "object", 0));
+ 		play.setInventory(new Collectible("Star", "object", 0));
  		play.setInventory(new Collectible("Potion", "object", 5));
  		play.setInventory(new Collectible("BigSword", "weapon", 0));
  		play.setInventory(new Collectible("WhackSword", "weapon", 0));
@@ -52,7 +52,7 @@ public class VariableClass {
 		game.initialiseMap(2, new PhysicalCollectible("Key" ,6,8));
 		/* Map 3 */
 		game.initialiseMap(3, new PhysicalCollectible("Potion" ,3,1));
-		game.initialiseMap(3, new PhysicalCollectible("Potion" ,8,0));
+		game.initialiseMap(3, new PhysicalCollectible("Potion" ,8,1));
 		/* Map 4 */
 		game.initialiseMap(4, new PhysicalCollectible("Potion" ,4,8));
 		game.initialiseMap(4, new PhysicalCollectible("Potion" ,8,6));

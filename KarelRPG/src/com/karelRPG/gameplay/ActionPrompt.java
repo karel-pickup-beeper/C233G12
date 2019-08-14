@@ -512,7 +512,7 @@ public class ActionPrompt
     							}
     							a.enemyKnockBack(tempAim, mapwalk);
     						}
-    						if (a.getHealth() == 0) {
+    						if (a.getHealth() <= 0) {
     							System.out.println("You've killed an Enemy! " + "Yay!");
     							mapwalk.popEnemy(a);
     						} else {

@@ -13,14 +13,14 @@ public class MapLayer extends Pane{
 	private final int moveYPixel = 50;
 	
 public MapLayer() {
-	setPrefSize(700,700);	
+	setPrefSize(750,750);	
 }
 
 public void setMap(Maps map1) {
 	getChildren().clear();
 	int drawXCoord=0;
 	int drawYCoord=0;
-	Canvas canvas = new Canvas(700,700);
+	Canvas canvas = new Canvas(750, 750);
 	GraphicsContext context = canvas.getGraphicsContext2D();
 	Image grass = new Image ("res/terrain/grass.png");
 	Image rock = new Image ("res/terrain/rock.png");

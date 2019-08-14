@@ -178,17 +178,20 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	public Scene gameScene() {
 		BorderPane root = new BorderPane();
 		StackPane center = new StackPane();
+		center.setPrefHeight(750);
+		center.setPrefWidth(750);
 		VBox left = new VBox();
 		left.setPrefWidth(100);
 		Pane bottom = new Pane();
-		bottom.setPrefHeight(200);
+		bottom.setPrefHeight(100);
 		Image po = new Image("res/big border.png");
 		ImageView i = new ImageView(po);
+		i.setTranslateX(-213);
+		i.setTranslateY(-63);
 		variables.start();
 		
 		center.getChildren().addAll(i,terrain,scatteredTreasures,enemyRadar,playerLocation);
 		left.getChildren().addAll(health,status);
-		//bottom.getChildren().addAll(inventory/*, systemMessage */);
 		
 		
 	
@@ -219,7 +222,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		inventory.slot5.getChildren().add(bigS);
 		
 						
-		bottom.getChildren().addAll(inventory);
+		bottom.getChildren().addAll(inventory/*, systemMessage */);
 		inventory.setLayoutX(300);
 		inventory.setLayoutY(0);
 
