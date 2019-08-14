@@ -10,9 +10,9 @@
 This game is a collaborative project between Feifei Zhang, Vincent Tsin, Mark Pineda, Yasmin Samantar.<br/>
 
 
-Karel RPG is a role playing game that allows a player to explore a preset map. The objective of the game is to defeat all the enemies within the room and collect all the items. <br/>
+Karel RPG is a role playing game that allows a player to explore a preset map. The objective of the game is to defeat all the enemies within the room and collect all the items. The game is a turn based game, where the map will be updated based on turns<br/>
 
-The game features a player controlled by using the keyboard ([W, A, S, D] to move, [T] to attack, [P] to pickup an item). The game also features a battle system, wherein, each enemy has it's on health and will die if it's life points are reduced to zero. The collection system is implemented to supplement the game objective. Lastly, The GUI interface, reacts to the user inputs. For example, when the enemy is attacked, and loses all its health, it will disappear from the map. The collectible item will also disappear, when the player picks the item up. <br/>
+The game features a player controlled by using the keyboard ([W, A, S, D] to move, [T] to attack, [P] to pickup an item). The game also features a battle system, wherein, each enemy has it's on health and will die if it's life points are reduced to zero. The collection system is implemented to supplement the game objective. Lastly, The GUI interface, reacts to the user inputs. For example, when the enemy is attacked, and loses all its health, it will disappear from the map. The collectible item will also disappear, when the player picks the item up. There are multiple maps implemented on different levels with different types of enemies extending from super class "Enemy". <br/>
 
 Project Start Date: July 10, 2019.<br/>
 
@@ -34,9 +34,13 @@ Group 12 GitHub Repository URL (From DEMO 2): https://github.com/karel-pickup-be
 Group 12 GitHub Repository URL (From DEMO 3): https://github.com/karel-pickup-beeper/C233G12.git
 <br/>
 
+Group 12 GutHubRepository URL (From Demo 4): https://github.com/karel-pickup-beeper/C233G12/tree/For-Demo-4
+<br/>
+
 Notes for Reviewing Past Versions {<br/>
 v1.0 = #80 commit<br/>
 v2.0 = #120 commit<br/>
+v3.0 = #180 commit<br/>
 }
 
 Compile Instruction:
@@ -56,10 +60,3 @@ Install JavaFx Jar Instructions(Eclipse)<br/>
 5. Add External JARS > Add the jfxrt.jar<br/>
 6. Apply and close<br/>
 
-
-RESOURCES (CREATIVE COMMONS) (REUSED FOR NON-COMMERCIAL / EDUCATIONAL USE):
-1. MUSHROOM: https://bayatgames.com/asset/platform-game-assets-ultimate/
-2. SWORDS: http://minecraftpixelartbuildingideas.blogspot.com/2013/02/minecraft-2d-pixel-art-ideas.html
-3. TERRAIN TEXTURE: https://www.pinterest.ca/pin/472244710908242915/
-4. ADDITIONAL TEXTURE: https://www.minecraftforum.net/forums/mapping-and-modding-java-edition/resource-packs/resource-pack-discussion/1251525-two-stone-textures-which-is-better-16x
-5. POTION: https://www.planetminecraft.com/project/alchemist-apprentce/
