@@ -34,7 +34,7 @@ import javafx.scene.text.FontWeight;
 
 	
 public class DrawPane implements EventHandler<KeyEvent> {
-	private Stage t;
+	private Stage theStage;
 	private static final int lengthOfStage=1280;
 	private static final int widthOfStage=960;
 	private static final int lengthOfGameArea = 500;
@@ -43,10 +43,10 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	/* Logic Objects */
 	private Scene openScene, helpScene, creditsScene, gameStart, gameEnd, gameOverScene;
 	private VariableClass variables = new VariableClass();
-	/* Reiterated Variables */
-	ActionPrompt console = variables.game;
-	Player person = variables.play;
-	EndGame flag = variables.tony;
+		/* Reiterated Variables */
+		ActionPrompt console = variables.gameReturn();
+		Player person = variables.playReturn();
+		EndGame flag = variables.tonyReturn();
 	
 	/* Panes */
 	//private InventoryLayer inventory = new InventoryLayer();
@@ -66,7 +66,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	public DrawPane(Stage s) {
 		s.setTitle("Karel RPG");
 		s.setScene(openingScene());
-		t=s;
+		theStage=s;
 	}
 
 	// This draws opening screen.
@@ -87,7 +87,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		//Button startButton = new Button ("Start Game");
 		startButton.setMinSize(218, 98); 
 		startButton.setStyle("-fx-background-color: transparent;");
-		startButton.setOnAction(e-> t.setScene(gameScene()));
+		startButton.setOnAction(e-> theStage.setScene(gameScene()));
 		
 		stackPane.getChildren().add(startButton);
 		startButton.setTranslateX(18);
@@ -100,7 +100,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		//Button helpButton = new Button ("Help");
 		helpButton.setMinSize(218, 90); 
 		helpButton.setStyle("-fx-background-color: transparent;");
-		helpButton.setOnAction(f-> t.setScene(helpScene()));
+		helpButton.setOnAction(f-> theStage.setScene(helpScene()));
 			
 		stackPane.getChildren().add(helpButton);
 		helpButton.setTranslateX(18);
@@ -114,7 +114,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		//Button creditsButton = new Button ("Credits");
 		creditsButton.setMinSize(218, 98); 
 		creditsButton.setStyle("-fx-background-color: transparent;");
-		creditsButton.setOnAction(f-> t.setScene(creditsScene()));		
+		creditsButton.setOnAction(f-> theStage.setScene(creditsScene()));		
 				
 		stackPane.getChildren().add(creditsButton);
 		creditsButton.setTranslateX(18);
@@ -150,7 +150,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button helpBackButton = new Button ();
 		helpBackButton.setMinSize(218, 90); 
 		helpBackButton.setStyle("-fx-background-color: transparent;");
-		helpBackButton.setOnAction(f-> t.setScene(openingScene()));
+		helpBackButton.setOnAction(f-> theStage.setScene(openingScene()));
 				
 		helpStack.getChildren().add(helpBackButton);
 		helpBackButton.setTranslateX(-475);
@@ -170,7 +170,7 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Button creditsBackButton = new Button ("GO BACK TO HOME SCREEN \nFROM CREDITS");
 		creditsBackButton.setMinSize(218, 90); 
 		//creditsBackButton.setStyle("-fx-background-color: transparent;");
-		creditsBackButton.setOnAction(f-> t.setScene(openingScene()));
+		creditsBackButton.setOnAction(f-> theStage.setScene(openingScene()));
 
 		creditsStack.getChildren().add(creditsBackButton);
 		creditsBackButton.setTranslateX(18);
@@ -251,11 +251,11 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		console.runEnemiesTurn(person);
 		if (person.getHealth()==0) {
 			flag.playerDied();
-			t.setScene(GameOver());
+			theStage.setScene(GameOver());
 		}
 		if (console.getNoMoreGame()) {
 			flag.finishTheGame();
-			t.setScene(GameWin());
+			theStage.setScene(GameWin());
 		}
 		terrain.setMap(console);
 		playerLocation.setPlayer(console,person);

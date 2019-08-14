@@ -14,6 +14,11 @@ public class EndGame {
 		this.title = WinCondition.out;
 	}
 	
+	public EndGame(EndGame tony) {
+		this.gameOver = tony.gameOver;
+		this.title = tony.title;
+	}
+
 	/**
 	 * This accessor method will return true if the gameplay is over or has not begun.
 	 * 

@@ -16,7 +16,6 @@ public class Player {
 	private ArrayList<Collectible> inventory = new ArrayList <Collectible>();
 	private ArrayList<Integer> stats = new ArrayList <Integer>();
 	private HealthCondition status;
-	private int strengthindex=1;
 	
 	/* Constructors */
 	public Player(int health1, int x, int y) {
@@ -27,9 +26,10 @@ public class Player {
 	
 	/* Copy Constructors */
 	public Player(Player play) {
-		life=play.life;
-		inventory=play.inventory;
-		stats=play.stats;
+		this(play.life, play.xCoord, play.yCoord);
+		this.inventory=play.inventory;
+		this.stats=play.stats;
+		this.status=play.status;
 	}
 	 
 	/*
@@ -267,17 +267,6 @@ public class Player {
 		}
 		return yep;
 	}
-	
-	public void useCollectible(Collectible c) {
-		
-		if (c.getName() == "Sun") {
-			changeStats(strengthindex, 5);
-			
-		}
-	}
-	
-	public int getStrength() {
-		return getStatList().get(strengthindex);
-		}
+
 }
 	

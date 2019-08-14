@@ -3,14 +3,34 @@ import java.util.Scanner;
 
 public class VariableClass {
 	
-    public ActionPrompt game = new ActionPrompt(0, CommandType.help);
+	/* Instances */
 	
+	private int difficultySetting = 0;
+	
+    private ActionPrompt game = new ActionPrompt(0, CommandType.help, difficultySetting);
 	/* Create EndGame Object to flash title card. */
-    public EndGame tony = new EndGame();
-    
+    private EndGame tony = new EndGame();
  	/* Initializing Player's Inventory(ArrayList) with the Collectible types. */
- 	public Player play = new Player(100,5,5);
-   
+ 	private Player play = new Player(100,5,5);
+ 	
+ 	
+ 	
+ 	/*
+ 	 * Main Driver Class
+ 	 */
+ 	public static void main(String[] args) {
+    	VariableClass game = new VariableClass();
+    	game.start();
+    	game.play();
+    	
+    	
+    }
+ 	
+ 	
+ 	/*
+ 	 * Start Method
+ 	 */
+ 	
  	public void start() {
  		/* Create EndGame Object to flash title card. */
  		tony.newGame();
@@ -88,6 +108,11 @@ public class VariableClass {
 		game.initialiseMap(5, new Cactus(10, 8, 6, 6, false));
 		
  	}
+ 	
+ 	/*
+ 	 * Play Method
+ 	 */
+ 	
 	public void play() {
  		Scanner com = new Scanner(System.in);
 		String readString = com.nextLine();
@@ -142,14 +167,21 @@ public class VariableClass {
     }
 	
 
-   public static void main(String[] args) {
-    	VariableClass game = new VariableClass();
-    	game.start();
-    	game.play();
-    	
-    	
-    }
+   
 
+
+    /* Getter Methods */
+	public ActionPrompt gameReturn() {
+		return new ActionPrompt(game);
+	}
+	
+	public EndGame tonyReturn() {
+		return new EndGame(tony);
+	}
+	
+	public Player playReturn() {
+		return new Player(play);
+	}
  	
  }
 

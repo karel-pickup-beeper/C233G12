@@ -46,24 +46,33 @@ public class ActionPrompt
 	/* instances */
 	private int timeStep;
 	private CommandType currentCommand;
+	private int difficulty = 0;
 	private int roomNumber = 1;
 	private boolean noMoreGame;
 	private ArrayList<Maps> dungeon = new ArrayList<Maps>();
 	private ItemSelection itemSelected = ItemSelection.normalsword;
 	private boolean doEnemiesRun = false;
 	private int countdown = 0;
+	
   
 	/* Constructor */
-	public ActionPrompt(int timeStep, CommandType currentCommand) 
+	public ActionPrompt(int timeStep, CommandType currentCommand, int difficulty) 
     	{ 
         	this.timeStep = timeStep;
         	this.currentCommand = currentCommand;
+        	this.difficulty = difficulty;
     	}
 
 	/* Copy Constructor */
 	public ActionPrompt(ActionPrompt a)
 	{
-    		this(a.timeStep, a.currentCommand);
+    		this(a.timeStep, a.currentCommand, a.difficulty);
+    		this.roomNumber = a.roomNumber;
+    		this.noMoreGame = a.noMoreGame;
+    		this.dungeon = a.dungeon;
+    		this.itemSelected = a.itemSelected;
+    		this.doEnemiesRun = a.doEnemiesRun;
+    		this.countdown = a.countdown;
 	}
 	
 	/* Methods */
@@ -115,6 +124,11 @@ public class ActionPrompt
 		return currentCommand.toString();
 	}
 	
+	public int getDifficulty() {
+		int difficulty = this.difficulty;
+		return difficulty;
+	}
+	
 	public String toEquipmentString() {
 		return "Equipped with: " + itemSelected.toString();
 	}
@@ -131,7 +145,7 @@ public class ActionPrompt
     
     public void switchEquipment(String choice)
     {
-    	System.out.print("Equipping "+choice);
+    	System.out.println("Equipping "+choice);
     	switch(choice)
     	{
     	case "normal":
