@@ -30,6 +30,9 @@ enum ItemSelection
 		case whacksword:
 			n += "Whack Sword";
 			break;
+		case repel:
+			n += "Starlight";
+			break;
 		default:
 			break;
 		}

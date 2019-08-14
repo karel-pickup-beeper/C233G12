@@ -20,75 +20,34 @@ public class InventoryLayer extends ToolBar{
 	Image potionItem = new Image ("res/items/Potion.gif");
 	Image starItem = new Image ("res/items/Star.png");
 	Image keyItem = new Image ("res/items/Key.png");
-	Image noEquipment = new Image ("res/items/No.png");
+	Image noEquipment = new Image ("res/items/No.png", 50, 50, true, true);
 	Image bigEquipped = new Image ("res/items/BigSword.gif");
 	Image whackEquipped = new Image ("res/items/WhackSword.png");
+	Image[] images = {noEquipment,keyItem,starItem,potionItem,bigEquipped,whackEquipped};
 	StackPane slot1, slot2, slot3, slot4, slot5, slot6;
-	Button key,star,potion,ns,bs,ws;
+	Button stopIcon, keyIcon,starIcon,potionIcon,bigSwordIcon,whackSwordIcon;
 
 	public static final int buttonSize = 50;
 	
-	/**
-	 * 
-	 * @return
-	 */
 	
-	public Button potionButton() {
-		ImageView i3 = new ImageView(potionItem);
-		potion = new Button("",i3);
-		potion.setStyle("-fx-background-color: transparent;");
-		potion.setMinSize(buttonSize, buttonSize);
-		return potion;
-		
-	}
-	public Button keyButton() {
-		ImageView i1 = new ImageView(keyItem);
-		key = new Button("", i1);
-		key.setMinSize(buttonSize, buttonSize); 
-		key.setStyle("-fx-background-color: transparent;");
+	public Button inventoryIcon(int item) {
+		ImageView i0 = new ImageView(images[item]);
+		Button icon = new Button("", i0);
+		icon.setMinSize(buttonSize, buttonSize);
+		icon.setStyle("-fx-background-color: transparent;");
 
-
-		return key;
+		return icon;
 	}
-	public Button unEquip() {
-		ImageView i0 = new ImageView(noEquipment);
-		no = new Button("", i0);
-		no.setMinSize(buttonSize, buttonSize);
-
-
-		return no;
-	}
-	public Button starButton() {
-		ImageView i2 = new ImageView(starItem);
-		star = new Button("", i2);
-		star.setStyle("-fx-background-color: transparent;");
-		star.setMinSize(buttonSize, buttonSize); 
-		return star;
-	}
-	public Button whackSword() {
-		ImageView i2 = new ImageView(whackEquipped);
-		ws = new Button("", i2);
-		ws.setStyle("-fx-background-color: transparent;");
-		ws.setMinSize(buttonSize, buttonSize); 
-		return ws;
-	}
-	public Button bigSword() {
-		ImageView i2 = new ImageView(bigEquipped);
-		bs = new Button("", i2);
-		bs.setStyle("-fx-background-color: transparent;");
-		bs.setMinSize(buttonSize, buttonSize); 
-		return bs;
-	}
+	
 	public InventoryLayer() {
 		setStyle("-fx-background-color: black;");
-		Image po = new Image("res/WoodFrame.png");
-		ImageView i = new ImageView(po);
-		ImageView i1 = new ImageView(po);
-		ImageView i2 = new ImageView(po);
-		ImageView i3 = new ImageView(po);
-		ImageView i4 = new ImageView(po);
-		ImageView i5 = new ImageView(po);
-		ImageView i6 = new ImageView(po);
+		Image woodenSlot = new Image("res/WoodFrame.png");
+		ImageView i1 = new ImageView(woodenSlot);
+		ImageView i2 = new ImageView(woodenSlot);
+		ImageView i3 = new ImageView(woodenSlot);
+		ImageView i4 = new ImageView(woodenSlot);
+		ImageView i5 = new ImageView(woodenSlot);
+		ImageView i6 = new ImageView(woodenSlot);
 		
 		slot1 = new StackPane();
 		slot2 = new StackPane();
@@ -97,12 +56,12 @@ public class InventoryLayer extends ToolBar{
 		slot5 = new StackPane();
 		slot6 = new StackPane();
 		
-		slot1.getChildren().add(i);
-		slot2.getChildren().add(i1);
-		slot3.getChildren().add(i2);
-		slot4.getChildren().add(i3);
-		slot5.getChildren().add(i4);
-		slot6.getChildren().add(i5);
+		slot1.getChildren().add(i1);
+		slot2.getChildren().add(i2);
+		slot3.getChildren().add(i3);
+		slot4.getChildren().add(i4);
+		slot5.getChildren().add(i5);
+		slot6.getChildren().add(i6);
 		
 		getItems().add(slot1);
 		getItems().add(slot2);

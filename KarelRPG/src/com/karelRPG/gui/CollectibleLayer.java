@@ -24,7 +24,7 @@ public class CollectibleLayer extends Pane{
 	 * This constructor allows the initialization of a pane with size 500x500
 	 */
 	public CollectibleLayer() {
-		setPrefSize(500,500);
+		setPrefSize(750,750);
 	}
 	/**
 	 * This method prints out collectibles based on the type of collectibles it is, and the location of the collectibles

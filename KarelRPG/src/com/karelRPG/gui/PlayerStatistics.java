@@ -14,6 +14,7 @@ public class PlayerStatistics extends VBox {
 	Image bigIcon = new Image ("res/status/equipment/BigSword.gif");
 	Image whackIcon = new Image ("res/status/equipment/WhackSword.png");
 	Image potionIcon = new Image ("res/status/equipment/Potion.gif");
+	Image starIcon = new Image ("res/status/equipment/Star.png");
 	ImageView equip;
 	
 	Image runIcon = new Image ("res/status/run.png");
@@ -49,6 +50,8 @@ public class PlayerStatistics extends VBox {
 		case "Whack Sword":
 			equip = new ImageView(whackIcon);
 			break;
+		case "Starlight":
+			equip = new ImageView(starIcon);
 		default:
 			break;
 		}

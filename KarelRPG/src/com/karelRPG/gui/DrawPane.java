@@ -184,55 +184,73 @@ public class DrawPane implements EventHandler<KeyEvent> {
 	public Scene gameScene() {
 		BorderPane root = new BorderPane();
 		StackPane center = new StackPane();
-		center.setPrefHeight(750);
-		center.setPrefWidth(750);
+		center.setPrefSize(750, 750);
+		center.setTranslateX(150);
+		center.setTranslateY(50);
 		VBox left = new VBox();
-		left.setPrefWidth(100);
+		left.setPrefSize(100, 750);
+		left.setTranslateX(150);
 		Pane bottom = new Pane();
-		bottom.setPrefHeight(100);
+		bottom.setPrefHeight(150);
+		bottom.setTranslateX(90);
 		Image po = new Image("res/big border.png");
 		ImageView i = new ImageView(po);
 		i.setTranslateX(-213);
-		i.setTranslateY(-63);
+		i.setTranslateY(-50);
 		variables.start();
-		
 		
 		center.getChildren().addAll(i,terrain,scatteredTreasures,enemyRadar,playerLocation);
 		left.getChildren().addAll(health,status);
 		
+		Button noEquip = inventory.inventoryIcon(0);
+		Button key = inventory.inventoryIcon(1);
+		Button star = inventory.inventoryIcon(2);
+		Button potion = inventory.inventoryIcon(3);
+		Button bigSword = inventory.inventoryIcon(4);
+		Button whackSword = inventory.inventoryIcon(5);
 		
-	
-		Button key = inventory.keyButton();
-		Button star = inventory.starButton();
-		Button potion = inventory.potionButton();
-		Button wackS = inventory.whackSword();
-		Button bigS = inventory.bigSword();
-		
+		noEquip.setOnAction(e->{
+    		console.switchEquipment("normal");
+    		status.setStatus(console);
+		});
+		key.setOnAction(e->{
+    		console.switchEquipment("normal");
+    		status.setStatus(console);
+    		if (person.haveAllKeys()) {
+    			console.writeCommand("");
+    			update();
+    		} else {
+    			System.out.println("You wanted to release the dungeon seal, but you don't have all 7 keys yet.");
+    		}
+		});
 		star.setOnAction(e->{
     		console.switchEquipment("star");
+    		status.setStatus(console);
 		});
 		potion.setOnAction(e->{
 			console.switchEquipment("potion");
+			status.setStatus(console);
 		});
-		wackS.setOnAction(e->{
+		whackSword.setOnAction(e->{
 			console.switchEquipment("whack");
+			status.setStatus(console);
 		});
-		bigS.setOnAction(e->{
+		bigSword.setOnAction(e->{
     		console.switchEquipment("big");
+    		status.setStatus(console);
 		});
 		
 		
-		inventory.slot1.getChildren().add(key);
-		inventory.slot2.getChildren().add(star);
-		inventory.slot3.getChildren().add(potion);
-		inventory.slot4.getChildren().add(wackS);
-		inventory.slot5.getChildren().add(bigS);
-		
-						
-		bottom.getChildren().addAll(inventory/*, systemMessage */);
+		inventory.slot1.getChildren().add(noEquip);
+		inventory.slot2.getChildren().add(key);
+		inventory.slot3.getChildren().add(star);
+		inventory.slot4.getChildren().add(potion);
+		inventory.slot5.getChildren().add(bigSword);
+		inventory.slot6.getChildren().add(whackSword);
 		inventory.setLayoutX(300);
 		inventory.setLayoutY(0);
-
+		bottom.getChildren().addAll(inventory/*, systemMessage */);
+		
 		root.setCenter(center);
 		root.setLeft(left);
 		root.setBottom(bottom);
