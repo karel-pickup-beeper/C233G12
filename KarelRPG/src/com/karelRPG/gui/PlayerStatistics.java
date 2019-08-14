@@ -19,9 +19,17 @@ public class PlayerStatistics extends VBox {
 	Image runIcon = new Image ("res/status/run.png");
 	ImageView icon1;
 	
+	/**
+	 * this constructor allows the initialization of the Vbox with the dimention 50x100
+	 */
 	public PlayerStatistics() {
 		setPrefSize(50,100);
 	}
+	/**
+	 * this method sets the the stats icon on the left of the pane
+	 * @param game, the method takes in the parameter of game, and checks to see which item the player is current equipping
+	 * @return the method returns a Vbox containing an item (potion, sword..) depending on the item that is currently selected by the player
+	 */
 
 	public void setStatus(ActionPrompt game) {
 		

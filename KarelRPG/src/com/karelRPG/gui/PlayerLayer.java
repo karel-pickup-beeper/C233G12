@@ -24,6 +24,15 @@ public class PlayerLayer extends Pane{
 	public PlayerLayer () {
 		setPrefSize(750,750);
 	}
+	/**
+	 * The setPlayer method updates the player location + set the corresponding direction on the pane
+	 * @param direction the direction that the player is going to and set the corresponding gif according to the direction
+	 * @param play  passes the location of the player so the function sets it to the correct location on pane
+	 * @return returns a pane with the player gif that is based on direction, the gifs are the instance variables Image right, front
+	 * back, nope, and places it at the location specified in Player class
+	 * 
+	 */
+
 	public void setPlayer(ActionPrompt machine, Player play) {
 		String direction = machine.getCommandType();
 		

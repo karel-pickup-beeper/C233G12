@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 public class InventoryLayer extends ToolBar{
 	
 	/* Initialise all images. */
+	
 	Image potionItem = new Image ("res/items/Potion.gif");
 	Image starItem = new Image ("res/items/Star.png");
 	Image keyItem = new Image ("res/items/Key.png");
@@ -24,9 +25,13 @@ public class InventoryLayer extends ToolBar{
 	Image whackEquipped = new Image ("res/items/WhackSword.png");
 	StackPane slot1, slot2, slot3, slot4, slot5, slot6;
 	Button key,star,potion,ns,bs,ws;
-	//ArrayList <Button> buttons = new ArrayList<Button>();
 
 	public static final int buttonSize = 50;
+	
+	/**
+	 * 
+	 * @return
+	 */
 	
 	public Button potionButton() { 
 		Image po = potionItem;
@@ -44,7 +49,6 @@ public class InventoryLayer extends ToolBar{
 		key.setMinSize(buttonSize, buttonSize); 
 		key.setStyle("-fx-background-color: transparent;");
 
-		//potion.setOnAction(); INSERT ACTION HERE
 
 		return key;
 	}
@@ -84,16 +88,14 @@ public class InventoryLayer extends ToolBar{
 	}
 	public InventoryLayer() {
 		setStyle("-fx-background-color: black;");
-		Image po = new Image("res/WoodFrame.png");
-		ImageView i = new ImageView(po);
-		ImageView i1 = new ImageView(po);
-		ImageView i2 = new ImageView(po);
-		ImageView i3 = new ImageView(po);
-		ImageView i4 = new ImageView(po);
-		ImageView i5 = new ImageView(po);
-		ImageView i6 = new ImageView(po);
-
-
+		private Image po = new Image("res/WoodFrame.png");
+		private i = new ImageView(po);
+		private ImageView i1 = new ImageView(po);
+		private ImageView i2 = new ImageView(po);
+		private ImageView i3 = new ImageView(po);
+		private ImageView i4 = new ImageView(po);
+		private ImageView i5 = new ImageView(po);
+		private ImageView i6 = new ImageView(po);
 		
 		slot1 = new StackPane();
 		slot2 = new StackPane();

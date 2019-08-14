@@ -8,10 +8,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 public class EnemyLayer extends Pane {
+	/**
+	 * this constructor allows the initiation of a pane with the dimension of 750x750
+	 */
 
 	public EnemyLayer() {
 		setPrefSize(750,750);
 	}
+	/**
+	 * The setEnemyLayer method prints the enemy based on location and type of enemy
+	 * @param enemeylist is a list of enemies on for the current map that the player is in, and gets their location and type
+	 * @return returns a pane with enemy printed based on their location and type
+	 */
+	
 	public void setEnemyLayer(ArrayList<Enemy> enemylist) {
 		getChildren().clear();
 

@@ -20,10 +20,17 @@ public class CollectibleLayer extends Pane{
 	Image bigSwordArt = new Image ("res/items/BigSword.gif", 50, 50, true, true);
 	Image whackSwordArt = new Image ("res/items/WhackSword.png", 50, 50, true, true);
 	
+	/**
+	 * This constructor allows the initialization of a pane with size 500x500
+	 */
 	public CollectibleLayer() {
 		setPrefSize(500,500);
 	}
-
+	/**
+	 * This method prints out collectibles based on the type of collectibles it is, and the location of the collectibles
+	 * @param collectiblelist will pass a list of physical collectible that exist on the current map the player is in.
+	 * @return a pane with collectibles set on the location specified
+	 */
 	public void setCollectibleLayer(ArrayList<PhysicalCollectible> collectiblelist) {
 		getChildren().clear();
 	for (PhysicalCollectible singleItem : collectiblelist) {

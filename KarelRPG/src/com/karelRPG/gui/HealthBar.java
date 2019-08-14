@@ -24,10 +24,17 @@ public class HealthBar extends Pane {
 	Image health9 = new Image ("res/Vitality/9.png");
 	Image health10 = new Image ("res/Vitality/FullHealth.png");
 	ImageView healthBar = new ImageView(health10);
-	
+	/**
+	 * this constructor allows the initiation of a pane with the dimension of 50x250
+	 */
 	public HealthBar(){
 		setPrefSize(50,250);
-}
+	}
+	/**
+	 * This method sets a pane with an image of the player heath based on the player current health
+	 * @param play, this method takes in parameter of player, and checks the health of the player to set the corresponding png
+	 * @return pane with image that represent the current player health
+	 */
 
 	public void setHealth(Player play) {
 
