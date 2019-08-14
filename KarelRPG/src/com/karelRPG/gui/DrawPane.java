@@ -266,10 +266,11 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Image gameWinImage = new Image ("res/GameWin.png");
 		gameWinStack.getChildren().add(new ImageView(gameWinImage));		
 		
-		Text text = new Text ("You Win!");
-		text.setFont(Font.font("Snap ITC",60));
-		gameWinStack.getChildren().add(text);
-		text.setTranslateY(-400);
+		Text winText = new Text ("YOU WIN!");
+		winText.setFont(Font.font("Snap ITC",60));
+		winText.setStyle("-fx-font-weight: bold");
+		gameWinStack.getChildren().add(winText);
+		winText.setTranslateY(-400);
 
 		return gameWinScene;
 	}
@@ -282,10 +283,11 @@ public class DrawPane implements EventHandler<KeyEvent> {
 		Image gameOverImage = new Image ("res/GameOver.png");
 		gameOverStack.getChildren().add(new ImageView(gameOverImage));		
 		
-		Text text = new Text ("GAME OVER!");
-		text.setFont(Font.font("Snap ITC",60));
-		gameOverStack.getChildren().add(text);
-		text.setTranslateY(-400);
+		Text gameOverText = new Text ("GAME OVER!");
+		gameOverText.setFont(Font.font("Snap ITC",60));
+		gameOverText.setStyle("-fx-font-weight: bold");
+		gameOverStack.getChildren().add(gameOverText);
+		gameOverText.setTranslateY(-400);
 		
 		return gameOverScene;
 	}
